@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint --ignore-path .gitignore",
+    "lint:fix": "eslint --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -28,6 +30,17 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "husky": "^4.2.5",
     "typescript": "^3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:fix"
+    }
+  },
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json"
+    }
   }
 }
