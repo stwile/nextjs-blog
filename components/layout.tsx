@@ -1,12 +1,19 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
+import React from 'react';
+import styles from './layout.module.css';
+import utilStyles from '../styles/utils.module.css';
 
 const name = 'hyroky867';
 export const siteTitle = 'Next.js Sample Website';
 
-export default function Layout({ children, home }) {
+interface Props {
+  children: React.ReactNode;
+  home?: boolean;
+}
+
+export default function Layout({ children, home }: Props):
+React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   return (
     <div className={styles.container}>
       <Head>
@@ -35,17 +42,19 @@ export default function Layout({ children, home }) {
         ) : (
           <>
             <Link href="/">
-              <a>
-                <img
-                  src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
+              {(href: string): React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> => (
+                <a href={href}>
+                  <img
+                    src="/images/profile.jpg"
+                    className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                    alt={name}
+                  />
+                </a>
+              )}
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+                {(href: string): React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> => <a href={href} className={utilStyles.colorInherit}>{name}</a>}
               </Link>
             </h2>
           </>
@@ -55,10 +64,10 @@ export default function Layout({ children, home }) {
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
-            <a>← Back to home</a>
+            {(href: string): React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> => <a href={href}>← Back to home</a>}
           </Link>
         </div>
       )}
     </div>
-  )
+  );
 }
