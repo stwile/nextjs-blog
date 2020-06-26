@@ -1,12 +1,6 @@
-import React from 'react';
-import { parseISO, format } from 'date-fns';
+import { parseISO, format } from 'date-fns'
 
-export default function Date({ dateString }: { dateString: string }):
-React.DetailedHTMLProps<React.TimeHTMLAttributes<HTMLElement>, HTMLElement> {
-  const date = parseISO(dateString);
-  return (
-    <time dateTime={dateString}>
-      {format(date, 'LLLL d, yyyy')}
-    </time>
-  );
+export default function Date({ dateString }: { dateString: string }) {
+  const date = parseISO(dateString)
+  return <time dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>
 }
