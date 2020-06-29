@@ -7,15 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore",
-    "lint:fix": "eslint --fix --ignore-path .gitignore"
+    "lint:fix": "eslint --fix --ignore-path .gitignore",
+    "export": "yarn run build && next export"
   },
   "dependencies": {
+    "@material-ui/core": "^4.10.2",
     "classnames": "^2.2.6",
     "date-fns": "^2.12.0",
     "gray-matter": "^4.0.2",
-    "next": "9.3.5",
+    "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-markdown": "^4.3.1",
     "remark": "^12.0.0",
     "remark-html": "^11.0.1",
     "sass": "^1.26.5"
@@ -23,13 +26,13 @@
   "devDependencies": {
     "@types/node": "^13.13.2",
     "@types/react": "^16.9.34",
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
-    "@typescript-eslint/parser": "^2.0.0",
-    "eslint": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "eslint": "^7.3.1",
     "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react": "^7.20.1",
     "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.5",
     "typescript": "^3.8.3"

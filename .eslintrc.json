@@ -19,12 +19,12 @@
     "SharedArrayBuffer": "readonly"
   },
   "settings": {
-    "import/extensions": [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx"
-    ],
+    "import/extensions": {
+      ".js": 2,
+      ".jsx": 2,
+      ".ts": 2,
+      ".tsx": 2
+    },
     "import/parsers": {
       "@typescript-eslint/parser": [
         ".ts",
@@ -63,6 +63,7 @@
       "error",
       "ignorePackages",
       {
+        "js": "never",
         "ts": "never"
       }
     ]
