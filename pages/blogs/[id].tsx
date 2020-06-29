@@ -1,22 +1,38 @@
 import React from 'react'
+import { Chip } from '@material-ui/core';
 import { Content } from '../../types/content';
 import { Tag } from '../../types/tag';
 import ReactMarkdown from 'react-markdown'
+import Layout from '../../components/layout';
+import Head from 'next/head';
+import utilStyles from '../../styles/utils.module.css';
+import Date from '../../components/date';
 
 const BlogId = ({ content }) => {
 console.log(content.body);
   return (
-    <div>
-      <h1>{content.title}</h1>
+    <Layout>
+    <Head>
+      <title>{content.title}</title>
+    </Head>
+    <article>
+      <h1 className={utilStyles.headingXl}>{content.title}</h1>
+      <div className={utilStyles.lightText}>
+        <Date dateString={content.publishedAt} />
+      </div>
       <div>
         {content.tags.map((tag: Tag) => (
           <React.Fragment key={tag.id}>
-            <span>{tag.name}</span>
+            <Chip
+              label={tag.name}
+              color="primary"
+            />
           </React.Fragment>
         ))}
       </div>
       <ReactMarkdown source={content.body} skipHtml={true} />
-    </div>
+    </article>
+  </Layout>
   );
 };
 
@@ -39,7 +55,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context: { params: { id: any; }; }) => {
+export const getStaticProps = async (context: {
+  params: {
+    id: string;
+  };
+}) => {
   const id = context.params.id;
 
   const key = {
