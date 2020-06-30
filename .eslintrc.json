@@ -53,19 +53,6 @@
     "no-shadow": 0,
     "no-unused-vars": 0,
     "@typescript-eslint/no-unused-vars": 2,
-    "max-len": 2,
-    "import/extensions": [
-      ".js",
-      ".jsx",
-      ".json",
-      ".ts",
-      ".tsx",
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "ts": "never"
-      }
-    ]
+    "max-len": 2
   }
 }

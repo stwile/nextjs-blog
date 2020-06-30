@@ -7,7 +7,11 @@ import Layout, {siteTitle} from '../components/layout';
 import Head from 'next/head';
 import { List } from '../types/response/blog/list';
 
-const Home = ({contents}) => {
+const Home = ({
+  contents
+}: {
+  contents: Array<Content>
+}) => {
   return (
     <Layout home>
       <Head>

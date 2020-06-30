@@ -8,8 +8,11 @@ import Head from 'next/head';
 import utilStyles from '../../styles/utils.module.css';
 import Date from '../../components/date';
 
-const BlogId = ({ content }) => {
-console.log(content.body);
+const BlogId = ({
+  content
+}: {
+  content: Content
+}) => {
   return (
     <Layout>
     <Head>
@@ -39,7 +42,7 @@ console.log(content.body);
 export const getStaticPaths = async () => {
   const key = {
     headers: {
-      'X-API-KEY': process.env.API_KEY
+      'X-API-KEY': process.env.API_KEY,
     },
   };
 
