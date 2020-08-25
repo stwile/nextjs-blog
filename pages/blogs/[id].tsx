@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react';
 import { Chip } from '@material-ui/core';
 import { Content } from '../../types/content';
 import { Tag } from '../../types/tag';
@@ -7,6 +7,7 @@ import Layout from '../../components/layout';
 import Head from 'next/head';
 import utilStyles from '../../styles/utils.module.css';
 import Date from '../../components/date';
+import { GetStaticPaths } from 'next';
 
 const BlogId = ({
   content
@@ -25,12 +26,12 @@ const BlogId = ({
       </div>
       <div>
         {content.tags.map((tag: Tag) => (
-          <React.Fragment key={tag.id}>
+          <Fragment key={tag.id}>
             <Chip
               label={tag.name}
               color="primary"
             />
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
       <ReactMarkdown source={content.body} skipHtml={true} />
@@ -39,15 +40,16 @@ const BlogId = ({
   );
 };
 
-export const getStaticPaths = async () => {
-  const key = {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const key: string = process.env.API_KEY!;
+  const headers = {
     headers: {
-      'X-API-KEY': process.env.API_KEY,
+      'X-API-KEY': key,
     },
   };
 
   const url = `${process.env.ENDPOINT}/blog`;
-  const res = await fetch(url, key);
+  const res = await fetch(url, headers);
 
   const repos = await res.json();
 
@@ -64,16 +66,17 @@ export const getStaticProps = async (context: {
   };
 }) => {
   const id = context.params.id;
+  const key: string = process.env.API_KEY!;
 
-  const key = {
+  const header = {
     headers: {
-      'X-API-KEY': process.env.API_KEY,
+      'X-API-KEY': key,
     },
   };
 
   const url = `${process.env.ENDPOINT}/blog/${id}`;
-  const res = await fetch(url, key);
-  const content = await res.json();
+  const res = await fetch(url, header);
+  const content: Content = await res.json();
 
   return {
     props : {
