@@ -1,13 +1,8 @@
-import { Fragment } from 'react';
-import { Chip } from '@material-ui/core';
 import { Content } from '../../types/content';
-import { Tag } from '../../types/tag';
-import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/layout';
 import Head from 'next/head';
-import utilStyles from '../../styles/utils.module.css';
-import Date from '../../components/date';
 import { GetStaticPaths } from 'next';
+import Article from '../../components/Article';
 
 const BlogId = ({
   content
@@ -16,27 +11,11 @@ const BlogId = ({
 }) => {
   return (
     <Layout>
-    <Head>
-      <title>{content.title}</title>
-    </Head>
-    <article>
-      <h1 className={utilStyles.headingXl}>{content.title}</h1>
-      <div className={utilStyles.lightText}>
-        <Date dateString={content.publishedAt} />
-      </div>
-      <div>
-        {content.tags.map((tag: Tag) => (
-          <Fragment key={tag.id}>
-            <Chip
-              label={tag.name}
-              color="primary"
-            />
-          </Fragment>
-        ))}
-      </div>
-      <ReactMarkdown source={content.body} skipHtml={true} />
-    </article>
-  </Layout>
+      <Head>
+        <title>{content.title}</title>
+      </Head>
+      <Article content={content} />
+    </Layout>
   );
 };
 
