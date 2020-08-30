@@ -4,4 +4,4 @@ export type Tag = {
   updatedAt: string;
   publishedAt: string;
   name: string;
-}
+};

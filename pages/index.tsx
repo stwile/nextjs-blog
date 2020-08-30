@@ -1,25 +1,17 @@
-import Link from 'next/link';
 import React from 'react';
 import { GetStaticProps } from 'next';
 import { Content } from '../types/content';
-import Layout from '../components/layout';
-import Head from 'next/head';
+import Layout from '../components/Layout';
 import { List } from '../types/response/blog/list';
-import { makeStyles, Theme } from '@material-ui/core';
 import Article from '../components/Article';
 import Pager from '../components/Pager';
+import Head from 'next/head';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(3),
-  },
-}));
+type Props = {
+  contents: Array<Content>;
+};
 
-const Home = ({
-  contents
-}: {
-  contents: Array<Content>
-}) => {
+const Home: React.FC<Props> = ({ contents }: Props) => {
   const latestContent: Content = contents[0];
   const nextContent: Content = contents[1];
 
@@ -35,7 +27,7 @@ const Home = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const key: string = process.env.API_KEY!;
+  const key: string = process.env.API_KEY as string;
   const headers = {
     headers: {
       'X-API-KEY': key,
@@ -48,8 +40,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       contents: data.contents,
-    }
-  }
-}
+    },
+  };
+};
 
 export default Home;

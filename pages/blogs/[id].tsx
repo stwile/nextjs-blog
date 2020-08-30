@@ -1,47 +1,27 @@
-import { Fragment } from 'react';
-import { Chip } from '@material-ui/core';
 import { Content } from '../../types/content';
-import { Tag } from '../../types/tag';
-import ReactMarkdown from 'react-markdown'
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import Head from 'next/head';
-import utilStyles from '../../styles/utils.module.css';
-import Date from '../../components/date';
 import { GetStaticPaths } from 'next';
+import Article from '../../components/Article';
+import React from 'react';
 
-const BlogId = ({
-  content
-}: {
-  content: Content
-}) => {
+type Props = {
+  content: Content;
+};
+
+const BlogId: React.FC<Props> = ({ content }: Props) => {
   return (
     <Layout>
       <Head>
         <title>{content.title}</title>
       </Head>
-      <article>
-        <h1 className={utilStyles.headingXl}>{content.title}</h1>
-        <div className={utilStyles.lightText}>
-          <Date dateString={content.publishedAt} />
-        </div>
-        <div>
-          {content.tags.map((tag: Tag) => (
-            <Fragment key={tag.id}>
-              <Chip
-                label={tag.name}
-                color="primary"
-              />
-            </Fragment>
-          ))}
-        </div>
-        <ReactMarkdown source={content.body} skipHtml={true} />
-      </article>
+      <Article content={content} />
     </Layout>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key: string = process.env.API_KEY!;
+  const key: string = process.env.API_KEY as string;
   const headers = {
     headers: {
       'X-API-KEY': key,
@@ -53,20 +33,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const repos = await res.json();
 
-  const paths = repos.contents.map((item: Content) => `/blogs/${item.id}`); 
+  const paths = repos.contents.map((item: Content) => `/blogs/${item.id}`);
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const getStaticProps = async (context: {
   params: {
     id: string;
   };
 }) => {
   const id = context.params.id;
-  const key: string = process.env.API_KEY!;
+  const key: string = process.env.API_KEY as string;
 
   const header = {
     headers: {
@@ -79,9 +60,9 @@ export const getStaticProps = async (context: {
   const content: Content = await res.json();
 
   return {
-    props : {
+    props: {
       content,
-    }
+    },
   };
 };
 
