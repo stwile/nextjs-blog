@@ -1,10 +1,17 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Head from 'next/head';
+import styles from './layout.module.css';
+import utilStyles from '../styles/utils.module.css';
+import Link from 'next/link';
+import { Grid, makeStyles, Theme } from '@material-ui/core';
+import Sidebar from './Sidebar';
 
-const name = 'Tomorrow Never Dies'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'Tomorrow Never Dies'
+
+const useStyles = makeStyles((theme: Theme) => ({
+  mainGrid: {
+    marginTop: theme.spacing(3),
+  },
+}));
 
 const Layout = ({
   children,
@@ -13,6 +20,8 @@ const Layout = ({
   children: React.ReactNode
   home?: boolean
 }) => {
+  const classes = useStyles();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -30,9 +39,9 @@ const Layout = ({
             <img
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
+              alt={siteTitle}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={utilStyles.heading2Xl}>{siteTitle}</h1>
           </>
         ) : (
           <>
@@ -41,19 +50,31 @@ const Layout = ({
                 <img
                   src="/images/profile.jpg"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
+                  alt={siteTitle}
                 />
               </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+                <a className={utilStyles.colorInherit}>{siteTitle}</a>
               </Link>
             </h2>
           </>
         )}
       </header>
-      <main>{children}</main>
+      <main>
+        <Grid
+          container
+          spacing={8}
+          className={classes.mainGrid}
+        >
+          <Grid item xs={12} md={8}>
+            {children}
+          </Grid>
+        <Sidebar />
+      </Grid>
+      
+      </main>
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
