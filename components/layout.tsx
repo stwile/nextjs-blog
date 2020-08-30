@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Grid, makeStyles, Theme } from '@material-ui/core';
 import Sidebar from './Sidebar';
 
-export const siteTitle = 'Tomorrow Never Dies'
+export const siteTitle = 'Volare Viah'
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainGrid: {
