@@ -1,14 +1,15 @@
 import { Content } from '../../types/content';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import Head from 'next/head';
 import { GetStaticPaths } from 'next';
 import Article from '../../components/Article';
+import React from 'react';
 
-const BlogId = ({
-  content
-}: {
-  content: Content
-}) => {
+type Props = {
+  content: Content;
+};
+
+const BlogId: React.FC<Props> = ({ content }: Props) => {
   return (
     <Layout>
       <Head>
@@ -20,7 +21,7 @@ const BlogId = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key: string = process.env.API_KEY!;
+  const key: string = process.env.API_KEY as string;
   const headers = {
     headers: {
       'X-API-KEY': key,
@@ -32,20 +33,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const repos = await res.json();
 
-  const paths = repos.contents.map((item: Content) => `/blogs/${item.id}`); 
+  const paths = repos.contents.map((item: Content) => `/blogs/${item.id}`);
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const getStaticProps = async (context: {
   params: {
     id: string;
   };
 }) => {
   const id = context.params.id;
-  const key: string = process.env.API_KEY!;
+  const key: string = process.env.API_KEY as string;
 
   const header = {
     headers: {
@@ -58,9 +60,9 @@ export const getStaticProps = async (context: {
   const content: Content = await res.json();
 
   return {
-    props : {
+    props: {
       content,
-    }
+    },
   };
 };
 

@@ -7,5 +7,5 @@ export type Content = {
   publishedAt: string;
   title: string;
   body: string;
-  tags: Array<Tag>
-}
+  tags: Array<Tag>;
+};
