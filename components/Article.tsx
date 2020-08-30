@@ -1,11 +1,11 @@
 import utilStyles from '../styles/utils.module.css';
-import { Content } from '../types/content';
+import { ContentType } from '../types/ContentType';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Date from './Date';
 
 type Props = {
-  content: Content;
+  content: ContentType;
 };
 
 const Article: React.FC<Props> = ({ content }: Props) => {

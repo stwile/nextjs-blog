@@ -1,14 +1,14 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
-import { ContentType } from '../types/ContentType';
-import { ListType } from '../types/response/blog/ListType';
-import List from '../components/blogs/archives/List';
+import { ContentType } from '../../../types/ContentType';
+import { ListType } from '../../../types/response/blog/ListType';
+import List from '../../../components/blogs/archives/List';
 
 type Props = {
   contents: Array<ContentType>;
 };
 
-const Home: React.FC<Props> = ({ contents }: Props) => {
+const Archives: React.FC<Props> = ({ contents }: Props) => {
   return <List contents={contents} />;
 };
 
@@ -30,4 +30,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Home;
+export default Archives;

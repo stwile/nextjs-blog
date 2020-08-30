@@ -1,6 +1,6 @@
-import { Tag } from './tag';
+import { Tag } from './TagType';
 
-export type Content = {
+export type ContentType = {
   id: string;
   createdAt: string;
   updatedAt: string;

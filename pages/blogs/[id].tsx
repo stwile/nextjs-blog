@@ -1,23 +1,14 @@
-import { Content } from '../../types/content';
-import Layout from '../../components/Layout';
-import Head from 'next/head';
+import { ContentType } from '../../types/ContentType';
 import { GetStaticPaths } from 'next';
-import Article from '../../components/Article';
 import React from 'react';
+import Item from '../../components/blogs/Item';
 
 type Props = {
-  content: Content;
+  content: ContentType;
 };
 
-const BlogId: React.FC<Props> = ({ content }: Props) => {
-  return (
-    <Layout>
-      <Head>
-        <title>{content.title}</title>
-      </Head>
-      <Article content={content} />
-    </Layout>
-  );
+const BlogItem: React.FC<Props> = ({ content }: Props) => {
+  return <Item content={content} />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -33,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const repos = await res.json();
 
-  const paths = repos.contents.map((item: Content) => `/blogs/${item.id}`);
+  const paths = repos.contents.map((item: ContentType) => `/blogs/${item.id}`);
   return {
     paths,
     fallback: false,
@@ -57,7 +48,7 @@ export const getStaticProps = async (context: {
 
   const url = `${process.env.ENDPOINT}/blog/${id}`;
   const res = await fetch(url, header);
-  const content: Content = await res.json();
+  const content: ContentType = await res.json();
 
   return {
     props: {
@@ -66,4 +57,4 @@ export const getStaticProps = async (context: {
   };
 };
 
-export default BlogId;
+export default BlogItem;
