@@ -1,20 +1,20 @@
 import Link from 'next/link';
 import React from 'react';
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next';
 import { Content } from '../types/content';
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle } from '../components/Layout';
 import utilStyles from '../styles/utils.module.css';
 import Head from 'next/head';
 import { List } from '../types/response/blog/list';
-import Date from '../components/date';
+import Date from '../components/Date';
 import { Grid } from '@material-ui/core';
 import { Today } from '@material-ui/icons';
 
-const Home = ({
-  contents
-}: {
-  contents: Array<Content>
-}) => {
+type Props = {
+  contents: Array<Content>;
+};
+
+const Home: React.FC<Props> = ({ contents }: Props) => {
   return (
     <Layout home>
       <Head>
@@ -23,11 +23,7 @@ const Home = ({
       <div>
         {contents.map((content: Content) => (
           <React.Fragment key={content.id}>
-            <Grid
-              container
-              className={utilStyles.lightText}
-              alignContent="center"
-            >
+            <Grid container className={utilStyles.lightText} alignContent="center">
               <Today></Today>
               <Date dateString={content.publishedAt} />
             </Grid>
@@ -44,7 +40,7 @@ const Home = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const key: string = process.env.API_KEY!;
+  const key: string = process.env.API_KEY as string;
   const headers = {
     headers: {
       'X-API-KEY': key,
@@ -57,8 +53,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       contents: data.contents,
-    }
-  }
-}
+    },
+  };
+};
 
 export default Home;
