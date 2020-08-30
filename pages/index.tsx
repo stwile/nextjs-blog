@@ -1,38 +1,35 @@
-import Link from 'next/link'
-import React from 'react'
-import { GetStaticProps } from 'next'
+import Link from 'next/link';
+import React from 'react';
+import { GetStaticProps } from 'next';
 import { Content } from '../types/content';
-import { Tag } from '../types/tag';
-import Layout, {siteTitle} from '../components/layout';
+import Layout from '../components/layout';
 import Head from 'next/head';
 import { List } from '../types/response/blog/list';
+import { makeStyles, Theme } from '@material-ui/core';
+import Article from '../components/Article';
+import Pager from '../components/Pager';
+
+const useStyles = makeStyles((theme: Theme) => ({
+  mainGrid: {
+    marginTop: theme.spacing(3),
+  },
+}));
 
 const Home = ({
   contents
 }: {
   contents: Array<Content>
 }) => {
+  const latestContent: Content = contents[0];
+  const nextContent: Content = contents[1];
+
   return (
-    <Layout home>
+    <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{latestContent.title}</title>
       </Head>
-      <div>
-        {contents.map((content: Content) => (
-          <React.Fragment key={content.id}>
-            <Link href="/blogs/[id]" as={`blogs/${content.id}`}>
-              <a>
-                <h2>{content.title}</h2>
-              </a>
-            </Link>
-            {content.tags.map((tag: Tag) => (
-              <React.Fragment key={tag.id}>
-                <span>{tag.name}</span>
-              </React.Fragment>
-            ))}
-          </React.Fragment>
-        ))}
-      </div>
+      <Article content={latestContent} />
+      <Pager nextContent={nextContent} />
     </Layout>
   );
 };
@@ -44,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
       'X-API-KEY': key,
     },
   };
-  const url = `${process.env.ENDPOINT}/blog`;
+  const url = `${process.env.ENDPOINT}/blog?limit=2`;
   const res = await fetch(url, headers);
   const data: List = await res.json();
 

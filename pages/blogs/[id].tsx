@@ -16,27 +16,27 @@ const BlogId = ({
 }) => {
   return (
     <Layout>
-    <Head>
-      <title>{content.title}</title>
-    </Head>
-    <article>
-      <h1 className={utilStyles.headingXl}>{content.title}</h1>
-      <div className={utilStyles.lightText}>
-        <Date dateString={content.publishedAt} />
-      </div>
-      <div>
-        {content.tags.map((tag: Tag) => (
-          <Fragment key={tag.id}>
-            <Chip
-              label={tag.name}
-              color="primary"
-            />
-          </Fragment>
-        ))}
-      </div>
-      <ReactMarkdown source={content.body} skipHtml={true} />
-    </article>
-  </Layout>
+      <Head>
+        <title>{content.title}</title>
+      </Head>
+      <article>
+        <h1 className={utilStyles.headingXl}>{content.title}</h1>
+        <div className={utilStyles.lightText}>
+          <Date dateString={content.publishedAt} />
+        </div>
+        <div>
+          {content.tags.map((tag: Tag) => (
+            <Fragment key={tag.id}>
+              <Chip
+                label={tag.name}
+                color="primary"
+              />
+            </Fragment>
+          ))}
+        </div>
+        <ReactMarkdown source={content.body} skipHtml={true} />
+      </article>
+    </Layout>
   );
 };
 

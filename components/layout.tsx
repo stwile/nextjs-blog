@@ -1,10 +1,19 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Head from 'next/head';
+import styles from './layout.module.css';
+import utilStyles from '../styles/utils.module.css';
+import Link from 'next/link';
+import { Grid, makeStyles, Theme } from '@material-ui/core';
+import Sidebar from './Sidebar';
+import { GitHub, Facebook, Twitter } from '@material-ui/icons';
 
 const name = 'Tomorrow Never Dies'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'Tomorrow Never Dies'
+
+const useStyles = makeStyles((theme: Theme) => ({
+  mainGrid: {
+    marginTop: theme.spacing(3),
+  },
+}));
 
 const Layout = ({
   children,
@@ -13,6 +22,31 @@ const Layout = ({
   children: React.ReactNode
   home?: boolean
 }) => {
+  const classes = useStyles();
+  const sidebar = {
+    title: 'About',
+    description:
+      'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+    archives: [
+      { title: 'March 2020', url: '#' },
+      { title: 'February 2020', url: '#' },
+      { title: 'January 2020', url: '#' },
+      { title: 'November 1999', url: '#' },
+      { title: 'October 1999', url: '#' },
+      { title: 'September 1999', url: '#' },
+      { title: 'August 1999', url: '#' },
+      { title: 'July 1999', url: '#' },
+      { title: 'June 1999', url: '#' },
+      { title: 'May 1999', url: '#' },
+      { title: 'April 1999', url: '#' },
+    ],
+    social: [
+      { name: 'GitHub', icon: GitHub },
+      { name: 'Twitter', icon: Twitter },
+      { name: 'Facebook', icon: Facebook },
+    ],
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -53,14 +87,31 @@ const Layout = ({
           </>
         )}
       </header>
-      <main>{children}</main>
-      {!home && (
+      <main>
+        <Grid
+          container
+          spacing={8}
+          className={classes.mainGrid}
+        >
+          <Grid item xs={12} md={8}>
+            {children}
+          </Grid>
+        <Sidebar
+          title={sidebar.title}
+          description={sidebar.description}
+          archives={sidebar.archives}
+          social={sidebar.social}
+        />
+      </Grid>
+      
+      </main>
+      {/* {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
         </div>
-      )}
+      )} */}
     </div>
   )
 }
