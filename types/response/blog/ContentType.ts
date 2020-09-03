@@ -1,4 +1,4 @@
-import { Tag } from './TagType';
+import { TagType } from './TagType';
 
 export type ContentType = {
   id: string;
@@ -7,5 +7,5 @@ export type ContentType = {
   publishedAt: string;
   title: string;
   body: string;
-  tags: Array<Tag>;
+  tags: Array<TagType>;
 };

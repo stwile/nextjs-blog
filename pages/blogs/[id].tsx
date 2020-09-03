@@ -1,4 +1,4 @@
-import { ContentType } from '../../types/ContentType';
+import { ContentType } from '../../types/response/blog/ContentType';
 import { GetStaticPaths } from 'next';
 import React from 'react';
 import Item from '../../components/blogs/Item';
