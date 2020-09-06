@@ -1,5 +1,5 @@
 {
-  "name": "learn-starter",
+  "name": "next-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "classnames": "^2.2.6",
     "date-fns": "^2.12.0",
-    "next": "9.5.2",
+    "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-markdown": "^4.3.1"

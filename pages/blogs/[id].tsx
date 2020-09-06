@@ -1,14 +1,21 @@
-import { ContentType } from '../../types/response/blog/ContentType';
-import { GetStaticPaths } from 'next';
 import React from 'react';
-import Item from '../../components/blogs/Item';
+import { GetStaticPaths } from 'next';
+import { ContentType } from '../../types/response/blog/ContentType';
+import List from '../../components/blogs/List';
+import { ListType } from '../../types/response/blog/ListType';
 
 type Props = {
-  content: ContentType;
+  contents: Array<ContentType>;
+  current: number;
+  count: number;
 };
 
-const BlogItem: React.FC<Props> = ({ content }: Props) => {
-  return <Item content={content} />;
+export const ITEM_COUNT = 5;
+
+const TOP_CURRENT = 1;
+
+const Blogs: React.FC<Props> = ({ contents, current, count }: Props) => {
+  return <List contents={contents} current={current} count={count} />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -22,9 +29,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const url = `${process.env.ENDPOINT}/blog`;
   const res = await fetch(url, headers);
 
-  const repos = await res.json();
+  const result: ListType = await res.json();
+  const totalCount = result.totalCount;
+  const paginateMax = Math.ceil(totalCount / 5);
 
-  const paths = repos.contents.map((item: ContentType) => `/blogs/${item.id}`);
+  const paths = [...Array(paginateMax).keys()].map((pageNumber: number) => `/blogs/${pageNumber}`);
   return {
     paths,
     fallback: false,
@@ -37,24 +46,25 @@ export const getStaticProps = async (context: {
     id: string;
   };
 }) => {
-  const id = context.params.id;
+  const current = Number(context.params.id) || TOP_CURRENT;
+  const offset = (current - 1) * 5;
   const key: string = process.env.API_KEY as string;
-
-  const header = {
+  const headers = {
     headers: {
       'X-API-KEY': key,
     },
   };
-
-  const url = `${process.env.ENDPOINT}/blog/${id}`;
-  const res = await fetch(url, header);
-  const content: ContentType = await res.json();
+  const url = `${process.env.ENDPOINT}/blog?offset=${offset}&limit=${ITEM_COUNT}`;
+  const res = await fetch(url, headers);
+  const data: ListType = await res.json();
 
   return {
     props: {
-      content,
+      contents: data.contents,
+      current,
+      count: Math.ceil(data.totalCount / ITEM_COUNT),
     },
   };
 };
 
-export default BlogItem;
+export default Blogs;
