@@ -31,7 +31,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const result: ListType = await res.json();
   const totalCount = result.totalCount;
-  const paginateMax = Math.ceil(totalCount / 5);
+  const paginateMax = Math.ceil(totalCount / 5) + 1;
 
   const paths = [...Array(paginateMax).keys()].map((pageNumber: number) => `/blogs/${pageNumber}`);
   return {

@@ -2,14 +2,14 @@ import { GetStaticPaths } from 'next';
 import React from 'react';
 import { ContentType } from '../../../types/response/blog/ContentType';
 import Item from '../../../components/blogs/Item';
+import { ListType } from '../../../types/response/blog/ListType';
 
 type Props = {
   content: ContentType;
-  current: number;
 };
 
-const BlogItem: React.FC<Props> = ({ content, current }: Props) => {
-  return <Item content={content} current={current} />;
+const BlogItem: React.FC<Props> = ({ content }: Props) => {
+  return <Item content={content} />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const url = `${process.env.ENDPOINT}/blog`;
   const res = await fetch(url, headers);
 
-  const repos = await res.json();
+  const repos: ListType = await res.json();
 
   const paths = repos.contents.map((item: ContentType) => `/blogs/items/${item.id}`);
   return {
