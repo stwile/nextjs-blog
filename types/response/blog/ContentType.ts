@@ -1,11 +1,11 @@
-import { Tag } from './tag';
+import { TagType } from './TagType';
 
-export type Content = {
+export type ContentType = {
   id: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   title: string;
   body: string;
-  tags: Array<Tag>;
+  tags: Array<TagType>;
 };

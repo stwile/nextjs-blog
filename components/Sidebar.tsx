@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Theme } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import { SvgIconComponent, GitHub, Twitter } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   sidebarAboutBox: {
     padding: theme.spacing(2),
     backgroundColor: theme.palette.grey[200],
@@ -38,7 +38,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <Grid item xs={12} md={4}>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+      <Typography variant="h6" className={classes.sidebarSection}>
         Social
       </Typography>
       {social.map((network: Social) => (
