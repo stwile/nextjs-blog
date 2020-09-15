@@ -7,7 +7,7 @@ type Props = {};
 export default class Document extends NextDocument<Props> {
   render(): ReactElement {
     return (
-      <Html>
+      <Html lang="ja">
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {existsGaId ? (
