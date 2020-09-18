@@ -6,6 +6,10 @@
     "esnext",
     "Volare",
     "Viah",
-    "gtag"
+    "gtag",
+    "vercel",
+    "camelcase",
+    "maxage",
+    "repos"
   ]
 }

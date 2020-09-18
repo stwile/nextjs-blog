@@ -1,14 +1,14 @@
-import { ContentType } from '../../types/response/blog/ContentType';
+import { ContentType } from '../../../types/response/blog/ContentType';
 import React from 'react';
 import Layout from '../Layout';
-import Head from 'next/head';
-import { siteTitle } from '../Layout';
 import { Grid } from '@material-ui/core';
 import { Today } from '@material-ui/icons';
 import Date from '../Date';
 import Link from 'next/link';
-import utilStyles from '../../styles/utils.module.css';
+import utilStyles from '../../../styles/utils.module.css';
 import { Pagination, PaginationItem, PaginationRenderItemParams } from '@material-ui/lab';
+import Head from 'next/head';
+import { siteTitle } from '../Layout';
 
 type Props = {
   contents: Array<ContentType>;
