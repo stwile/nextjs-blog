@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
-import React from 'react';
-import { Router } from 'next/router';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
 import * as Sentry from '@sentry/node';
 import { RewriteFrames } from '@sentry/integrations';
@@ -27,9 +27,18 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
 type Props = AppProps & { err: Sentry.Event };
 
 const MyApp: React.FC<Props> = ({ Component, pageProps, err }: Props) => {
+  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url: string): void => {
+      gtag.pageView(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return (): void => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return <Component {...pageProps} err={err} />;
 };
-
-Router.events.on('routeChangeComplete', (url: string) => gtag.pageView(url));
 
 export default MyApp;
