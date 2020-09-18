@@ -1,10 +1,10 @@
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { GOOGLE_ANALYTICS_ID, existsGaId } from '../lib/gtag';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React, { ReactElement } from 'react';
 
 type Props = {};
 
-export default class Document extends NextDocument<Props> {
+export default class MyDocument extends Document<Props> {
   render(): ReactElement {
     return (
       <Html lang="ja">
