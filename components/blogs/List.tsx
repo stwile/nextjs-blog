@@ -1,8 +1,6 @@
 import { ContentType } from '../../types/response/blog/ContentType';
 import React from 'react';
 import Layout from '../Layout';
-import Head from 'next/head';
-import { siteTitle } from '../Layout';
 import { Grid } from '@material-ui/core';
 import { Today } from '@material-ui/icons';
 import Date from '../Date';
@@ -19,9 +17,6 @@ type Props = {
 const List: React.FC<Props> = ({ contents, current, count }: Props) => {
   return (
     <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
       <Grid container>
         {contents.map((content: ContentType) => (
           <React.Fragment key={content.id}>
