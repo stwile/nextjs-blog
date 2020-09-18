@@ -1,4 +1,4 @@
-import utilStyles from '../styles/utils.module.css';
+import utilStyles from '../../styles/utils.module.css';
 import { ContentType } from '../../types/response/blog/ContentType';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
