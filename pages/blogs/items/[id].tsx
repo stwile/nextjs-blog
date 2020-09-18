@@ -1,7 +1,7 @@
 import { GetStaticPaths } from 'next';
 import React from 'react';
 import { ContentType } from '../../../types/response/blog/ContentType';
-import Item from '../../../components/blogs/Item';
+import Item from '../../../src/components/blogs/Item';
 import { ListType } from '../../../types/response/blog/ListType';
 
 type Props = {

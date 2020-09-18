@@ -1,5 +1,5 @@
 import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
+import utilStyles from '../../styles/utils.module.css';
 import Head from 'next/head';
 import React from 'react';
 import { siteTitle } from './Layout';

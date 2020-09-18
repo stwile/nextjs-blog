@@ -1,5 +1,5 @@
 import utilStyles from '../styles/utils.module.css';
-import { ContentType } from '../types/response/blog/ContentType';
+import { ContentType } from '../../types/response/blog/ContentType';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Date from './Date';

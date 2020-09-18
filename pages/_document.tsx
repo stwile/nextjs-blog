@@ -1,4 +1,4 @@
-import { GOOGLE_ANALYTICS_ID, existsGaId } from '../lib/gtag';
+import { GOOGLE_ANALYTICS_ID, existsGaId } from '../src/lib/gtag';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React, { ReactElement } from 'react';
 
