@@ -7,6 +7,8 @@ import Date from '../Date';
 import Link from 'next/link';
 import utilStyles from '../../../styles/utils.module.css';
 import { Pagination, PaginationItem, PaginationRenderItemParams } from '@material-ui/lab';
+import Head from 'next/head';
+import { siteTitle } from '../Layout';
 
 type Props = {
   contents: Array<ContentType>;
@@ -17,6 +19,9 @@ type Props = {
 const List: React.FC<Props> = ({ contents, current, count }: Props) => {
   return (
     <Layout home>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
       <Grid container>
         {contents.map((content: ContentType) => (
           <React.Fragment key={content.id}>
