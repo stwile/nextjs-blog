@@ -1,4 +1,4 @@
-import { ContentType } from '../../types/response/blog/ContentType';
+import { ContentType } from '../../../types/response/blog/ContentType';
 import Layout from '../Layout';
 import Head from 'next/head';
 import Article from '../Article';

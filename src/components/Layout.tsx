@@ -4,6 +4,7 @@ import { Grid, makeStyles, Theme } from '@material-ui/core';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import React from 'react';
+import Meta from './Meta';
 
 export const siteTitle = 'Volare Viah';
 
@@ -22,24 +23,27 @@ const Layout: React.FC<Props> = ({ children, home }: Props) => {
   const classes = useStyles();
 
   return (
-    <div className={styles.container}>
-      <Header home={home} />
-      <main>
-        <Grid container spacing={8} className={classes.mainGrid}>
-          <Grid item xs={12} md={8}>
-            {children}
+    <>
+      <Meta />
+      <div className={styles.container}>
+        <Header home={home} />
+        <main>
+          <Grid container spacing={8} className={classes.mainGrid}>
+            <Grid item xs={12} md={8}>
+              {children}
+            </Grid>
+            <Sidebar />
           </Grid>
-          <Sidebar />
-        </Grid>
-      </main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
-    </div>
+        </main>
+        {!home && (
+          <div className={styles.backToHome}>
+            <Link href="/">
+              <a>← Back to home</a>
+            </Link>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
