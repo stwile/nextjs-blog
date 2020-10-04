@@ -2,7 +2,6 @@ import { ContentType } from '../../../types/response/blog/ContentType';
 import React from 'react';
 import Layout from '../Layout';
 import { Grid } from '@material-ui/core';
-import { Today } from '@material-ui/icons';
 import Date from '../Date';
 import Link from 'next/link';
 import utilStyles from '../../../styles/utils.module.css';
@@ -26,7 +25,6 @@ const List: React.FC<Props> = ({ contents, current, count }: Props) => {
         {contents.map((content: ContentType) => (
           <React.Fragment key={content.id}>
             <Grid container className={utilStyles.lightText} alignContent="center">
-              <Today></Today>
               <Date dateString={content.publishedAt} />
             </Grid>
             <Link href="items/[id]" as={`items/${content.id}`}>
