@@ -1,7 +1,7 @@
-import React from 'react';
 import Error from 'next/error';
+import React from 'react';
 
-const Custom404: React.FC = () => {
+const Custom404 = (): JSX.Element => {
   return <Error statusCode={404} />;
 };
 

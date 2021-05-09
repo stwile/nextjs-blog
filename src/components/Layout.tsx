@@ -1,50 +1,23 @@
-import styles from './layout.module.css';
-import Link from 'next/link';
-import { Grid, makeStyles, Theme } from '@material-ui/core';
-import Sidebar from './Sidebar';
-import Header from './Header';
 import React from 'react';
-import Meta from './Meta';
+
+import { Footer } from './Footer';
+import { Header } from './Header';
+import { Main } from './Main';
+import { Meta } from './Meta';
 
 export const siteTitle = 'Volare Viah';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(3),
-  },
-}));
-
 type Props = {
   children: React.ReactNode;
-  home?: boolean;
 };
 
-const Layout: React.FC<Props> = ({ children, home }: Props) => {
-  const classes = useStyles();
-
+export const Layout: React.FC<Props> = ({ children }: Props) => {
   return (
     <>
       <Meta />
-      <div className={styles.container}>
-        <Header home={home} />
-        <main>
-          <Grid container spacing={8} className={classes.mainGrid}>
-            <Grid item xs={12} md={8}>
-              {children}
-            </Grid>
-            <Sidebar />
-          </Grid>
-        </main>
-        {!home && (
-          <div className={styles.backToHome}>
-            <Link href="/">
-              <a>← Back to home</a>
-            </Link>
-          </div>
-        )}
-      </div>
+      <Header />
+      <Main>{children}</Main>
+      <Footer />
     </>
   );
 };
-
-export default Layout;

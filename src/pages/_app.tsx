@@ -1,10 +1,13 @@
-import { AppProps } from 'next/app';
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import * as gtag from '../src/lib/gtag';
-import * as Sentry from '@sentry/node';
 import { RewriteFrames } from '@sentry/integrations';
+import * as Sentry from '@sentry/node';
+import { ThemeProvider } from 'next-themes';
+import { AppProps } from 'next/app';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+
+import '../../styles/globals.css';
+import * as gtag from '../lib/gtag';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   const config = getConfig();
@@ -26,7 +29,7 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
 
 type Props = AppProps & { err: Sentry.Event };
 
-const MyApp: React.FC<Props> = ({ Component, pageProps, err }: Props) => {
+const MyApp = ({ Component, pageProps, err }: Props): JSX.Element => {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url: string): void => {
@@ -38,7 +41,11 @@ const MyApp: React.FC<Props> = ({ Component, pageProps, err }: Props) => {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} err={err} />;
+  return (
+    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
+      <Component {...pageProps} err={err} />
+    </ThemeProvider>
+  );
 };
 
 export default MyApp;

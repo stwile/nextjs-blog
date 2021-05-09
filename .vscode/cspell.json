@@ -10,6 +10,7 @@
     "vercel",
     "camelcase",
     "maxage",
-    "repos"
+    "repos",
+    "tailwindcss"
   ]
 }

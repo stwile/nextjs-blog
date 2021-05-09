@@ -1,11 +1,10 @@
-import { GOOGLE_ANALYTICS_ID, existsGaId } from '../src/lib/gtag';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import React, { ReactElement } from 'react';
+import React from 'react';
 
-type Props = {};
+import { GOOGLE_ANALYTICS_ID, existsGaId } from '../lib/gtag';
 
-export default class MyDocument extends Document<Props> {
-  render(): ReactElement {
+class MyDocument extends Document {
+  render(): JSX.Element {
     return (
       <Html lang="ja">
         <Head>
@@ -30,7 +29,7 @@ export default class MyDocument extends Document<Props> {
             </>
           ) : null}
         </Head>
-        <body>
+        <body className="text-gray-900 bg-white dark:bg-black dark:text-white">
           <Main />
           <NextScript />
         </body>
@@ -38,3 +37,5 @@ export default class MyDocument extends Document<Props> {
     );
   }
 }
+
+export default MyDocument;
