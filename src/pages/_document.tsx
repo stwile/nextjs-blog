@@ -29,6 +29,7 @@ class MyDocument extends Document {
             </>
           ) : null}
         </Head>
+        {/* <body className="text-gray-900 bg-white dark:bg-gray-800 dark:text-gray-300"> */}
         <body className="text-gray-900 bg-white dark:bg-black dark:text-white">
           <Main />
           <NextScript />

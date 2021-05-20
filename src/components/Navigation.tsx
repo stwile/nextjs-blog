@@ -5,7 +5,8 @@ export const Navigation = (): JSX.Element => {
   return (
     <nav>
       <Link href="/">
-        <a className="py-4 pr-6 text-gray-900 dark:text-white">Home</a>
+        {/* <a className="py-4 pr-6 text-gray-900 dark:text-white">Home</a> */}
+        <a className="py-4 pr-6">Home</a>
       </Link>
     </nav>
   );

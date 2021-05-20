@@ -42,7 +42,7 @@ const MyApp = ({ Component, pageProps, err }: Props): JSX.Element => {
   }, [router.events]);
 
   return (
-    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
+    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
       <Component {...pageProps} err={err} />
     </ThemeProvider>
   );

@@ -6,9 +6,6 @@ type Props = {
   dateString: string;
 };
 
-const Date = ({ dateString }: Props): JSX.Element => {
-  const date = parseISO(dateString);
-  return <time dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>;
+export const Date = ({ dateString }: Props): JSX.Element => {
+  return <time dateTime={dateString}>{format(parseISO(dateString), 'LLLL d, yyyy')}</time>;
 };
-
-export default Date;

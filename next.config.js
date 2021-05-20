@@ -1,6 +1,5 @@
-const withSourceMaps = require('@zeit/next-source-maps')();
-
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+
 const {
   NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
   SENTRY_ORG,
@@ -15,7 +14,7 @@ const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
 process.env.SENTRY_DSN = SENTRY_DSN;
 const basePath = '';
 
-module.exports = withSourceMaps({
+module.exports = {
   serverRuntimeConfig: {
     rootDir: __dirname,
   },
@@ -44,5 +43,5 @@ module.exports = withSourceMaps({
     }
     return config;
   },
-  basePath,
-});
+  productionBrowserSourceMaps: true,
+};
