@@ -1,10 +1,11 @@
-import { AppProps } from 'next/app';
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import * as gtag from '../src/lib/gtag';
-import * as Sentry from '@sentry/node';
 import { RewriteFrames } from '@sentry/integrations';
+import * as Sentry from '@sentry/node';
+import { AppProps } from 'next/app';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+
+import * as gtag from '../src/lib/gtag';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   const config = getConfig();

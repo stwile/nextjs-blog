@@ -1,10 +1,11 @@
-import styles from './layout.module.css';
-import Link from 'next/link';
 import { Grid, makeStyles, Theme } from '@material-ui/core';
-import Sidebar from './Sidebar';
-import Header from './Header';
+import Link from 'next/link';
 import React from 'react';
-import Meta from './Meta';
+
+import Header from './Header';
+import { Meta } from './Meta';
+import { Sidebar } from './Sidebar';
+import styles from './layout.module.css';
 
 export const siteTitle = 'Volare Viah';
 
@@ -19,7 +20,7 @@ type Props = {
   home?: boolean;
 };
 
-const Layout: React.FC<Props> = ({ children, home }: Props) => {
+export const Layout: React.FC<Props> = ({ children, home }: Props) => {
   const classes = useStyles();
 
   return (

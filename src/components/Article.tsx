@@ -1,8 +1,9 @@
-import utilStyles from '../../styles/utils.module.css';
-import { ContentType } from '../../types/response/blog/ContentType';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import Date from './Date';
+
+import utilStyles from '../../styles/utils.module.css';
+import { ContentType } from '../../types/response/blog/ContentType';
+import { Date } from './Date';
 
 type Props = {
   content: ContentType;
@@ -15,7 +16,7 @@ const Article: React.FC<Props> = ({ content }: Props) => {
         <Date dateString={content.publishedAt} />
       </div>
       <h1 className={utilStyles.headingXl}>{content.title}</h1>
-      <ReactMarkdown source={content.body} skipHtml={true} />
+      <ReactMarkdown skipHtml={true}>{content.body}</ReactMarkdown>
     </article>
   );
 };

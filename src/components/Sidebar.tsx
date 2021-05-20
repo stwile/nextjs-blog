@@ -1,8 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Theme } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
 import { SvgIconComponent, GitHub, Twitter } from '@material-ui/icons';
+import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   sidebarAboutBox: {
@@ -33,7 +33,7 @@ const social: Array<Social> = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+export const Sidebar: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -54,5 +54,3 @@ const Sidebar: React.FC = () => {
     </Grid>
   );
 };
-
-export default Sidebar;

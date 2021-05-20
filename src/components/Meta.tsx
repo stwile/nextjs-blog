@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import React from 'react';
+
 import { siteTitle } from './Layout';
 
-const Meta: React.FC = () => {
+export const Meta: React.FC = () => {
   const domainName: string = process.env.DOMAIN as string;
 
   return (
@@ -36,5 +37,3 @@ const Meta: React.FC = () => {
     </Head>
   );
 };
-
-export default Meta;

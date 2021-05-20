@@ -1,8 +1,9 @@
-import { ContentType } from '../../../types/response/blog/ContentType';
-import Layout from '../Layout';
 import Head from 'next/head';
-import Article from '../Article';
 import React from 'react';
+
+import { ContentType } from '../../../types/response/blog/ContentType';
+import Article from '../Article';
+import { Layout } from '../Layout';
 import { siteTitle } from '../Layout';
 
 type Props = {
