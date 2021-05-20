@@ -8,4 +8,5 @@ export type ContentType = {
   title: string;
   body: string;
   tags: Array<TagType>;
+  revisedAt: string;
 };

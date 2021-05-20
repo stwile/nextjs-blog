@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import utilStyles from '../../../styles/utils.module.css';
-import { ContentType } from '../../../types/response/blog/ContentType';
+import { ContentType } from '../../types/response/blog/ContentType';
 import { Date } from '../Date';
 import Layout from '../Layout';
 import { siteTitle } from '../Layout';

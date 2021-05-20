@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React, { ReactElement } from 'react';
 
-import { GOOGLE_ANALYTICS_ID, existsGaId } from '../src/lib/gtag';
+import { GOOGLE_ANALYTICS_ID, existsGaId } from '../lib/gtag';
 
 export default class MyDocument extends Document {
   render(): ReactElement {

@@ -1,6 +1,6 @@
-const withSourceMaps = require('@zeit/next-source-maps')()
+const withSourceMaps = require('@zeit/next-source-maps')();
 
-const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const {
   NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
   SENTRY_ORG,
@@ -8,12 +8,12 @@ const {
   SENTRY_AUTH_TOKEN,
   NODE_ENV,
   VERCEL_GITHUB_COMMIT_SHA,
-} = process.env
+} = process.env;
 
-const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA
+const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
 
-process.env.SENTRY_DSN = SENTRY_DSN
-const basePath = ''
+process.env.SENTRY_DSN = SENTRY_DSN;
+const basePath = '';
 
 module.exports = withSourceMaps({
   serverRuntimeConfig: {
@@ -21,7 +21,7 @@ module.exports = withSourceMaps({
   },
   webpack: (config, options) => {
     if (!options.isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser'
+      config.resolve.alias['@sentry/node'] = '@sentry/browser';
     }
 
     if (
@@ -39,10 +39,10 @@ module.exports = withSourceMaps({
           stripPrefix: ['webpack://_N_E/'],
           urlPrefix: `~${basePath}/_next`,
           release: COMMIT_SHA,
-        })
-      )
+        }),
+      );
     }
-    return config
+    return config;
   },
   basePath,
 
@@ -53,6 +53,6 @@ module.exports = withSourceMaps({
         destination: '/blogs/1',
         permanent: true,
       },
-    ]
+    ];
   },
-})
+});
