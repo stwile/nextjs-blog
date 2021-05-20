@@ -1,8 +1,8 @@
 // From Next.JS example https://github.com/vercel/next.js/blob/canary/examples/with-sentry-simple/pages/_error.js
-import React from 'react';
-import NextErrorComponent from 'next/error';
 import * as Sentry from '@sentry/browser';
 import { NextPageContext } from 'next';
+import NextErrorComponent from 'next/error';
+import React from 'react';
 
 type MyErrorContext = NextPageContext & {
   statusCode: number;

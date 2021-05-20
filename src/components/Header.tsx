@@ -1,8 +1,9 @@
-import styles from './layout.module.css';
-import utilStyles from '../../styles/utils.module.css';
-import React from 'react';
-import { siteTitle } from './Layout';
 import Link from 'next/link';
+import React from 'react';
+
+import utilStyles from '../../styles/utils.module.css';
+import { siteTitle } from './Layout';
+import styles from './layout.module.css';
 
 type Props = {
   home?: boolean;

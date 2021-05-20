@@ -1,12 +1,13 @@
-import { ContentType } from '../../../types/response/blog/ContentType';
-import React from 'react';
-import Layout from '../Layout';
 import { Grid } from '@material-ui/core';
-import Date from '../Date';
-import Link from 'next/link';
-import utilStyles from '../../../styles/utils.module.css';
 import { Pagination, PaginationItem, PaginationRenderItemParams } from '@material-ui/lab';
 import Head from 'next/head';
+import Link from 'next/link';
+import React from 'react';
+
+import utilStyles from '../../../styles/utils.module.css';
+import { ContentType } from '../../../types/response/blog/ContentType';
+import { Date } from '../Date';
+import Layout from '../Layout';
 import { siteTitle } from '../Layout';
 
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
   count: number;
 };
 
-const List: React.FC<Props> = ({ contents, current, count }: Props) => {
+export const List: React.FC<Props> = ({ contents, current, count }: Props) => {
   return (
     <Layout home>
       <Head>
@@ -52,5 +53,3 @@ const List: React.FC<Props> = ({ contents, current, count }: Props) => {
     </Layout>
   );
 };
-
-export default List;
