@@ -1,9 +1,10 @@
-import { GetStaticPaths } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 
 import { List } from '../../components/blogs/List';
 import { ContentType } from '../../types/response/blog/ContentType';
 import { ListType } from '../../types/response/blog/ListType';
+import { getAllContents } from '../../apis/blog';
 
 type Props = {
   contents: Array<ContentType>;
@@ -41,23 +42,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const getStaticProps = async (context: {
-  params: {
-    id: string;
-  };
-}) => {
-  const current = Number(context.params.id) || TOP_CURRENT;
+type Params = {
+  id: string;
+};
+
+export const getStaticProps: GetStaticProps<Props, Params> = async ({
+  params,
+}): Promise<{ props: Props }> => {
+  if (params === undefined) {
+    throw new Error();
+  }
+  const current = Number(params.id) || TOP_CURRENT;
   const offset = (current - 1) * 5;
-  const key: string = process.env.API_KEY as string;
-  const headers = {
-    headers: {
-      'X-API-KEY': key,
-    },
-  };
-  const url = `${process.env.ENDPOINT}/blog?offset=${offset}&limit=${ITEM_COUNT}`;
-  const res = await fetch(url, headers);
-  const data: ListType = await res.json();
+
+  const data = await getAllContents({
+    offset,
+    limit: ITEM_COUNT,
+  });
 
   return {
     props: {
