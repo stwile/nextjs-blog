@@ -16,7 +16,7 @@ const Article: React.FC<Props> = ({ content }: Props) => {
         <Date dateString={content.publishedAt} />
       </div>
       <h1 className={utilStyles.headingXl}>{content.title}</h1>
-      <ReactMarkdown skipHtml={true}>content.body</ReactMarkdown>
+      <ReactMarkdown skipHtml={true}>{content.body}</ReactMarkdown>
     </article>
   );
 };
