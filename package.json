@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .ts,.tsx ./",
-    "lint:fix": "eslint --fix --ext .ts,.tsx ./",
+    "lint": "eslint --ext .ts,.tsx,.js",
+    "lint:fix": "eslint --fix --ext .ts,.tsx,.js",
+    "pre-commit": "lint-staged",
     "export": "yarn run build && next export"
   },
   "dependencies": {
@@ -27,25 +28,25 @@
     "react-markdown": "^4.3.1"
   },
   "devDependencies": {
-    "@types/gtag.js": "^0.0.3",
-    "@types/node": "^14.6.2",
-    "@types/react": "^16.9.48",
-    "@types/react-dom": "^16.9.8",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
-    "@typescript-eslint/parser": "^2.0.0",
-    "eslint": "^6.0.0",
-    "eslint-config-airbnb-typescript": "^7.2.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^2.5.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.13",
-    "prettier": "^2.1.1",
-    "pretty-quick": "^3.0.0",
-    "typescript": "^4.0.3"
+    "@types/gtag.js": "^0.0.4",
+    "@types/node": "^15.3.1",
+    "@types/react": "^17.0.6",
+    "@types/react-dom": "^17.0.5",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
+    "typescript": "^4.2.4"
   },
   "husky": {
     "hooks": {
@@ -53,13 +54,8 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix"
+    "*.{js,jsx,ts,tsx,json,md}": [
+      "prettier --write"
     ]
-  },
-  "globals": {
-    "ts-jest": {
-      "tsConfig": "tsconfig.json"
-    }
   }
 }
