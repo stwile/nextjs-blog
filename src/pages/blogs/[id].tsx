@@ -4,7 +4,7 @@ import React from 'react';
 import { List } from '../../components/blogs/List';
 import { ContentType } from '../../types/response/blog/ContentType';
 import { ListType } from '../../types/response/blog/ListType';
-import { getAllContents } from '../../apis/blog';
+import { client } from '../../lib/microcms';
 
 type Props = {
   contents: Array<ContentType>;
@@ -21,17 +21,9 @@ const Blogs: React.FC<Props> = ({ contents, current, count }: Props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key: string = process.env.API_KEY as string;
-  const headers = {
-    headers: {
-      'X-API-KEY': key,
-    },
-  };
-
-  const url = `${process.env.ENDPOINT}/blog`;
-  const res = await fetch(url, headers);
-
-  const result: ListType = await res.json();
+  const result: ListType = await client.get({
+    endpoint: 'blog',
+  });
   const totalCount = result.totalCount;
   const paginateMax = Math.ceil(totalCount / 5) + 1;
 
@@ -55,9 +47,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const current = Number(params.id) || TOP_CURRENT;
   const offset = (current - 1) * 5;
 
-  const data = await getAllContents({
-    offset,
-    limit: ITEM_COUNT,
+  const data: ListType = await client.get({
+    endpoint: 'blog',
+    queries: {
+      offset: offset,
+      limit: ITEM_COUNT,
+    },
   });
 
   return {

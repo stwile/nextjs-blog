@@ -4,7 +4,7 @@ import React from 'react';
 import Item from '../../../components/blogs/Item';
 import { ContentType } from '../../../types/response/blog/ContentType';
 import { ListType } from '../../../types/response/blog/ListType';
-import { getContentById } from '../../../apis/blog';
+import { client } from '../../../lib/microcms';
 
 type Props = {
   content: ContentType;
@@ -15,19 +15,11 @@ const BlogItem: React.FC<Props> = ({ content }: Props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key: string = process.env.API_KEY as string;
-  const headers = {
-    headers: {
-      'X-API-KEY': key,
-    },
-  };
+  const data: ListType = await client.get({
+    endpoint: 'blog',
+  });
 
-  const url = `${process.env.ENDPOINT}/blog`;
-  const res = await fetch(url, headers);
-
-  const repos: ListType = await res.json();
-
-  const paths = repos.contents.map((item: ContentType) => `/blogs/items/${item.id}`);
+  const paths = data.contents.map((item: ContentType) => `/blogs/items/${item.id}`);
   return {
     paths,
     fallback: false,
@@ -44,7 +36,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   if (params === undefined) {
     throw new Error();
   }
-  const content = await getContentById(params.id);
+
+  const content: ContentType = await client.get({
+    endpoint: `blog/${params.id}`,
+  });
+
   return {
     props: {
       content,
