@@ -5,7 +5,7 @@ import React from 'react';
 import Header from './Header';
 import { Meta } from './Meta';
 import { Sidebar } from './Sidebar';
-import styles from './layout.module.css';
+import styles from './layout.module.scss';
 
 export const siteTitle = 'Volare Viah';
 
