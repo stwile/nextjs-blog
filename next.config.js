@@ -44,14 +44,4 @@ module.exports = {
     return config;
   },
   basePath,
-
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/blogs/1',
-        permanent: true,
-      },
-    ];
-  },
 };
