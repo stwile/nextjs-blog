@@ -5,6 +5,8 @@ import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
+import '../../styles/global.scss';
+
 import * as gtag from '../lib/gtag';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {

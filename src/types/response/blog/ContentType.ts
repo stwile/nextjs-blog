@@ -9,4 +9,5 @@ export type ContentType = {
   body: string;
   tags: Array<TagType>;
   revisedAt: string;
+  description?: string;
 };
