@@ -12,6 +12,8 @@
     "maxage",
     "repos",
     "semibold",
+    "tailwindcss",
+    "stylelint",
     "microcms"
   ]
 }
