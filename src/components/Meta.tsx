@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import React from 'react';
 
-import { siteTitle } from './Layout';
-
 export const Meta: React.FC = () => {
   const domainName: string = process.env.DOMAIN as string;
+  const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
   return (
     <Head>
@@ -31,7 +30,7 @@ export const Meta: React.FC = () => {
       <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:description" content={siteTitle} />
 
-      <link rel="author" href="https://twitter.com/handm871" />
+      <link rel="author" href={`https://twitter.com/${process.env.TWITTER_ID}`} />
 
       <link rel="icon" href="/favicon.ico" />
     </Head>
