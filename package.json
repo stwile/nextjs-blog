@@ -9,6 +9,7 @@
     "lint": "eslint --ext .ts,.tsx,.js",
     "lint:fix": "eslint --fix --ext .ts,.tsx,.js",
     "pre-commit": "lint-staged",
+    "pre-push": "tsc",
     "export": "yarn run build && next export"
   },
   "dependencies": {
