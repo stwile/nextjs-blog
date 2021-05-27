@@ -7,12 +7,24 @@ import { Date } from '../../components/Date';
 import { Layout } from '../../components/Layout';
 import { ListType } from '../../types/blog/PaginationType';
 import { client } from '../../lib/microcms';
+import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+// @ts-ignore
+import rehypePrism from '@mapbox/rehype-prism';
+import 'prismjs/themes/prism-okaidia.css';
+
+import { Tweet } from 'react-twitter-widgets';
 
 type Props = {
   content: ContentType;
+  source: MDXRemoteSerializeResult;
 };
 
-const Blog: React.VFC<Props> = ({ content }: Props) => {
+const components = {
+  Tweet,
+};
+
+const Blog: React.VFC<Props> = ({ content, source }: Props) => {
   return (
     <Layout>
       <Head>
@@ -23,7 +35,9 @@ const Blog: React.VFC<Props> = ({ content }: Props) => {
           <Date dateString={content.publishedAt} />
         </p>
         <h1 className="mb-11">{content.title}</h1>
-        {content.body}
+        <div className="prose">
+          <MDXRemote {...source} components={components} />
+        </div>
       </article>
     </Layout>
   );
@@ -43,10 +57,15 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const content: ContentType = await client.get({
     endpoint: `blog/${params.id}`,
   });
-
+  const source = await serialize(content.body, {
+    mdxOptions: {
+      rehypePlugins: [rehypePrism],
+    },
+  });
   return {
     props: {
       content,
+      source,
     },
   };
 };
