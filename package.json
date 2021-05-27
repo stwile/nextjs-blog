@@ -13,6 +13,7 @@
     "export": "yarn run build && next export"
   },
   "dependencies": {
+    "@mapbox/rehype-prism": "^0.6.0",
     "@sentry/browser": "^5.23.0",
     "@sentry/integrations": "^5.23.0",
     "@sentry/node": "^5.23.0",
@@ -20,15 +21,11 @@
     "date-fns": "^2.12.0",
     "microcms-js-sdk": "^1.1.0",
     "next": "^10.2.3",
+    "next-mdx-remote": "^3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.2",
-    "sass": "^1.33.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-recommended-scss": "^4.2.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.19.0"
+    "react-twitter-widgets": "^1.10.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.1",
@@ -52,11 +49,12 @@
     "postcss": "^8.2.10",
     "prettier": "^2.3.0",
     "pretty-quick": "^3.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
     "tailwindcss": "^2.1.2",
     "typescript": "^4.3.2"
-  },
-  "peerDependencies": {
-    "elliptic": "^6.5.4"
   },
   "husky": {
     "hooks": {
@@ -64,7 +62,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,css,scss}": [
+    "*.{js,jsx,ts,tsx,json,md,css}": [
       "prettier --write"
     ]
   }
