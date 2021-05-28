@@ -9,9 +9,13 @@ import { ListType } from '../../types/blog/PaginationType';
 import { client } from '../../lib/microcms';
 import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 // @ts-ignore
 import rehypePrism from '@mapbox/rehype-prism';
-import 'prismjs/themes/prism-okaidia.css';
+// @ts-ignore
+import remarkCodeTitles from 'remark-code-titles';
+import remarkToc from 'remark-toc';
 
 import { Tweet } from 'react-twitter-widgets';
 
@@ -59,7 +63,17 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   });
   const source = await serialize(content.body, {
     mdxOptions: {
-      rehypePlugins: [rehypePrism],
+      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
+      remarkPlugins: [
+        remarkCodeTitles,
+        [
+          remarkToc,
+          {
+            heading: '目次', // Table of Contents を挿入するための見出しを指定する
+            tight: true, // `true` にすると `li` 要素内に `p` 要素を作らないようになる
+          },
+        ],
+      ],
     },
   });
   return {
