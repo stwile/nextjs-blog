@@ -8,7 +8,6 @@ export const Meta: React.FC = () => {
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="robots" content="max-image-preview:large" />
       <meta charSet="utf-8" />
       <link rel="canonical" href={`https://${domainName}/`} />
 
@@ -33,6 +32,7 @@ export const Meta: React.FC = () => {
       <link rel="author" href={`https://twitter.com/${process.env.TWITTER_ID}`} />
 
       <link rel="icon" href="/favicon.ico" />
+      <title>{siteTitle}</title>
     </Head>
   );
 };
