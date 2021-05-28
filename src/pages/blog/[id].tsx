@@ -33,6 +33,7 @@ const Blog: React.VFC<Props> = ({ content, source }: Props) => {
     <Layout>
       <Head>
         <title>{content.title}</title>
+        <meta name="description" content={content.description ?? process.env.DESCRIPTION} />
       </Head>
       <article>
         <p className="text-sm">

@@ -7,15 +7,20 @@ import { Layout } from '../components/Layout';
 import { client } from '../lib/microcms';
 import { ListType } from '../types/blog/PaginationType';
 import { InnerLink } from '../components/InnerLink';
+import Head from 'next/head';
 
 type Props = {
   contents: ContentType[];
 };
 
 const Index = ({ contents }: Props): JSX.Element => {
+  const title = process.env.NEXT_PUBLIC_SITE_TITLE || '';
   return (
     <Layout>
-      <h1>{process.env.NEXT_PUBLIC_SITE_TITLE || ''}</h1>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <h1>{title}</h1>
       <section>
         {contents.map((content: ContentType) => (
           <article key={content.id} className="mt-12">
@@ -26,7 +31,6 @@ const Index = ({ contents }: Props): JSX.Element => {
               <InnerLink uri={`/blog/${content.id}`} title={content.title} />
             </h1>
             <p className="mb-3 text-sm">{content.description}</p>
-            <InnerLink uri={`/blog/${content.id}`} title="Read More" />
           </article>
         ))}
       </section>
