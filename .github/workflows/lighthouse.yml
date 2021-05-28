@@ -1,0 +1,23 @@
+name: lighthouseCI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [main]
+
+jobs:
+  lightHouseCi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: install
+        run: npm install && npm install -g @lhci/cli@0.7.x
+      - name: build
+        run: npm run export
+      - name: light house exec
+        run: lhci autorun
