@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-const domainName: string = process.env.DOMAIN as string;
+const domainName: string = process.env.NEXT_PUBLIC_DOMAIN as string;
 export const baseUrl = `https://www.${domainName}`;
 
 export const Meta: React.FC = () => {
@@ -31,7 +31,7 @@ export const Meta: React.FC = () => {
       <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:description" content={siteTitle} />
 
-      <link rel="author" href={`https://twitter.com/${process.env.TWITTER_ID}`} />
+      <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
 
       <link rel="icon" href={`${baseUrl}/favicon.png`} />
       <title>{siteTitle}</title>
