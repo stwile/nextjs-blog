@@ -6,6 +6,8 @@ export const baseUrl = `https://www.${domainName}`;
 
 export const Meta: React.FC = () => {
   const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
+  const imageUrl = `${baseUrl}/images/twitter-large.png`;
+  const description = 'Thinking reeds about book & Technology';
 
   return (
     <Head>
@@ -14,22 +16,19 @@ export const Meta: React.FC = () => {
       <link rel="canonical" href={baseUrl} />
 
       <meta itemProp="name" content={siteTitle} />
-      <meta name="description" content="Web Technology and Read Books" />
-
-      {/* <meta itemProp="image" content="" /> */}
-
-      <meta name="og:title" content={siteTitle} />
-      <meta property="og:type" content="blog" />
-      <meta property="og:url" content={baseUrl} />
-      {/* <meta property="og:image" content="" /> */}
-      {/* <meta property="og:image:alt" content={siteTitle} /> */}
-      <meta property="og:description" content={siteTitle} />
-      <meta property="og:site_name" content={siteTitle} />
+      <meta itemProp="image" content={imageUrl} />
 
       <meta name="twitter:card" content="summary_large_image" />
-      {/* <meta name="twitter:image" content="" /> */}
-      <meta name="twitter:title" content={siteTitle} />
-      <meta name="twitter:description" content={siteTitle} />
+      <meta name="twitter:site" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
+      <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
+
+      <meta property="og:url" content={baseUrl} />
+      <meta property="og:title" content={siteTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="blog" />
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:alt" content={siteTitle} />
+      <meta property="og:site_name" content={siteTitle} />
 
       <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
 
