@@ -8,7 +8,7 @@ export const Meta: React.FC = () => {
   const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
   const imageUrl = `${baseUrl}/images/twitter-large.png`;
   const description = 'Thinking reeds about book & Technology';
-  const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION || undefined;
+  const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
 
   return (
     <Head>
