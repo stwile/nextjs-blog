@@ -8,6 +8,7 @@ export const Meta: React.FC = () => {
   const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
   const imageUrl = `${baseUrl}/images/twitter-large.png`;
   const description = 'Thinking reeds about book & Technology';
+  const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION || undefined;
 
   return (
     <Head>
@@ -15,8 +16,13 @@ export const Meta: React.FC = () => {
       <meta charSet="utf-8" />
       <link rel="canonical" href={baseUrl} />
 
+      <meta name="robots" content="max-image-preview:large" />
+
       <meta itemProp="name" content={siteTitle} />
       <meta itemProp="image" content={imageUrl} />
+      {googleSiteVerification !== undefined && (
+        <meta name="google-site-verification" content={googleSiteVerification} />
+      )}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
