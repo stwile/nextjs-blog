@@ -1,14 +1,28 @@
 import Head from 'next/head';
 import React from 'react';
+import { MetaType } from '../types/blog/MetaType';
+import { useRouter } from 'next/router';
 
 const domainName: string = process.env.NEXT_PUBLIC_DOMAIN as string;
 export const baseUrl = `https://www.${domainName}`;
+export const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
-export const Meta: React.FC = () => {
-  const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
-  const imageUrl = `${baseUrl}/images/twitter-large.png`;
-  const description = 'Thinking reeds about book & Technology';
+type Props = {
+  customMeta?: MetaType;
+};
+
+export const Meta: React.FC<Props> = ({ customMeta }: Props) => {
   const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
+
+  const meta: MetaType = {
+    title: siteTitle,
+    image: `${baseUrl}/images/twitter-large.png`,
+    description: 'Thinking reeds about book & Technology',
+    type: 'blog',
+    ...customMeta,
+  };
+
+  const router = useRouter();
 
   return (
     <Head>
@@ -18,8 +32,8 @@ export const Meta: React.FC = () => {
 
       <meta name="robots" content="max-image-preview:large" />
 
-      <meta itemProp="name" content={siteTitle} />
-      <meta itemProp="image" content={imageUrl} />
+      <meta itemProp="name" content={meta.title} />
+      <meta itemProp="image" content={meta.image} />
       {googleSiteVerification !== undefined && (
         <meta name="google-site-verification" content={googleSiteVerification} />
       )}
@@ -28,12 +42,11 @@ export const Meta: React.FC = () => {
       <meta name="twitter:site" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
       <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
 
-      <meta property="og:url" content={baseUrl} />
-      <meta property="og:title" content={siteTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:url" content={`${baseUrl}${router.asPath}`} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
       <meta property="og:type" content="blog" />
-      <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:alt" content={siteTitle} />
+      <meta property="og:image" content={meta.image} />
       <meta property="og:site_name" content={siteTitle} />
 
       <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />

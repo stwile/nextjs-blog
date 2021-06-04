@@ -1,11 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
 import React from 'react';
 
 import { ContentType } from '../../types/response/blog/ContentType';
 import { Date } from '../../components/Date';
 import { Layout } from '../../components/Layout';
-import { ListType } from '../../types/blog/PaginationType';
+import { ListType } from '../../types/response/blog/ListType';
 import { client } from '../../lib/microcms';
 import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -18,6 +17,8 @@ import remarkCodeTitles from 'remark-code-titles';
 import remarkToc from 'remark-toc';
 
 import { Twitter } from '../../components/Twitter';
+import { MetaType } from '../../types/blog/MetaType';
+import { siteTitle } from '../../components/Meta';
 
 type Props = {
   content: ContentType;
@@ -29,12 +30,17 @@ const components = {
 };
 
 const Blog: React.VFC<Props> = ({ content, source }: Props) => {
+  const ogpDomain = process.env.NEXT_PUBLIC_OPEN_GRAPH_DOMAIN;
+  const image = `http://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
+
+  const meta: MetaType = {
+    title: `${siteTitle} 🌋 ${content.title}`,
+    description: content.description ?? '', // TODO: must description
+    type: 'article;',
+    image,
+  };
   return (
-    <Layout>
-      <Head>
-        <title>{content.title}</title>
-        <meta name="description" content={content.description ?? process.env.DESCRIPTION} />
-      </Head>
+    <Layout customMeta={meta}>
       <article>
         <p className="text-sm">
           <Date dateString={content.publishedAt} />
