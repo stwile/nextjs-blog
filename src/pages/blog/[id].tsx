@@ -31,7 +31,7 @@ const components = {
 
 const Blog: React.VFC<Props> = ({ content, source }: Props) => {
   const ogpDomain = process.env.NEXT_PUBLIC_OPEN_GRAPH_DOMAIN;
-  const image = `http://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
+  const image = `https://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
 
   const meta: MetaType = {
     title: `${siteTitle} 🌋 ${content.title}`,
