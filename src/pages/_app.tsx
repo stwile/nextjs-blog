@@ -1,5 +1,6 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
+import { ThemeProvider } from 'next-themes';
 import { AppProps } from 'next/app';
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
@@ -41,7 +42,11 @@ const MyApp: React.FC<Props> = ({ Component, pageProps, err }: Props) => {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} err={err} />;
+  return (
+    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
+      <Component {...pageProps} err={err} />
+    </ThemeProvider>
+  );
 };
 
 export default MyApp;

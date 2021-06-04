@@ -17,7 +17,7 @@ import rehypePrism from '@mapbox/rehype-prism';
 import remarkCodeTitles from 'remark-code-titles';
 import remarkToc from 'remark-toc';
 
-import { Tweet } from 'react-twitter-widgets';
+import { Twitter } from '../../components/Twitter';
 
 type Props = {
   content: ContentType;
@@ -25,7 +25,7 @@ type Props = {
 };
 
 const components = {
-  Tweet,
+  Twitter,
 };
 
 const Blog: React.VFC<Props> = ({ content, source }: Props) => {
