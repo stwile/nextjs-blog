@@ -9,7 +9,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "plugin:@next/next/recommended"
+    "next"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -27,7 +27,8 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "settings": {
     "react": {
