@@ -35,7 +35,7 @@ const Blog: React.VFC<Props> = ({ content, source }: Props) => {
 
   const meta: MetaType = {
     title: `${content.title} | ${siteTitle}`,
-    description: content.description ?? '', // TODO: must description
+    description: content.description,
     type: 'article',
     image,
   };
