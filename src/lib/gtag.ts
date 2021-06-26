@@ -8,7 +8,7 @@ export const pageView = (url: string): void => {
     return;
   }
 
-  return window.gtag('config', GOOGLE_ANALYTICS_ID, {
+  window.gtag('config', GOOGLE_ANALYTICS_ID, {
     page_path: url,
   });
 };
@@ -21,10 +21,9 @@ type EventProps = {
   value: number;
 };
 
-export const event = ({ action, category, label, value }: EventProps): void => {
-  return window.gtag('event', action, {
+export const event = ({ action, category, label, value }: EventProps): void =>
+  window.gtag('event', action, {
     event_category: category,
     event_label: label,
-    value: value,
+    value,
   });
-};

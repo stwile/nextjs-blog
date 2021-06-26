@@ -6,10 +6,10 @@ export type InnerLinkProps = {
   title: string;
 };
 
-export const InnerLink: React.VFC<InnerLinkProps> = ({ uri, title }: InnerLinkProps) => {
-  return (
-    <Link href={uri}>
-      <a>{title}</a>
-    </Link>
-  );
-};
+export const InnerLink: React.VFC<InnerLinkProps> = ({ uri, title }) => (
+  <Link href={uri}>
+    <a>{title}</a>
+  </Link>
+);
+
+export default InnerLink;
