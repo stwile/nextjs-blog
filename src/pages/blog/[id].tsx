@@ -34,13 +34,13 @@ const Blog: React.VFC<Props> = ({ content, source }: Props) => {
   const image = `https://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
 
   const meta: MetaType = {
-    title: `${siteTitle} | ${content.title}`,
+    title: `${content.title} | ${siteTitle}`,
     description: content.description ?? '', // TODO: must description
-    type: 'article;',
+    type: 'article',
     image,
   };
   return (
-    <Layout customMeta={meta}>
+    <Layout meta={meta}>
       <article>
         <p className="text-sm">
           <Date dateString={content.publishedAt} />

@@ -8,19 +8,11 @@ export const baseUrl = `https://www.${domainName}`;
 export const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
 type Props = {
-  customMeta?: MetaType;
+  meta: MetaType;
 };
 
-export const Meta: React.FC<Props> = ({ customMeta }) => {
+export const Meta: React.FC<Props> = ({ meta }) => {
   const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
-
-  const meta: MetaType = {
-    title: siteTitle,
-    image: `${baseUrl}/images/twitter-large.png`,
-    description: 'Thinking reeds about book & Technology',
-    type: 'blog',
-    ...customMeta,
-  };
 
   const router = useRouter();
 
@@ -52,7 +44,7 @@ export const Meta: React.FC<Props> = ({ customMeta }) => {
       <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
 
       <link rel="icon" href={`${baseUrl}/favicon.png`} />
-      <title>{siteTitle}</title>
+      <title>{meta.title}</title>
     </Head>
   );
 };

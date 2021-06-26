@@ -8,6 +8,8 @@ import { Layout } from '../components/Layout';
 import { client } from '../lib/microcms';
 import { ListType } from '../types/response/blog/ListType';
 import { InnerLink } from '../components/InnerLink';
+import { baseUrl, siteTitle } from '../components/Meta';
+import { MetaType } from '../types/blog/MetaType';
 
 type Props = {
   contents: ContentType[];
@@ -15,8 +17,15 @@ type Props = {
 
 const Index = ({ contents }: Props): JSX.Element => {
   const title = process.env.NEXT_PUBLIC_SITE_TITLE || '';
+
+  const meta: MetaType = {
+    title: siteTitle,
+    image: `${baseUrl}/images/twitter-large.png`,
+    description: 'Thinking reeds about book & Technology',
+    type: 'blog',
+  };
   return (
-    <Layout>
+    <Layout meta={meta}>
       <Head>
         <title>{title}</title>
       </Head>
