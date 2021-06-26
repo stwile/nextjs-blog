@@ -5,4 +5,4 @@ export type MetaType = {
   type: OpenGraphType;
 };
 
-type OpenGraphType = 'blog' | 'article;';
+type OpenGraphType = 'blog' | 'article';

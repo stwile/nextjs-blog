@@ -7,12 +7,12 @@ import { MetaType } from '../types/blog/MetaType';
 
 type Props = {
   children: React.ReactNode;
-  customMeta?: MetaType;
+  meta: MetaType;
 };
 
-export const Layout: React.FC<Props> = ({ children, customMeta }) => (
+export const Layout: React.FC<Props> = ({ children, meta }) => (
   <>
-    <Meta customMeta={customMeta} />
+    <Meta meta={meta} />
     <Header />
     <main className="max-w-5xl px-8 mx-auto">{children}</main>
     <Footer />
