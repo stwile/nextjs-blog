@@ -10,15 +10,13 @@ type Props = {
   customMeta?: MetaType;
 };
 
-export const Layout: React.FC<Props> = ({ children, customMeta }: Props) => {
-  return (
-    <>
-      <Meta customMeta={customMeta} />
-      <Header />
-      <main className="max-w-5xl px-8 mx-auto">{children}</main>
-      <Footer />
-    </>
-  );
-};
+export const Layout: React.FC<Props> = ({ children, customMeta }) => (
+  <>
+    <Meta customMeta={customMeta} />
+    <Header />
+    <main className="max-w-5xl px-8 mx-auto">{children}</main>
+    <Footer />
+  </>
+);
 
 export default Layout;

@@ -6,6 +6,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "airbnb-typescript",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -28,7 +29,10 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off"
   },
   "settings": {
     "react": {

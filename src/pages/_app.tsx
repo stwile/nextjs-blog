@@ -19,6 +19,7 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
       new RewriteFrames({
         iteratee: (frame: Sentry.StackFrame): Sentry.StackFrame => {
           const fileName = frame.filename;
+          // eslint-disable-next-line no-param-reassign
           frame.filename = fileName ? fileName.replace(distDir, 'app:///_next') : undefined;
           return frame;
         },
