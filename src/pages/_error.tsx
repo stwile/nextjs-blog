@@ -9,7 +9,7 @@ type MyErrorContext = NextPageContext & {
   hasGetInitialPropsRun: boolean;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }: MyErrorContext) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
@@ -21,15 +21,12 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }: MyErrorContext) => 
   return <NextErrorComponent statusCode={statusCode} />;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 MyError.getInitialProps = async ({ res, err, asPath }: MyErrorContext) => {
   const errorInitialProps = (await NextErrorComponent.getInitialProps({
     res,
     err,
   } as MyErrorContext)) as MyErrorContext;
 
-  // Workaround for https://github.com/vercel/next.js/issues/8592, mark when
-  // getInitialProps has run
   errorInitialProps.hasGetInitialPropsRun = true;
 
   if (err) {

@@ -6,7 +6,9 @@ type Props = {
   tweetId: string;
 };
 
-export const Twitter: React.FC<Props> = ({ tweetId }: Props) => {
+export const Twitter: React.FC<Props> = ({ tweetId }) => {
   const { theme } = useTheme();
   return <Tweet tweetId={tweetId} options={{ theme }} />;
 };
+
+export default Twitter;

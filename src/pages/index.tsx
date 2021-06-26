@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next';
 import React from 'react';
 
+import Head from 'next/head';
 import { ContentType } from '../types/response/blog/ContentType';
 import { Date } from '../components/Date';
 import { Layout } from '../components/Layout';
 import { client } from '../lib/microcms';
 import { ListType } from '../types/response/blog/ListType';
 import { InnerLink } from '../components/InnerLink';
-import Head from 'next/head';
 
 type Props = {
   contents: ContentType[];
