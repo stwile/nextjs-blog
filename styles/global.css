@@ -20,7 +20,8 @@
   }
 
   a {
-    @apply text-gray-500 border-gray-500 hover:text-gray-400 dark:text-blue-special dark:hover:underline;
+    /* @apply text-gray-500 border-gray-500 hover:text-gray-400 dark:text-blue-special dark:hover:underline; */
+    @apply border-gray-500 text-indigo-special hover:underline dark:text-blue-special dark:hover:underline;
   }
 
   article {
@@ -42,7 +43,7 @@
 }
 
 .prose a {
-  @apply text-gray-600 no-underline hover:underline dark:text-gray-400;
+  @apply no-underline text-indigo-special hover:underline dark:text-blue-special dark:hover:underline;
 }
 
 .prose li {
