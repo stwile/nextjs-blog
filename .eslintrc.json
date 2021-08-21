@@ -6,11 +6,9 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb-typescript",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "next"
+    "prettier"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -32,7 +30,8 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/require-default-props": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {
