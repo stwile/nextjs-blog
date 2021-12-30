@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const {
   NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
@@ -13,6 +14,7 @@ const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
 process.env.SENTRY_DSN = SENTRY_DSN;
 const basePath = '';
 
+/** @type {import('next').NextConfig} */
 module.exports = {
   productionBrowserSourceMaps: true,
   serverRuntimeConfig: {
