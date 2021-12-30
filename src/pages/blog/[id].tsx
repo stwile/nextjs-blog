@@ -5,15 +5,16 @@ import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
 // @ts-ignore
 import remarkCodeTitles from 'remark-code-titles';
 import remarkToc from 'remark-toc';
 
 import { Date } from '../../components/Date';
+import { InnerLink } from '../../components/InnerLink';
 import { Layout } from '../../components/Layout';
 import { siteTitle } from '../../components/Meta';
-import { OuterLink } from '../../components/OuterLink';
 import { Twitter } from '../../components/Twitter';
 import { client } from '../../lib/microcms';
 import { MetaType } from '../../types/blog/MetaType';
@@ -27,7 +28,7 @@ type Props = {
 
 const components = {
   Twitter,
-  OuterLink,
+  InnerLink,
 };
 
 const Blog: React.VFC<Props> = ({ content, source }: Props) => {
@@ -71,7 +72,18 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   });
   const source = await serialize(content.body, {
     mdxOptions: {
-      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
+      rehypePlugins: [
+        rehypePrism,
+        rehypeSlug,
+        rehypeAutolinkHeadings,
+        [
+          rehypeExternalLinks,
+          {
+            target: '_blank',
+            rel: ['nofollow', 'noreferrer'],
+          },
+        ],
+      ],
       remarkPlugins: [
         remarkCodeTitles,
         [
