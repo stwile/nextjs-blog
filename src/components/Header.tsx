@@ -9,5 +9,3 @@ export const Header = (): JSX.Element => (
     <ThemeSwitch />
   </header>
 );
-
-export default Header;

@@ -7,5 +7,3 @@ export const client = createClient({
   serviceDomain,
   apiKey,
 });
-
-export default client;

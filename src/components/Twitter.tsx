@@ -10,5 +10,3 @@ export const Twitter: React.FC<Props> = ({ tweetId }) => {
   const { theme } = useTheme();
   return <Tweet tweetId={tweetId} options={{ theme }} />;
 };
-
-export default Twitter;

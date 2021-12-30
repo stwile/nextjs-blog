@@ -7,5 +7,3 @@ export const Footer = (): JSX.Element => (
     </div>
   </footer>
 );
-
-export default Footer;
