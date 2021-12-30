@@ -17,6 +17,7 @@ import { Date } from '../../components/Date';
 import { ContentType } from '../../types/response/blog/ContentType';
 
 import { Twitter } from '../../components/Twitter';
+import { OuterLink } from '../../components/OuterLink';
 import { MetaType } from '../../types/blog/MetaType';
 import { siteTitle } from '../../components/Meta';
 
@@ -27,6 +28,7 @@ type Props = {
 
 const components = {
   Twitter,
+  OuterLink,
 };
 
 const Blog: React.VFC<Props> = ({ content, source }: Props) => {
