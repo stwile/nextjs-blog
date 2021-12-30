@@ -37,5 +37,3 @@ export const ThemeSwitch = (): JSX.Element | null => {
     </button>
   );
 };
-
-export default ThemeSwitch;
