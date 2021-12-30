@@ -1,15 +1,15 @@
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import React from 'react';
 
-import Head from 'next/head';
-import { ContentType } from '../types/response/blog/ContentType';
 import { Date } from '../components/Date';
-import { Layout } from '../components/Layout';
-import { client } from '../lib/microcms';
-import { ListType } from '../types/response/blog/ListType';
 import { InnerLink } from '../components/InnerLink';
+import { Layout } from '../components/Layout';
 import { baseUrl, siteTitle } from '../components/Meta';
+import { client } from '../lib/microcms';
 import { MetaType } from '../types/blog/MetaType';
+import { ContentType } from '../types/response/blog/ContentType';
+import { ListType } from '../types/response/blog/ListType';
 
 type Props = {
   contents: ContentType[];

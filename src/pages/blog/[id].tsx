@@ -1,25 +1,24 @@
+// @ts-ignore
+import rehypePrism from '@mapbox/rehype-prism';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import React from 'react';
-
 import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 // @ts-ignore
-import rehypePrism from '@mapbox/rehype-prism';
-// @ts-ignore
 import remarkCodeTitles from 'remark-code-titles';
 import remarkToc from 'remark-toc';
-import { client } from '../../lib/microcms';
-import { ListType } from '../../types/response/blog/ListType';
-import { Layout } from '../../components/Layout';
-import { Date } from '../../components/Date';
-import { ContentType } from '../../types/response/blog/ContentType';
 
-import { Twitter } from '../../components/Twitter';
-import { OuterLink } from '../../components/OuterLink';
-import { MetaType } from '../../types/blog/MetaType';
+import { Date } from '../../components/Date';
+import { Layout } from '../../components/Layout';
 import { siteTitle } from '../../components/Meta';
+import { OuterLink } from '../../components/OuterLink';
+import { Twitter } from '../../components/Twitter';
+import { client } from '../../lib/microcms';
+import { MetaType } from '../../types/blog/MetaType';
+import { ContentType } from '../../types/response/blog/ContentType';
+import { ListType } from '../../types/response/blog/ListType';
 
 type Props = {
   content: ContentType;
