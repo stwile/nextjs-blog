@@ -10,5 +10,3 @@ export const Navigation = (): JSX.Element => (
     </ul>
   </nav>
 );
-
-export default Navigation;

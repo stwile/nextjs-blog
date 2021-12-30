@@ -11,5 +11,3 @@ export const InnerLink: React.VFC<InnerLinkProps> = ({ uri, title }) => (
     <a>{title}</a>
   </Link>
 );
-
-export default InnerLink;

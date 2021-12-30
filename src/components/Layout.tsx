@@ -18,5 +18,3 @@ export const Layout: React.FC<Props> = ({ children, meta }) => (
     <Footer />
   </>
 );
-
-export default Layout;
