@@ -1,6 +1,6 @@
 import { useTheme } from 'next-themes';
 import React from 'react';
-import { Tweet } from 'react-twitter-widgets';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 type Props = {
   tweetId: string;
@@ -8,5 +8,5 @@ type Props = {
 
 export const Twitter: React.FC<Props> = ({ tweetId }) => {
   const { theme } = useTheme();
-  return <Tweet tweetId={tweetId} options={{ theme }} />;
+  return <TwitterTweetEmbed tweetId={tweetId} options={{ theme }} />;
 };
