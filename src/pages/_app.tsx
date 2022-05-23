@@ -1,7 +1,6 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
 import { ThemeProvider } from 'next-themes';
-import { AppProps } from 'next/app';
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -9,6 +8,8 @@ import React, { useEffect } from 'react';
 import '../../styles/global.css';
 
 import * as gtag from '../lib/gtag';
+
+import type { AppProps } from 'next/app';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   const config = getConfig();
