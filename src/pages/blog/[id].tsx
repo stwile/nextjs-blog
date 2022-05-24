@@ -29,7 +29,7 @@ const components = {
   InnerLink,
 };
 
-const Blog: React.VFC<Props> = ({ content, source }: Props) => {
+const Blog: React.FC<Props> = ({ content, source }: Props) => {
   const ogpDomain = process.env.NEXT_PUBLIC_OPEN_GRAPH_DOMAIN;
   const image = `https://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
 
