@@ -1,4 +1,4 @@
-import { TagType } from './TagType';
+import type { TagType } from './TagType';
 
 export type ContentType = {
   id: string;
