@@ -1,4 +1,4 @@
-import { ContentType } from './ContentType';
+import type { ContentType } from './ContentType';
 
 export type ListType = {
   contents: Array<ContentType>;

@@ -1,7 +1,6 @@
 // @ts-ignore
 import rehypePrism from '@mapbox/rehype-prism';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
+import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -15,9 +14,12 @@ import { Layout } from '../../components/Layout';
 import { siteTitle } from '../../components/Meta';
 import { Twitter } from '../../components/Twitter';
 import { client } from '../../lib/microcms';
-import { MetaType } from '../../types/blog/MetaType';
-import { ContentType } from '../../types/response/blog/ContentType';
-import { ListType } from '../../types/response/blog/ListType';
+
+import type { MetaType } from '../../types/blog/MetaType';
+import type { ContentType } from '../../types/response/blog/ContentType';
+import type { ListType } from '../../types/response/blog/ListType';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 type Props = {
   content: ContentType;
