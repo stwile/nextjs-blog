@@ -6,7 +6,7 @@ type InnerLinkProps = {
   title: string;
 };
 
-export const InnerLink: React.VFC<InnerLinkProps> = ({ uri, title }) => (
+export const InnerLink: React.FC<InnerLinkProps> = ({ uri, title }) => (
   <Link href={uri}>
     <a>{title}</a>
   </Link>
