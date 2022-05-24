@@ -71,14 +71,6 @@ pre[class*='language-'] {
   @apply mt-0;
 }
 
-.remark-code-title {
-  @apply px-5 py-3 font-mono text-sm font-bold text-gray-800 bg-gray-200 border border-b-0 border-gray-300 rounded-t dark:text-gray-200 dark:bg-gray-800 dark:border-gray-700;
-}
-
-.remark-code-title + pre {
-  @apply mt-0 rounded-t-none;
-}
-
 .token.comment,
 .token.prolog,
 .token.doctype,

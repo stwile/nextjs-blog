@@ -7,8 +7,6 @@ import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
-// @ts-ignore
-import remarkCodeTitles from 'remark-code-titles';
 import remarkToc from 'remark-toc';
 
 import { Date } from '../../components/Date';
@@ -85,7 +83,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
         ],
       ],
       remarkPlugins: [
-        remarkCodeTitles,
         [
           remarkToc,
           {
