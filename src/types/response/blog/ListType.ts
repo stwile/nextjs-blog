@@ -1,7 +1,7 @@
 import type { ContentType } from './ContentType';
 
 export type ListType = {
-  contents: Array<ContentType>;
+  contents: ContentType[];
   totalCount: number;
   offset: number;
   limit: number;

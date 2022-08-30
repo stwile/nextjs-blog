@@ -7,7 +7,7 @@ export type ContentType = {
   publishedAt: string;
   title: string;
   body: string;
-  tags: Array<TagType>;
+  tags: TagType[];
   revisedAt: string;
   description: string;
 };
