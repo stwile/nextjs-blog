@@ -77,7 +77,8 @@
       "prettier --write"
     ]
   },
-  "engines": {
-    "node": "18.x"
+  "volta": {
+    "node": "18.16.1",
+    "yarn": "1.22.17"
   }
 }
