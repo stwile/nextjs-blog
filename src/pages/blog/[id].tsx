@@ -8,18 +8,18 @@ import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 
-import { Date } from '../../components/Date';
-import { InnerLink } from '../../components/InnerLink';
-import { Layout } from '../../components/Layout';
-import { siteTitle } from '../../components/Meta';
-import { Twitter } from '../../components/Twitter';
-import { client } from '../../lib/microcms';
-
-import type { MetaType } from '../../types/blog/MetaType';
-import type { ContentType } from '../../types/response/blog/ContentType';
-import type { ListType } from '../../types/response/blog/ListType';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import type { MetaType } from '~/types/blog/MetaType';
+import type { ContentType } from '~/types/response/blog/ContentType';
+import type { ListType } from '~/types/response/blog/ListType';
+
+import { Date } from '~/components/Date';
+import { InnerLink } from '~/components/InnerLink';
+import { Layout } from '~/components/Layout';
+import { siteTitle } from '~/components/Meta';
+import { Twitter } from '~/components/Twitter';
+import { client } from '~/lib/microcms';
 
 type Props = {
   content: ContentType;
