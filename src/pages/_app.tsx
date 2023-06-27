@@ -7,9 +7,9 @@ import React, { useEffect } from 'react';
 
 import '../../styles/global.css';
 
-import * as gtag from '../lib/gtag';
-
 import type { AppProps } from 'next/app';
+
+import * as gtag from '~/lib/gtag';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   const config = getConfig();
