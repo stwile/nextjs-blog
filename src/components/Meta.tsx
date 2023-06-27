@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import type { MetaType } from '../types/blog/MetaType';
+import type { MetaType } from '~/types/blog/MetaType';
 
 const domainName: string = process.env.NEXT_PUBLIC_DOMAIN as string;
 export const baseUrl = `https://www.${domainName}`;
@@ -35,6 +35,9 @@ export const Meta: React.FC<Props> = ({ meta }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
       <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
+      <meta name="twitter:title" content={meta.title} />
+      <meta name="twitter:description" content={meta.description} />
+      <meta name="twitter:image:src" content={meta.image} />
 
       <meta property="og:url" content={`${baseUrl}${router.asPath}`} />
       <meta property="og:title" content={meta.title} />
