@@ -16,6 +16,10 @@
     "sourceMap": true,
     "inlineSources": true,
     "sourceRoot": "/",
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["src/*"]
+    },
     "incremental": true
   },
   "exclude": ["node_modules"],

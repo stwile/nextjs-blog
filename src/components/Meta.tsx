@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import type { MetaType } from '../types/blog/MetaType';
+import type { MetaType } from '~/types/blog/MetaType';
 
 const domainName: string = process.env.NEXT_PUBLIC_DOMAIN as string;
 export const baseUrl = `https://www.${domainName}`;
