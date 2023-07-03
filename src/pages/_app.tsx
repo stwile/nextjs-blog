@@ -1,8 +1,8 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
-import { ThemeProvider } from 'next-themes';
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
+import { ThemeProvider } from 'next-themes';
 import React, { useEffect } from 'react';
 
 import '../../styles/global.css';
