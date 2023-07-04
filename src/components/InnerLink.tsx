@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-type InnerLinkProps = {
+export type InnerLinkProps = {
   uri: string;
   title: string;
 };
