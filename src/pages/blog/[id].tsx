@@ -8,8 +8,11 @@ import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 
+import type { InnerLinkProps } from '../../components/InnerLink';
+import type { MDXComponents } from 'mdx/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import type { TwitterProps } from '~/components/Twitter';
 import type { MetaType } from '~/types/blog/MetaType';
 import type { ContentType } from '~/types/response/blog/ContentType';
 import type { ListType } from '~/types/response/blog/ListType';
@@ -26,10 +29,15 @@ type Props = {
   source: MDXRemoteSerializeResult;
 };
 
-const components = {
-  Twitter,
-  InnerLink,
+type ProvidedComponents = MDXComponents & {
+  a: typeof InnerLink;
+  div: typeof Twitter;
 };
+
+const components = {
+  a: (props: InnerLinkProps) => <InnerLink {...props} />,
+  div: (props: TwitterProps) => <Twitter {...props} />,
+} as ProvidedComponents;
 
 const Blog: React.FC<Props> = ({ content, source }: Props) => {
   const ogpDomain = process.env.NEXT_PUBLIC_OPEN_GRAPH_DOMAIN;
