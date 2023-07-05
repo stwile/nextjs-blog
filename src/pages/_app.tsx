@@ -1,5 +1,6 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
+import { Analytics } from '@vercel/analytics/react';
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from 'next-themes';
@@ -47,6 +48,7 @@ const MyApp: React.FC<Props> = ({ Component, pageProps, err }: Props) => {
   return (
     <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
       <Component {...pageProps} err={err} />
+      <Analytics />
     </ThemeProvider>
   );
 };
