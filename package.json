@@ -20,6 +20,7 @@
     "@sentry/integrations": "^6.11.0",
     "@sentry/node": "^6.11.0",
     "@sentry/webpack-plugin": "^1.18.3",
+    "@vercel/analytics": "^1.0.1",
     "date-fns": "^2.30.0",
     "elliptic": "^6.5.4",
     "microcms-js-sdk": "^2.5.0",
