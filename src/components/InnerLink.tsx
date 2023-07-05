@@ -7,7 +7,5 @@ type InnerLinkProps = {
 };
 
 export const InnerLink: React.FC<InnerLinkProps> = ({ uri, title }) => (
-  <Link href={uri}>
-    <a>{title}</a>
-  </Link>
+  <Link href={uri}>{title}</Link>
 );
