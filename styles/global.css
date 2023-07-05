@@ -59,7 +59,7 @@
 }
 
 .prose {
-  @apply table-auto;
+  @apply table-auto max-w-none;
 }
 
 .prose code {

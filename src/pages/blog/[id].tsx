@@ -6,6 +6,7 @@ import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 
 import type { MDXComponents } from 'mdx/types';
@@ -92,6 +93,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
       ],
       remarkPlugins: [
         [
+          remarkGfm,
           remarkToc,
           {
             heading: '目次', // Table of Contents を挿入するための見出しを指定する
