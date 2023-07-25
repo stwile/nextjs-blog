@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get node version from volta
+        id: get-node-version
+        uses: keita-hino/get-node-version-from-volta@main
+
+      - name: Set Node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.get-node-version.outputs.nodeVersion }}
+          cache: npm
+
+      - uses: actions/cache@v3
+        id: node_modules_cache_id
+        with:
+          path: '**/node_modules'
+          key: ${{ hashFiles('**/package-lock.json') }}
+      - run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
+      - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
+        run: npm i
+      - run: npm list --depth=0
+
+      - name: lint
+        run: npm run lint
