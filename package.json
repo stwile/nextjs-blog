@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx,.js ./src",
     "pre-commit": "lint-staged",
     "pre-push": "tsc",
-    "export": "yarn run build && next export && yarn run postbuild",
+    "export": "npm run build && next export && npm run postbuild",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
@@ -78,6 +78,6 @@
   },
   "volta": {
     "node": "18.16.1",
-    "yarn": "1.22.17"
+    "npm": "9.8.1"
   }
 }
