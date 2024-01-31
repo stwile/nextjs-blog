@@ -1,12 +1,12 @@
 import { useTheme } from 'next-themes';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const ThemeSwitch = (): JSX.Element | null => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   // After mounting, we have access to the theme
-  React.useEffect(() => setMounted(true), []);
+  useEffect(() => setMounted(true), []);
 
   if (mounted === false) {
     return null;

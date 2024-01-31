@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import React from 'react';
 
 import { Date } from '../components/Date';
 import { InnerLink } from '../components/InnerLink';

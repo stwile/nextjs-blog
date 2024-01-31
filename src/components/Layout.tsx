@@ -1,17 +1,16 @@
-import React from 'react';
-
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { Meta } from './Meta';
 
+import type { FC, ReactNode } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   meta: MetaType;
 };
 
-export const Layout: React.FC<Props> = ({ children, meta }) => (
+export const Layout: FC<Props> = ({ children, meta }) => (
   <>
     <Meta meta={meta} />
     <Header />
