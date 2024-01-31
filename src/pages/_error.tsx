@@ -1,5 +1,5 @@
 // From Next.JS example https://github.com/vercel/next.js/blob/canary/examples/with-sentry-simple/pages/_error.js
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/nextjs';
 import NextErrorComponent from 'next/error';
 import React from 'react';
 
