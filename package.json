@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx,.js ./src",
     "pre-commit": "lint-staged",
     "pre-push": "tsc",
-    "export": "npm run build && next export && npm run postbuild",
+    "export": "pnpm run build && next export && pnpm run postbuild",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
@@ -78,6 +78,7 @@
   },
   "volta": {
     "node": "20.11.0",
-    "npm": "10.2.4"
-  }
+    "pnpm": "8.15.1"
+  },
+  "packageManager": "pnpm@8.15.1"
 }
