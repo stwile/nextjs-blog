@@ -1,4 +1,3 @@
-// @ts-ignore
 import rehypePrism from '@mapbox/rehype-prism';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
