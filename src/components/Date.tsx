@@ -1,5 +1,4 @@
-import { format } from 'date-fns';
-import parseISO from 'date-fns/parseISO';
+import { format, parseISO } from 'date-fns';
 import React from 'react';
 
 type Props = {
