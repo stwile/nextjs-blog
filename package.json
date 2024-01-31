@@ -14,7 +14,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@mapbox/rehype-prism": "^0.8.0",
+    "@mapbox/rehype-prism": "^0.9.0",
     "@next/env": "^12.2.5",
     "@sentry/browser": "^6.11.0",
     "@sentry/integrations": "^6.11.0",
