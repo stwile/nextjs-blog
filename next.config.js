@@ -1,17 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
-const {
-  NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
-  SENTRY_ORG,
-  SENTRY_PROJECT,
-  SENTRY_AUTH_TOKEN,
-  NODE_ENV,
-  VERCEL_GITHUB_COMMIT_SHA,
-} = process.env;
+const { withSentryConfig } = require('@sentry/nextjs');
 
-const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
-
-process.env.SENTRY_DSN = SENTRY_DSN;
 const basePath = '';
 
 /** @type {import('next').NextConfig} */
@@ -21,30 +10,44 @@ module.exports = {
   serverRuntimeConfig: {
     rootDir: __dirname,
   },
-  webpack: (config, options) => {
-    if (!options.isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser';
-    }
-
-    if (
-      SENTRY_DSN &&
-      SENTRY_ORG &&
-      SENTRY_PROJECT &&
-      SENTRY_AUTH_TOKEN &&
-      COMMIT_SHA &&
-      NODE_ENV === 'production'
-    ) {
-      config.plugins.push(
-        new SentryWebpackPlugin({
-          include: '.next',
-          ignore: ['node_modules'],
-          stripPrefix: ['webpack://_N_E/'],
-          urlPrefix: `~${basePath}/_next`,
-          release: COMMIT_SHA,
-        }),
-      );
-    }
-    return config;
-  },
   basePath,
 };
+
+// Injected content via Sentry wizard below
+module.exports = withSentryConfig(
+  module.exports,
+  {
+    // For all available options, see:
+    // https://github.com/getsentry/sentry-webpack-plugin#options
+
+    // Suppresses source map uploading logs during build
+    silent: true,
+    org: 'volare-viah',
+    project: 'volare-viah',
+  },
+  {
+    // For all available options, see:
+    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+    // Upload a larger set of source maps for prettier stack traces (increases build time)
+    widenClientFileUpload: true,
+
+    // Transpiles SDK to be compatible with IE11 (increases bundle size)
+    transpileClientSDK: true,
+
+    // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+    tunnelRoute: '/monitoring',
+
+    // Hides source maps from generated client bundles
+    hideSourceMaps: true,
+
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    disableLogger: true,
+
+    // Enables automatic instrumentation of Vercel Cron Monitors.
+    // See the following for more information:
+    // https://docs.sentry.io/product/crons/
+    // https://vercel.com/docs/cron-jobs
+    automaticVercelMonitors: true,
+  },
+);
