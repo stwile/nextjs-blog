@@ -4,5 +4,6 @@
     "source.fixAll.stylelint": "explicit"
   },
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "markuplint.enable": true // Markuplintを有効化する
 }

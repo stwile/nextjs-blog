@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
           {existsGaId ? (
             <>
               <script
-                async
+                defer
                 src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
               />
               <script
