@@ -1,7 +1,8 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.stylelint": "explicit",
+    "source.addMissingImports": "explicit" // 未importのモジュールを自動で探してimport文を追加する
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

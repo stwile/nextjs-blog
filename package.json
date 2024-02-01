@@ -79,11 +79,6 @@
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,css}": [
-      "prettier --write"
-    ]
-  },
   "volta": {
     "node": "20.11.0",
     "pnpm": "8.15.1"
