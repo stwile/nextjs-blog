@@ -1,7 +1,6 @@
 import rehypePrism from '@mapbox/rehype-prism';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
@@ -10,6 +9,7 @@ import remarkToc from 'remark-toc';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 import type { ContentType } from '~/types/response/blog/ContentType';
 import type { ListType } from '~/types/response/blog/ListType';
@@ -31,7 +31,7 @@ const components = {
   InnerLink,
 };
 
-const Blog: React.FC<Props> = ({ content, source }: Props) => {
+const Blog: FC<Props> = ({ content, source }: Props) => {
   const ogpDomain = process.env.NEXT_PUBLIC_OPEN_GRAPH_DOMAIN;
   const image = `https://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { InnerLink } from './InnerLink';
 
 export const Navigation = (): JSX.Element => (

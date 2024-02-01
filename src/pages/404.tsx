@@ -1,6 +1,7 @@
 import Error from 'next/error';
-import React from 'react';
 
-const Custom404: React.FC = () => <Error statusCode={404} />;
+import type { FC } from 'react';
+
+const Custom404: FC = () => <Error statusCode={404} />;
 
 export default Custom404;

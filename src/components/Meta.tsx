@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
 
+import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 
 const domainName: string = process.env.NEXT_PUBLIC_DOMAIN as string;
@@ -12,7 +12,7 @@ type Props = {
   meta: MetaType;
 };
 
-export const Meta: React.FC<Props> = ({ meta }) => {
+export const Meta: FC<Props> = ({ meta }) => {
   const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
 
   const router = useRouter();
