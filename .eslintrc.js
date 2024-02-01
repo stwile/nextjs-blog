@@ -7,10 +7,10 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'prettier',
-    'next',
+    'plugin:tailwindcss/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -26,7 +26,7 @@ module.exports = {
     project: './tsconfig.json',
     useJSXTextNode: true,
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'unused-imports'],
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/ban-ts-comment': 'off',
@@ -34,6 +34,9 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'react/no-unescaped-entities': 'off',
+    '@next/next/no-page-custom-font': 'off',
   },
   settings: {
     react: {
