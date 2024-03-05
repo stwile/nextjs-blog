@@ -1,4 +1,4 @@
-import { InnerLink } from './InnerLink';
+import { InnerLink } from '../InnerLink';
 
 export const Navigation = (): JSX.Element => (
   <nav>

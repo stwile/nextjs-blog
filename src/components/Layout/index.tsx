@@ -1,6 +1,6 @@
-import { Footer } from './Footer';
-import { Header } from './Header';
-import { Meta } from './Meta';
+import { Footer } from '../Footer';
+import { Header } from '../Header';
+import { Meta } from '../Meta';
 
 import type { FC, ReactNode } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
