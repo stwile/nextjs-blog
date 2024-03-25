@@ -38,3 +38,5 @@ tsconfig.tsbuildinfo
 
 # Sentry Config File
 .sentryclirc
+
+*storybook.log
