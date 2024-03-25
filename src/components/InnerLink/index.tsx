@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 import type { FC } from 'react';
 
-type InnerLinkProps = {
+type Props = {
   uri: string;
   title: string;
 };
 
-export const InnerLink: FC<InnerLinkProps> = ({ uri, title }) => <Link href={uri}>{title}</Link>;
+export const InnerLink: FC<Props> = ({ uri, title }) => <Link href={uri}>{title}</Link>;

@@ -7,6 +7,7 @@ type Props = {
 };
 
 export const Date: FC<Props> = ({ dateString }) => {
-  const date = format(parseISO(dateString), 'yyyy/MM/dd');
+  const parsed = parseISO(dateString);
+  const date = format(parsed, 'yyyy/MM/dd');
   return <time dateTime={date}>{date}</time>;
 };
