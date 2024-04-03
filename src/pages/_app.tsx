@@ -10,7 +10,7 @@ import type { FC } from 'react';
 type Props = AppProps;
 
 const MyApp: FC<Props> = ({ Component, pageProps }: Props) => {
-  const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID;
+  const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
   return (
     <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
       <Component {...pageProps} />
