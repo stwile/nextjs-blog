@@ -14,6 +14,7 @@ type Props = {
 
 export const Meta: FC<Props> = ({ meta }) => {
   const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
+  const caPubId = process.env.NEXT_PUBLIC_CA_PUB_ID || undefined;
 
   const router = useRouter();
 
@@ -45,6 +46,7 @@ export const Meta: FC<Props> = ({ meta }) => {
       <meta property="og:type" content="blog" />
       <meta property="og:image" content={meta.image} />
       <meta property="og:site_name" content={siteTitle} />
+      <meta name="google-adsense-account" content={caPubId}></meta>
 
       <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
 
