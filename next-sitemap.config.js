@@ -5,5 +5,4 @@ module.exports = {
   siteUrl: `https://${domainName}`,
   generateRobotsTxt: true,
   sitemapSize: 7000,
-  outDir: './out',
 };

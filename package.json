@@ -10,7 +10,6 @@
     "lint:fix": "next lint --fix",
     "pre-commit": "lint-staged",
     "pre-push": "tsc",
-    "export": "pnpm run build && pnpm run postbuild",
     "postbuild": "next-sitemap",
     "markuplint": "markuplint \"./**/*.tsx\"",
     "secretlint": "secretlint --maskSecrets --secretlintignore .gitignore '**/*'",

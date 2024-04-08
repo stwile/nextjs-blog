@@ -24,6 +24,7 @@ module.exports = withSentryConfig(
     silent: true,
     org: 'volare-viah',
     project: 'volare-viah',
+    dryRun: process.env.RELEASE !== 'true',
   },
   {
     // For all available options, see:
