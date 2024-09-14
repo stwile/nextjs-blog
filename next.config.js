@@ -5,7 +5,6 @@ const basePath = '';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   productionBrowserSourceMaps: true,
   serverRuntimeConfig: {
     rootDir: __dirname,
