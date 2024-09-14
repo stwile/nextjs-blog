@@ -4,18 +4,21 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const basePath = '';
 
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   output: 'export',
   productionBrowserSourceMaps: true,
   serverRuntimeConfig: {
     rootDir: __dirname,
   },
   basePath,
+  experimental: {
+    instrumentationHook: true,
+  },
 };
 
 // Injected content via Sentry wizard below
 module.exports = withSentryConfig(
-  module.exports,
+  nextConfig,
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
