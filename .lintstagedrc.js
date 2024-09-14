@@ -6,7 +6,6 @@ const buildEslintCommand = (filenames) =>
     .join(' --file ')}`;
 
 module.exports = {
-  '*': ['secretlint --maskSecrets'],
   '*.{js,cjs,mjs,json,ts,tsx,css}': ['prettier --write'],
   '*.{ts,tsx}': ['bash -c tsc --noEmit', buildEslintCommand, 'markuplint'],
 };
