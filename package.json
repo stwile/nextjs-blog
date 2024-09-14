@@ -12,7 +12,6 @@
     "pre-push": "tsc",
     "postbuild": "next-sitemap",
     "markuplint": "markuplint \"./**/*.tsx\"",
-    "secretlint": "secretlint --maskSecrets --secretlintignore .gitignore '**/*'",
     "prettier": "prettier --write ."
   },
   "dependencies": {
@@ -41,7 +40,6 @@
     "@babel/core": "^7.23.9",
     "@markuplint/jsx-parser": "^4.7.6",
     "@markuplint/react-spec": "^4.5.6",
-    "@secretlint/secretlint-rule-preset-recommend": "^8.1.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/gtag.js": "^0.0.20",
     "@types/mapbox__rehype-prism": "^0.8.3",
@@ -67,7 +65,6 @@
     "postcss": "^8.4.45",
     "prettier": "^3.2.4",
     "pretty-quick": "^4.0.0",
-    "secretlint": "^8.1.1",
     "stylelint": "^16.2.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-order": "^6.0.4",
