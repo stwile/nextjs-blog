@@ -101,6 +101,7 @@ export const getStaticProps = (async ({ params }) => {
 export const getStaticPaths = (async () => {
   const data: ListType = await client.get({
     endpoint: 'blog',
+    queries: { limit: 100 }, // FIXME: ページャーを実装したら消すこと
   });
 
   const paths = data.contents.map((item: ContentType) => `/blog/${item.id}`);
