@@ -1,23 +1,25 @@
 import Head from 'next/head';
 
-import { Date } from '../components/Date';
-import { InnerLink } from '../components/InnerLink';
-import { Layout } from '../components/Layout';
-import { baseUrl, siteTitle } from '../components/Meta';
-import { Pagination } from '../components/Pagination';
-import { client } from '../lib/microcms';
-
-import type { MetaType } from '../types/blog/MetaType';
-import type { ContentType } from '../types/response/blog/ContentType';
-import type { ListType } from '../types/response/blog/ListType';
 import type { GetStaticProps } from 'next';
+import type { MetaType } from '~/types/blog/MetaType';
+import type { ContentType } from '~/types/response/blog/ContentType';
+import type { ListType } from '~/types/response/blog/ListType';
+
+import { Date } from '~/components/Date';
+import { InnerLink } from '~/components/InnerLink';
+import { Layout } from '~/components/Layout';
+import { siteTitle, baseUrl } from '~/components/Meta';
+import { Pagination } from '~/components/Pagination';
+import { client } from '~/lib/microcms';
+
+const PER_PAGE = 5;
 
 type Props = {
   contents: ContentType[];
   totalCount: number;
 };
 
-const Index = ({ contents, totalCount }: Props): JSX.Element => {
+const BlogPageId = ({ contents, totalCount }: Props) => {
   const title = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
   const meta: MetaType = {
@@ -50,11 +52,32 @@ const Index = ({ contents, totalCount }: Props): JSX.Element => {
   );
 };
 
-export const getStaticProps = (async () => {
+// 動的なページを作成;
+export const getStaticPaths = async () => {
+  const repos: ListType = await client.get({ endpoint: 'blog' });
+
+  const range = (start: number, end: number) =>
+    [...Array<number>(end - start + 1)].map((_, i) => start + i);
+
+  const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
+    (repo) => `/blog/page/${repo}`,
+  );
+
+  return { paths, fallback: false };
+};
+
+// データを取得
+export const getStaticProps = (async (context) => {
+  const id = Number(context?.params?.id);
+
   const data: ListType = await client.get({
     endpoint: 'blog',
-    queries: { offset: 0, limit: 10 },
+    queries: {
+      offset: (id - 1) * 5,
+      limit: 5,
+    },
   });
+
   return {
     props: {
       contents: data.contents,
@@ -63,4 +86,4 @@ export const getStaticProps = (async () => {
   };
 }) satisfies GetStaticProps;
 
-export default Index;
+export default BlogPageId;
