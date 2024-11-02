@@ -12,7 +12,7 @@ import { siteTitle, baseUrl } from '~/components/Meta';
 import { Pagination } from '~/components/Pagination';
 import { client } from '~/lib/microcms';
 
-const PER_PAGE = 5;
+const PER_PAGE = 10;
 
 type Props = {
   contents: ContentType[];
@@ -47,7 +47,9 @@ const BlogPageId = ({ contents, totalCount }: Props) => {
           </article>
         ))}
       </section>
-      <Pagination totalCount={totalCount} />
+      <div className="flex justify-center">
+        <Pagination totalCount={totalCount} />
+      </div>
     </Layout>
   );
 };
@@ -73,8 +75,8 @@ export const getStaticProps = (async (context) => {
   const data: ListType = await client.get({
     endpoint: 'blog',
     queries: {
-      offset: (id - 1) * 5,
-      limit: 5,
+      offset: (id - 1) * PER_PAGE,
+      limit: PER_PAGE,
     },
   });
 
