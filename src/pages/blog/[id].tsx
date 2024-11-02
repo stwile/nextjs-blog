@@ -1,4 +1,4 @@
-import rehypePrism from '@mapbox/rehype-prism';
+import rehypeShiki from '@shikijs/rehype';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -67,7 +67,7 @@ export const getStaticProps = (async ({ params }) => {
   const source = await serialize(content.body, {
     mdxOptions: {
       rehypePlugins: [
-        rehypePrism,
+        [rehypeShiki, { theme: 'plastic' }],
         rehypeSlug,
         rehypeAutolinkHeadings,
         [
