@@ -9,7 +9,6 @@ type MyErrorContext = NextPageContext & {
   hasGetInitialPropsRun: boolean;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }: MyErrorContext) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of

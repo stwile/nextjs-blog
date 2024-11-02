@@ -56,19 +56,13 @@ const Blog: FC<Props> = ({ content, source }: Props) => {
   );
 };
 
-type Params = {
-  id: string;
-};
-
-export const getStaticProps: GetStaticProps<Props, Params> = async ({
-  params,
-}): Promise<{ props: Props }> => {
+export const getStaticProps = (async ({ params }) => {
   if (params === undefined) {
     throw new Error();
   }
 
   const content: ContentType = await client.get({
-    endpoint: `blog/${params.id}`,
+    endpoint: `blog/${params.id?.toString()}`,
   });
   const source = await serialize(content.body, {
     mdxOptions: {
@@ -102,9 +96,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
       source,
     },
   };
-};
+}) satisfies GetStaticProps;
 
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
+export const getStaticPaths = (async () => {
   const data: ListType = await client.get({
     endpoint: 'blog',
   });
@@ -114,6 +108,6 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
     paths,
     fallback: false,
   };
-};
+}) satisfies GetStaticPaths;
 
 export default Blog;
