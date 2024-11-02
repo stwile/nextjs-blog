@@ -1,4 +1,5 @@
 import react from 'eslint-plugin-react';
+import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import prettier from 'eslint-plugin-prettier';
 import unusedImports from 'eslint-plugin-unused-imports';
@@ -31,6 +32,7 @@ export default [
       '@typescript-eslint': typescriptEslint,
       prettier,
       'unused-imports': unusedImports,
+      'no-relative-import-paths': noRelativeImportPaths,
     },
 
     languageOptions: {
@@ -71,16 +73,7 @@ export default [
       'unused-imports/no-unused-imports': 'error',
       'react/no-unescaped-entities': 'off',
       '@next/next/no-page-custom-font': 'off',
-    },
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    rules: {},
-  },
-  {
-    files: ['src/**/*.{ts,tsx}'],
-
-    rules: {
+      'no-relative-import-paths/no-relative-import-paths': ['off', { allowSameFolder: true }],
       'import/order': [
         'error',
         {

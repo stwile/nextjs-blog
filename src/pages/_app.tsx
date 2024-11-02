@@ -2,7 +2,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 
-import '../../styles/global.css';
+import 'styles/global.css';
 
 import type { AppProps } from 'next/app';
 import type { FC } from 'react';
