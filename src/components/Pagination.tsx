@@ -1,14 +1,14 @@
-import { InnerLink } from './InnerLink';
-
 import type { FC } from 'react';
+
+import { InnerLink } from '~/components/InnerLink';
 
 type Props = {
   totalCount: number;
 };
 
-export const Pagination: FC<Props> = ({ totalCount }) => {
-  const PER_PAGE = 10;
+export const PER_PAGE = 10;
 
+export const Pagination: FC<Props> = ({ totalCount }) => {
   const range = (start: number, end: number) =>
     [...Array<number>(end - start + 1)].map((_, i) => start + i);
 
