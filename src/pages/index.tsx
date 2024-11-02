@@ -50,6 +50,7 @@ const Index = ({ contents }: Props): JSX.Element => {
 export const getStaticProps: GetStaticProps = async () => {
   const data: ListType = await client.get({
     endpoint: 'blog',
+    queries: { limit: 100 }, // FIXME: ページャーを実装したら消すこと
   });
   return {
     props: {
