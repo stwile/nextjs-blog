@@ -1,4 +1,5 @@
 import { withSentryConfig } from '@sentry/nextjs';
+
 import type { NextConfig } from 'next';
 
 const basePath = '';
@@ -9,6 +10,7 @@ const nextConfig: NextConfig = {
     rootDir: __dirname,
   },
   basePath,
+  transpilePackages: ['react-tweet'],
 };
 
 // Injected content via Sentry wizard below
