@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 export const Footer = (): JSX.Element => (
   <footer className="py-8">
     <div className="mx-auto max-w-5xl px-8">

@@ -1,5 +1,7 @@
 import { InnerLink } from './InnerLink';
 
+import type { JSX } from 'react';
+
 export const Navigation = (): JSX.Element => (
   <nav>
     <ul className="flex items-center justify-between">
