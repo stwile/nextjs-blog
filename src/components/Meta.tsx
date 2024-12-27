@@ -27,18 +27,9 @@ export const Meta: FC<Props> = ({ meta }) => {
 
       <meta name="robots" content="max-image-preview:large" />
 
-      <meta itemProp="name" content={meta.title} />
-      <meta itemProp="image" content={meta.image} />
       {googleSiteVerification !== undefined && (
         <meta name="google-site-verification" content={googleSiteVerification} />
       )}
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
-      <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
-      <meta name="twitter:title" content={meta.title} />
-      <meta name="twitter:description" content={meta.description} />
-      <meta name="twitter:image:src" content={meta.image} />
 
       <meta property="og:url" content={`${baseUrl}${router.asPath}`} />
       <meta property="og:title" content={meta.title} />
@@ -46,6 +37,11 @@ export const Meta: FC<Props> = ({ meta }) => {
       <meta property="og:type" content="blog" />
       <meta property="og:image" content={meta.image} />
       <meta property="og:site_name" content={siteTitle} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
+      <meta name="twitter:image" content={meta.image} />
+
       <meta name="google-adsense-account" content={caPubId}></meta>
 
       <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
