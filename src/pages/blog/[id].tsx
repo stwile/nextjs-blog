@@ -17,7 +17,7 @@ import type { ListType } from '~/types/response/blog/ListType';
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
-import { siteTitle } from '~/components/Meta';
+import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
 import { Twitter } from '~/components/Twitter';
 import { client } from '~/lib/microcms';
 
@@ -32,11 +32,10 @@ const components = {
 };
 
 const Blog: FC<Props> = ({ content, source }: Props) => {
-  const ogpDomain = process.env.NEXT_PUBLIC_OPEN_GRAPH_DOMAIN;
-  const image = `https://${ogpDomain}/${encodeURIComponent(content.title)}.png`;
+  const image = `https://${DOMAIN_NAME}/api/og?title=${content.title}`;
 
   const meta: MetaType = {
-    title: `${content.title} | ${siteTitle}`,
+    title: `${content.title} | ${SITE_TITLE}`,
     description: content.description,
     type: 'article',
     image,

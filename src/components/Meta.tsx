@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 
-const domainName: string = process.env.NEXT_PUBLIC_DOMAIN as string;
-export const baseUrl = `https://www.${domainName}`;
-export const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || '';
+export const DOMAIN_NAME: string = process.env.NEXT_PUBLIC_DOMAIN as string;
+export const BASE_URL = `https://www.${DOMAIN_NAME}`;
+export const SITE_TITLE = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
 type Props = {
   meta: MetaType;
@@ -23,7 +23,7 @@ export const Meta: FC<Props> = ({ meta }) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="description" content={meta.description} />
       <meta charSet="utf-8" />
-      <link rel="canonical" href={baseUrl} />
+      <link rel="canonical" href={BASE_URL} />
 
       <meta name="robots" content="max-image-preview:large" />
 
@@ -31,12 +31,12 @@ export const Meta: FC<Props> = ({ meta }) => {
         <meta name="google-site-verification" content={googleSiteVerification} />
       )}
 
-      <meta property="og:url" content={`${baseUrl}${router.asPath}`} />
+      <meta property="og:url" content={`${BASE_URL}${router.asPath}`} />
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:type" content="blog" />
       <meta property="og:image" content={meta.image} />
-      <meta property="og:site_name" content={siteTitle} />
+      <meta property="og:site_name" content={SITE_TITLE} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
@@ -46,7 +46,7 @@ export const Meta: FC<Props> = ({ meta }) => {
 
       <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
 
-      <link rel="icon" href={`${baseUrl}/favicon.png`} />
+      <link rel="icon" href={`${BASE_URL}/favicon.png`} />
       <title>{meta.title}</title>
     </Head>
   );

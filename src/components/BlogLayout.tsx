@@ -7,7 +7,7 @@ import type { ContentType } from '~/types/response/blog/ContentType';
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
-import { siteTitle, baseUrl } from '~/components/Meta';
+import { SITE_TITLE, BASE_URL } from '~/components/Meta';
 import { Pagination } from '~/components/Pagination';
 
 type Props = {
@@ -19,8 +19,8 @@ export const BlogLayout: FC<Props> = ({ contents, totalCount }) => {
   const title = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
   const meta: MetaType = {
-    title: siteTitle,
-    image: `${baseUrl}/images/twitter-large.png`,
+    title: SITE_TITLE,
+    image: `${BASE_URL}/images/twitter-large.png`,
     description: 'Thinking reeds about book & Technology',
     type: 'blog',
   };

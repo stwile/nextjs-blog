@@ -39,3 +39,4 @@ tsconfig.tsbuildinfo
 
 # Sentry Config File
 .sentryclirc
+.env*.local

@@ -20,6 +20,7 @@
     "@sentry/nextjs": "^8.47.0",
     "@shikijs/rehype": "^1.22.4",
     "@vercel/analytics": "^1.4.1",
+    "@vercel/og": "^0.6.4",
     "@vercel/speed-insights": "^1.1.0",
     "date-fns": "^4.1.0",
     "microcms-js-sdk": "^3.1.2",
