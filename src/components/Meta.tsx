@@ -5,7 +5,7 @@ import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 
 export const DOMAIN_NAME: string = process.env.NEXT_PUBLIC_VERCEL_URL as string;
-export const BASE_URL = `https://www.${DOMAIN_NAME}`;
+const BASE_URL = `https://www.${DOMAIN_NAME}`;
 export const SITE_TITLE = process.env.NEXT_PUBLIC_SITE_TITLE || '';
 
 type Props = {
