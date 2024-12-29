@@ -6,7 +6,7 @@ type Props = {
   title: string;
 };
 
-const IMAGE_URL = `http://${DOMAIN_NAME}/images/og_base.jpg`;
+const IMAGE_URL = `https://${DOMAIN_NAME}/images/og_base.png`;
 
 export const OgImage = ({ title }: Props): JSX.Element => {
   const sliced = title.slice(0, 50);

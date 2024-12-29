@@ -7,7 +7,7 @@ import type { ContentType } from '~/types/response/blog/ContentType';
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
-import { SITE_TITLE, BASE_URL } from '~/components/Meta';
+import { SITE_TITLE, DOMAIN_NAME } from '~/components/Meta';
 import { Pagination } from '~/components/Pagination';
 
 type Props = {
@@ -15,21 +15,20 @@ type Props = {
   totalCount: number;
 };
 
-export const BlogLayout: FC<Props> = ({ contents, totalCount }) => {
-  const title = process.env.NEXT_PUBLIC_SITE_TITLE || '';
+const META: MetaType = {
+  title: SITE_TITLE,
+  image: `https://${DOMAIN_NAME}/api/og?title=${SITE_TITLE}`,
+  description: 'Thinking reeds about book & Technology',
+  type: 'blog',
+};
 
-  const meta: MetaType = {
-    title: SITE_TITLE,
-    image: `${BASE_URL}/images/twitter-large.png`,
-    description: 'Thinking reeds about book & Technology',
-    type: 'blog',
-  };
+export const BlogLayout: FC<Props> = ({ contents, totalCount }) => {
   return (
-    <Layout meta={meta}>
+    <Layout meta={META}>
       <Head>
-        <title>{title}</title>
+        <title>{SITE_TITLE}</title>
       </Head>
-      <h1>{title}</h1>
+      <h1>{SITE_TITLE}</h1>
       <section>
         {contents.map((content) => (
           <article key={content.id} className="mt-12">
