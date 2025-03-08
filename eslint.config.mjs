@@ -1,4 +1,4 @@
-import react from 'eslint-plugin-react';
+import eslintPluginReact from 'eslint-plugin-react';
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import prettier from 'eslint-plugin-prettier';
@@ -28,7 +28,7 @@ export default [
   ),
   {
     plugins: {
-      react,
+      react: eslintPluginReact,
       '@typescript-eslint': typescriptEslint,
       prettier,
       'unused-imports': unusedImports,
