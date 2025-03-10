@@ -7,7 +7,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.options": {
-    "overrideConfigFile": "eslint.config.mjs"
+    "overrideConfigFile": "eslint.config.ts"
   },
   "editor.quickSuggestions": {
     "strings": true
