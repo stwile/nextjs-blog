@@ -12,6 +12,7 @@
     "pre-push": "tsc",
     "postbuild": "next-sitemap",
     "markuplint": "markuplint \"./**/*.tsx\"",
+    "debug": "NODE_OPTIONS='--inspect' next",
     "prettier": "prettier --write ."
   },
   "dependencies": {
