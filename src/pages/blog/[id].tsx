@@ -12,14 +12,15 @@ import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 import type { ContentType } from '~/types/response/blog/ContentType';
-import type { ListType } from '~/types/response/blog/ListType';
 
+import { CustomLink } from '~/components/CustomLink';
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
 import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
 import { Twitter } from '~/components/Twitter';
 import { client } from '~/lib/microcms';
+import { ListType } from '~/types/response/blog/ListType';
 
 type Props = {
   content: ContentType;
@@ -27,6 +28,7 @@ type Props = {
 };
 
 const components = {
+  a: CustomLink,
   Twitter,
   InnerLink,
 };
