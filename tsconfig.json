@@ -32,6 +32,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "eslint.config.ts"
+    ".storybook/**/*"
   ]
 }

@@ -4,17 +4,17 @@ import { DOMAIN_NAME } from '../Meta';
 
 import type { ComponentProps, FC } from 'react';
 
-type Props = ComponentProps<'a'>;
+type Props = {
+  href: string;
+} & ComponentProps<'a'>;
 
 export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
-  const url = href ?? '';
-
-  if (url.startsWith('/')) {
-    return <Link href={url}>{children}</Link>;
+  if (href.startsWith('/')) {
+    return <Link href={href}>{children}</Link>;
   }
 
   try {
-    const { hostname, pathname } = new URL(url);
+    const { hostname, pathname } = new URL(href);
     if (hostname === DOMAIN_NAME) {
       return <Link href={pathname}>{children}</Link>;
     }
@@ -23,7 +23,7 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
   }
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" {...props}>
+    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
       {children}
     </a>
   );
