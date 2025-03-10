@@ -22,7 +22,7 @@ export default function handler(req: NextRequest): Response {
     });
   } catch (e: unknown) {
     if (e instanceof Error) {
-      console.log(`${e.message}`);
+      console.log(e.message);
     } else {
       console.log(String(e));
     }

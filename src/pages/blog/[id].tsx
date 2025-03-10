@@ -59,9 +59,13 @@ export const getStaticProps = (async ({ params }) => {
   if (params === undefined) {
     throw new Error();
   }
+  const { id: blogPathId } = params;
+  if (blogPathId === undefined) {
+    throw new Error();
+  }
 
   const content: ContentType = await client.get({
-    endpoint: `blog/${params.id?.toString()}`,
+    endpoint: `blog/${blogPathId.toString()}`,
   });
   const source = await serialize(content.body, {
     mdxOptions: {

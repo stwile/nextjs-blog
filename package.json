@@ -42,6 +42,7 @@
     "@eslint/js": "^9.21.0",
     "@markuplint/jsx-parser": "^4.7.17",
     "@markuplint/react-spec": "^4.5.17",
+    "@next/eslint-plugin-next": "^15.2.1",
     "@tailwindcss/typography": "^0.5.16",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^22.13.9",
@@ -50,9 +51,8 @@
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.21.0",
-    "eslint-config-next": "15.2.1",
-    "eslint-config-prettier": "^10.0.2",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-no-relative-import-paths": "^1.6.1",
@@ -73,7 +73,8 @@
     "stylelint-config-standard": "^37.0.0",
     "stylelint-order": "^6.0.4",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0"
   },
   "husky": {
     "hooks": {

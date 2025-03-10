@@ -4,17 +4,18 @@ import { useRouter } from 'next/router';
 import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 
-export const DOMAIN_NAME: string = process.env.NEXT_PUBLIC_VERCEL_URL as string;
+export const DOMAIN_NAME: string = process.env.NEXT_PUBLIC_VERCEL_URL ?? 'http://localhost:3000';
 const BASE_URL = `https://www.${DOMAIN_NAME}`;
-export const SITE_TITLE = process.env.NEXT_PUBLIC_SITE_TITLE || '';
+export const SITE_TITLE = process.env.NEXT_PUBLIC_SITE_TITLE ?? 'ブログタイトル';
 
 type Props = {
   meta: MetaType;
 };
 
 export const Meta: FC<Props> = ({ meta }) => {
-  const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
-  const caPubId = process.env.NEXT_PUBLIC_CA_PUB_ID || undefined;
+  const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? null;
+  const caPubId = process.env.NEXT_PUBLIC_CA_PUB_ID ?? null;
+  const twitterId = process.env.NEXT_PUBLIC_TWITTER_ID ?? null;
 
   const router = useRouter();
 
@@ -27,7 +28,7 @@ export const Meta: FC<Props> = ({ meta }) => {
 
       <meta name="robots" content="max-image-preview:large" />
 
-      {googleSiteVerification !== undefined && (
+      {googleSiteVerification && (
         <meta name="google-site-verification" content={googleSiteVerification} />
       )}
 
@@ -38,13 +39,16 @@ export const Meta: FC<Props> = ({ meta }) => {
       <meta property="og:image" content={meta.image} />
       <meta property="og:site_name" content={SITE_TITLE} />
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
-      <meta name="twitter:image" content={meta.image} />
+      {twitterId && (
+        <>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:creator" content={`@${twitterId}`} />
+          <meta name="twitter:image" content={meta.image} />
+          <link rel="author" href={`https://twitter.com/${twitterId}`} />
+        </>
+      )}
 
-      <meta name="google-adsense-account" content={caPubId}></meta>
-
-      <link rel="author" href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_ID}`} />
+      {caPubId && <meta name="google-adsense-account" content={caPubId}></meta>}
 
       <link rel="icon" href={`${BASE_URL}/favicon.png`} />
       <title>{meta.title}</title>

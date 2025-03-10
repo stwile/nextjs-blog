@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   },
   basePath,
   transpilePackages: ['react-tweet'],
+  eslint: { ignoreDuringBuilds: true },
 };
 
 // Injected content via Sentry wizard below

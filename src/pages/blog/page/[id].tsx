@@ -20,7 +20,7 @@ export const getStaticPaths = (async () => {
     [...Array<number>(end - start + 1)].map((_, i) => start + i);
 
   const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
-    (repo) => `/blog/page/${repo}`,
+    (repo) => `/blog/page/${repo.toString()}`,
   );
 
   return { paths, fallback: false };
@@ -28,7 +28,7 @@ export const getStaticPaths = (async () => {
 
 // データを取得
 export const getStaticProps = (async (context) => {
-  const id = Number(context?.params?.id);
+  const id = Number(context.params?.id);
 
   const data: ListType = await client.get({
     endpoint: 'blog',
