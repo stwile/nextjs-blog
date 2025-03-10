@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { GetStaticProps } from 'next';
 import type { ComponentProps, JSX } from 'react';
 import type { ListType } from '~/types/response/blog/ListType';

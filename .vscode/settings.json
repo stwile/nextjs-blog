@@ -6,5 +6,11 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "markuplint.enable": true // Markuplintを有効化する
+  "eslint.options": {
+    "overrideConfigFile": "eslint.config.ts"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "markuplint.enable": true // Markuplintを有効化する,
 }

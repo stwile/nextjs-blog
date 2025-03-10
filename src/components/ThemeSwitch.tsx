@@ -8,9 +8,11 @@ export const ThemeSwitch = (): JSX.Element | null => {
   const { theme, setTheme } = useTheme();
 
   // After mounting, we have access to the theme
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  if (mounted === false) {
+  if (!mounted) {
     return null;
   }
 
@@ -19,7 +21,9 @@ export const ThemeSwitch = (): JSX.Element | null => {
     <button
       type="button"
       aria-label="Toggle Dark Mode"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => {
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+      }}
     >
       <svg
         width="24"

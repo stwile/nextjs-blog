@@ -19,7 +19,7 @@ export const Pagination: FC<Props> = ({ totalCount }) => {
           key={index}
           className="ml-2 min-w-9 rounded-md border border-slate-300 px-3 py-2 text-center text-sm text-slate-600 shadow-sm transition-all hover:border-slate-800 hover:bg-slate-800 hover:text-white hover:shadow-lg focus:border-slate-800 focus:bg-slate-800 focus:text-white active:border-slate-800 active:bg-slate-800 active:text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         >
-          <InnerLink uri={`/blog/page/${number}`} title={number.toString()} />
+          <InnerLink uri={`/blog/page/${number.toString()}`} title={number.toString()} />
         </li>
       ))}
     </ul>
