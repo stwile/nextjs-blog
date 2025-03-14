@@ -7,7 +7,7 @@ import { CustomLink } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Example/CustomLink',
+  title: 'CustomLink',
   component: CustomLink,
 } satisfies Meta<typeof CustomLink>;
 
