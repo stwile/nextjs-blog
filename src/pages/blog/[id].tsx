@@ -18,6 +18,7 @@ import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
 import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
+import { Slide } from '~/components/Slide';
 import { Twitter } from '~/components/Twitter';
 import { client } from '~/lib/microcms';
 import { ListType } from '~/types/response/blog/ListType';
@@ -31,6 +32,7 @@ const components = {
   a: CustomLink,
   Twitter,
   InnerLink,
+  Slide,
 };
 
 const Blog: FC<Props> = ({ content, source }: Props) => {
