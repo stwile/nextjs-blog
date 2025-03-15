@@ -3,7 +3,7 @@ import { Slide } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'SpeakerDeck',
+  title: 'Slide',
   component: Slide,
 } satisfies Meta<typeof Slide>;
 
@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    slideId: '2fcaa73e37ba42f38c3606cba7861bf2',
+    slideId: process.env.NEXT_PUBLIC_SB_SLIDE_ID ?? '',
   },
+  tags: ['skip-test'],
 };

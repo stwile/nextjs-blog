@@ -18,6 +18,9 @@ export default defineWorkspace([
         configDir: path.join(dirname, '.storybook'),
         storybookScript: 'pnpm storybook --ci',
         storybookUrl: process.env.SB_URL,
+        tags: {
+          exclude: ['skip-test'],
+        },
       }),
     ],
     test: {
