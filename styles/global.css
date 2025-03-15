@@ -20,8 +20,10 @@
   }
 
   a {
-    /* @apply text-gray-500 border-gray-500 hover:text-gray-400 dark:text-blue-special dark:hover:underline; */
-    @apply border-gray-500 text-indigo-special hover:underline dark:text-blue-special dark:hover:underline;
+    @apply border-gray-500 text-indigo-special dark:text-dark-indigo-special;
+  }
+  a:hover {
+    @apply underline text-indigo-special-hover dark:text-dark-indigo-special-hover;
   }
 
   article {
@@ -40,10 +42,6 @@
 .prose th,
 .prose td {
   @apply text-gray-600 dark:text-gray-400;
-}
-
-.prose a {
-  @apply no-underline text-indigo-special hover:underline dark:text-blue-special dark:hover:underline;
 }
 
 .prose li {
