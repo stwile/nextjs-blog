@@ -1,5 +1,5 @@
-import { Navigation } from './Navigation';
-import { ThemeSwitch } from './ThemeSwitch';
+import { Navigation } from '../Navigation';
+import { ThemeSwitch } from '../ThemeSwitch';
 
 import type { JSX } from 'react';
 
