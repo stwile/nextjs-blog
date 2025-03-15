@@ -18,6 +18,7 @@ import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
 import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
+import { Podcast } from '~/components/Podcast';
 import { Slide } from '~/components/Slide';
 import { Twitter } from '~/components/Twitter';
 import { client } from '~/lib/microcms';
@@ -33,6 +34,7 @@ const components = {
   Twitter,
   InnerLink,
   Slide,
+  Podcast,
 };
 
 const Blog: FC<Props> = ({ content, source }: Props) => {
