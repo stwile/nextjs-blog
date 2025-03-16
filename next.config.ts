@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
   basePath,
   transpilePackages: ['react-tweet'],
   eslint: { ignoreDuringBuilds: true },
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'], // ここに 'stories.tsx' を含めない
 };
 
 // Injected content via Sentry wizard below
