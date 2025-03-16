@@ -15,13 +15,26 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-
     await step('要素がある', async () => {
       const header = canvas.getByRole('banner');
       await expect(header).toBeInTheDocument();
 
-      const nav = canvas.getByRole('navigation');
-      await expect(nav).toBeInTheDocument();
+      const navigation = canvas.getByRole('navigation', {
+        name: 'ヘッダーのナビゲーション',
+      });
+      await expect(navigation).toBeInTheDocument();
+
+      const list = canvas.getByRole('list', {
+        name: 'ヘッダーのリスト',
+      });
+      await expect(list).toBeInTheDocument();
+
+      const link = canvas.getByRole('link', {
+        name: 'Home',
+      });
+      await expect(link).toHaveAttribute('href', '/');
+      await expect(link).not.toHaveAttribute('target', '_blank');
+      await expect(link).not.toHaveAttribute('rel', 'noopener noreferrer');
 
       const toggleButton = canvas.getByRole('button');
       await expect(toggleButton).toBeInTheDocument();
