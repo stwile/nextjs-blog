@@ -1,4 +1,4 @@
-import { DOMAIN_NAME } from './Meta';
+import { DOMAIN_NAME } from '../Meta';
 
 import type { JSX } from 'react';
 
@@ -6,10 +6,10 @@ type Props = {
   title: string;
 };
 
-const IMAGE_URL = `https://${DOMAIN_NAME}/images/og_base.png`;
-
 export const OgImage = ({ title }: Props): JSX.Element => {
+  const IMAGE_URL = `https://${DOMAIN_NAME}/images/og_base.png`;
   const sliced = title.slice(0, 50);
+  // tailwindが使えないので、インラインスタイルで指定
   return (
     <div
       style={{
