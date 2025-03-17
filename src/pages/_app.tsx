@@ -1,6 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
-import { ThemeProvider } from 'next-themes';
+
+import { ThemeProvider } from '../components/ThemeProvider';
 
 import 'styles/global.css';
 
@@ -12,7 +13,7 @@ type Props = AppProps;
 const MyApp: FC<Props> = ({ Component, pageProps }: Props) => {
   const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
   return (
-    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
+    <ThemeProvider>
       <Component {...pageProps} />
       <Analytics />
       {GOOGLE_ANALYTICS_ID && <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />}
