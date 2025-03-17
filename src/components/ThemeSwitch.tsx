@@ -1,6 +1,8 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
+import { MoonSvg } from './MoonSvg';
+
 import type { JSX } from 'react';
 
 export const ThemeSwitch = (): JSX.Element | null => {
@@ -25,19 +27,7 @@ export const ThemeSwitch = (): JSX.Element | null => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}
     >
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill={isDark ? '#fff' : '#000'}
-        stroke={isDark ? '#fff' : '#000'}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-      </svg>
+      <MoonSvg isDark={isDark} />
     </button>
   );
 };
