@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
-import { MoonSvg } from './MoonSvg';
+import { MoonSvg } from '../MoonSvg';
 
 import type { JSX } from 'react';
 
@@ -19,12 +19,13 @@ export const ThemeSwitch = (): JSX.Element | null => {
   }
 
   const isDark = theme === 'dark';
+
   return (
     <button
       type="button"
       aria-label="Toggle Dark Mode"
       onClick={() => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+        setTheme(isDark ? 'light' : 'dark');
       }}
     >
       <MoonSvg isDark={isDark} />
