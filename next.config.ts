@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
   basePath,
   transpilePackages: ['react-tweet'],
   eslint: { ignoreDuringBuilds: true },
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'], // ここに 'stories.tsx' を含めない
 };
 
 // Injected content via Sentry wizard below
@@ -21,8 +22,6 @@ module.exports = withSentryConfig(nextConfig, {
 
   // Suppresses source map uploading logs during build
   silent: true,
-  org: 'volare-viah',
-  project: 'volare-viah',
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
