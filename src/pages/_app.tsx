@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { ThemeProvider } from '../components/ThemeProvider';
 
@@ -17,6 +18,7 @@ const MyApp: FC<Props> = ({ Component, pageProps }: Props) => {
       <Component {...pageProps} />
       <Analytics />
       {GOOGLE_ANALYTICS_ID && <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />}
+      <SpeedInsights />
     </ThemeProvider>
   );
 };

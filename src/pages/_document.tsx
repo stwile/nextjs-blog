@@ -1,5 +1,4 @@
 import { GoogleTagManager } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 import type { ReactElement } from 'react';
@@ -17,7 +16,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <SpeedInsights />
         </body>
       </Html>
     );
