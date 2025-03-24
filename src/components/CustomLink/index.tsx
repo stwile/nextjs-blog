@@ -18,8 +18,8 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
     if (hostname === DOMAIN_NAME) {
       return <Link href={pathname}>{children}</Link>;
     }
-  } catch {
-    return null;
+  } catch (e) {
+    console.warn(`Invalid URL passed to CustomLink: ${href}`, e);
   }
 
   return (
