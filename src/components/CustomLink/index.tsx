@@ -10,13 +10,13 @@ type Props = {
 
 export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
   if (href.startsWith('/')) {
-    return <Link href={href}>{children}</Link>;
+    return <Link href={{ pathname: href }}>{children}</Link>;
   }
 
   try {
     const { hostname, pathname } = new URL(href);
     if (hostname === DOMAIN_NAME) {
-      return <Link href={pathname}>{children}</Link>;
+      return <Link href={{ pathname }}>{children}</Link>;
     }
   } catch (e) {
     console.warn(`Invalid URL passed to CustomLink: ${href}`, e);
