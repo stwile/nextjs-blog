@@ -9,6 +9,8 @@ type Props = {
 } & ComponentProps<'a'>;
 
 export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
+  if (href.startsWith('#')) return null;
+
   if (href.startsWith('/')) {
     return <Link href={{ pathname: href }}>{children}</Link>;
   }
@@ -18,8 +20,8 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
     if (hostname === DOMAIN_NAME) {
       return <Link href={{ pathname }}>{children}</Link>;
     }
-  } catch (e) {
-    console.warn(`Invalid URL passed to CustomLink: ${href}`, e);
+  } catch {
+    return null;
   }
 
   return (
