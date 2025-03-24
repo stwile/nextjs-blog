@@ -1,10 +1,10 @@
-import { withSentryConfig } from '@sentry/nextjs';
+import { SentryBuildOptions, withSentryConfig } from '@sentry/nextjs';
 
 import type { NextConfig } from 'next';
 
 const basePath = '';
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   productionBrowserSourceMaps: true,
   serverRuntimeConfig: {
     rootDir: __dirname,
@@ -13,10 +13,9 @@ const nextConfig: NextConfig = {
   transpilePackages: ['react-tweet'],
   eslint: { ignoreDuringBuilds: true },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'], // ここに 'stories.tsx' を含めない
-};
+} satisfies NextConfig;
 
-// Injected content via Sentry wizard below
-module.exports = withSentryConfig(nextConfig, {
+const sentryWebpackPluginOptions = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
@@ -29,9 +28,6 @@ module.exports = withSentryConfig(nextConfig, {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
 
@@ -40,4 +36,7 @@ module.exports = withSentryConfig(nextConfig, {
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
-});
+} satisfies SentryBuildOptions;
+
+// Injected content via Sentry wizard below
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
