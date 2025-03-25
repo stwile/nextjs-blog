@@ -1,12 +1,11 @@
 import type { StorybookConfig } from '@storybook/experimental-nextjs-vite';
 
-const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+const config = {
+  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-essentials',
     '@chromatic-com/storybook',
     '@storybook/experimental-addon-test',
-    '@storybook/addon-coverage',
     '@storybook/addon-a11y',
   ],
   framework: {
@@ -14,5 +13,5 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public'],
-};
+} satisfies StorybookConfig;
 export default config;
