@@ -25,7 +25,7 @@
     "@next/env": "15.1.2",
     "@next/third-parties": "15.1.2",
     "@sentry/nextjs": "^9.8.0",
-    "@shikijs/rehype": "^1.24.4",
+    "@shikijs/rehype": "^3.2.1",
     "@vercel/analytics": "^1.4.1",
     "@vercel/og": "^0.6.4",
     "@vercel/speed-insights": "^1.1.0",
