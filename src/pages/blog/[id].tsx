@@ -1,11 +1,7 @@
 import rehypeShiki from '@shikijs/rehype';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeExternalLinks from 'rehype-external-links';
-import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
-import remarkToc from 'remark-toc';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -75,28 +71,8 @@ export const getStaticProps = (async ({ params }) => {
   });
   const source = await serialize(content.body, {
     mdxOptions: {
-      rehypePlugins: [
-        [rehypeShiki, { theme: 'plastic' }],
-        rehypeSlug,
-        rehypeAutolinkHeadings,
-        [
-          rehypeExternalLinks,
-          {
-            target: '_blank',
-            rel: ['nofollow', 'noreferrer'],
-          },
-        ],
-      ],
-      remarkPlugins: [
-        [
-          remarkGfm,
-          remarkToc,
-          {
-            heading: '目次', // Table of Contents を挿入するための見出しを指定する
-            tight: true, // `true` にすると `li` 要素内に `p` 要素を作らないようになる
-          },
-        ],
-      ],
+      rehypePlugins: [[rehypeShiki, { theme: 'plastic' }]],
+      remarkPlugins: [[remarkGfm]],
     },
   });
   return {
