@@ -14,13 +14,21 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
   }
 
   if (href.startsWith('/')) {
-    return <Link href={{ pathname: href }}>{children}</Link>;
+    return (
+      <Link href={href} {...props}>
+        {children}
+      </Link>
+    );
   }
 
   try {
     const { hostname, pathname } = new URL(href);
     if (hostname === DOMAIN_NAME) {
-      return <Link href={{ pathname }}>{children}</Link>;
+      return (
+        <Link href={pathname} {...props}>
+          {children}
+        </Link>
+      );
     }
   } catch {
     return <span {...props}>{children}</span>;
