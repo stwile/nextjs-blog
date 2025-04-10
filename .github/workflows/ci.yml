@@ -32,8 +32,10 @@ jobs:
       - name: lint
         run: pnpm run lint
 
-      - name: Install Playwright
-        run: pnpm exec playwright install
+      - name: Setup and run Playwright
+        run: |
+          pnpm dlx playwright install
+          pnpm dlx playwright install-deps
 
       - name: test
         run: pnpm run test-sb:cov
