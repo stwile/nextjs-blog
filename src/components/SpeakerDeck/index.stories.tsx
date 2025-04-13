@@ -1,11 +1,11 @@
-import { Slide } from '.';
+import { SpeakerDeck } from '.';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Slide',
-  component: Slide,
-} satisfies Meta<typeof Slide>;
+  title: 'SpeakerDeck',
+  component: SpeakerDeck,
+} satisfies Meta<typeof SpeakerDeck>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

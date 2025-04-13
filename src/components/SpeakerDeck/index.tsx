@@ -6,7 +6,7 @@ type Props = {
   slideId: string;
 };
 
-export const Slide: FC<Props> = ({ slideId }) => {
+export const SpeakerDeck: FC<Props> = ({ slideId }) => {
   const SLIDE_CLASS_NAME = 'speakerdeck-embed';
   return (
     <>

@@ -15,7 +15,7 @@ import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
 import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
 import { Podcast } from '~/components/Podcast';
-import { Slide } from '~/components/Slide';
+import { SpeakerDeck } from '~/components/SpeakerDeck';
 import { Twitter } from '~/components/Twitter';
 import { client } from '~/lib/microcms';
 import { ListType } from '~/types/response/blog/ListType';
@@ -29,7 +29,7 @@ const components = {
   a: CustomLink,
   Twitter,
   InnerLink,
-  Slide,
+  Slide: SpeakerDeck,
   Podcast,
 };
 
