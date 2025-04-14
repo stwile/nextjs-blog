@@ -11,6 +11,7 @@ import type { ContentType } from '~/types/response/blog/ContentType';
 
 import { CustomLink } from '~/components/CustomLink';
 import { Date } from '~/components/Date';
+import { Docswell } from '~/components/Docswell';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
 import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
@@ -29,7 +30,8 @@ const components = {
   a: CustomLink,
   Twitter,
   InnerLink,
-  Slide: SpeakerDeck,
+  SpeakerDeck,
+  Docswell,
   Podcast,
 };
 
