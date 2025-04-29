@@ -87,11 +87,6 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "volta": {
     "node": "22.14.0",
     "pnpm": "10.10.0"
@@ -106,11 +101,6 @@
       "esbuild",
       "msw",
       "sharp"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
     ]
   }
 }
