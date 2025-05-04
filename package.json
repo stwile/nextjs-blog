@@ -87,16 +87,11 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.6.3"
+    "pnpm": "10.10.0"
   },
-  "packageManager": "pnpm@10.6.3",
+  "packageManager": "pnpm@10.10.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@sentry/cli",
@@ -106,11 +101,6 @@
       "esbuild",
       "msw",
       "sharp"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
     ]
   }
 }
