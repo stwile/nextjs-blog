@@ -21,7 +21,7 @@ export default tseslint.config(
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat['jsx-runtime'],
   ...tailwind.configs['flat/recommended'],
-  ...storybook.configs['flat/recommended'],
+  storybook.configs['flat/recommended'],
   {
     // 全体の設定
     languageOptions: {

@@ -2,7 +2,7 @@ import { expect } from '@storybook/test';
 
 import { MoonSvg } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react/*';
 
 const meta = {
   title: 'MoonSvg',

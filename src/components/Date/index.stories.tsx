@@ -2,7 +2,7 @@ import { expect, within } from '@storybook/test';
 
 import { Date } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react/*';
 
 const meta = {
   title: 'Date',

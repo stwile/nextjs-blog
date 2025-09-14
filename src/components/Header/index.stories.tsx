@@ -2,7 +2,7 @@ import { expect, within } from '@storybook/test';
 
 import { Header } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react/*';
 
 const meta = {
   title: 'Header',
