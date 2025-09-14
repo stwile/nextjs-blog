@@ -4,7 +4,7 @@ import { ThemeProvider } from '../ThemeProvider';
 
 import { ThemeSwitch } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react/*';
 
 const meta = {
   title: 'ThemeSwitch',
