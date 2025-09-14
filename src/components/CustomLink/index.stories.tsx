@@ -1,10 +1,10 @@
-import { expect, within } from '@storybook/test';
+import { expect, within } from 'storybook/test';
 
 import { DOMAIN_NAME } from '../Meta';
 
 import { CustomLink } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react/*';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
   title: 'CustomLink',

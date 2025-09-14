@@ -1,9 +1,8 @@
-import { storybookNextJsPlugin } from '@storybook/experimental-nextjs-vite/vite-plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), storybookNextJsPlugin()],
+  plugins: [tsconfigPaths()],
   test: {
     environment: 'jsdom',
     coverage: {
