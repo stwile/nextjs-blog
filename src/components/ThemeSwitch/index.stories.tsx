@@ -1,10 +1,10 @@
-import { within, expect, userEvent } from '@storybook/test';
+import { within, expect, userEvent } from 'storybook/test';
 
 import { ThemeProvider } from '../ThemeProvider';
 
 import { ThemeSwitch } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react/*';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
   title: 'ThemeSwitch',

@@ -1,8 +1,8 @@
-import { expect } from '@storybook/test';
+import { expect } from 'storybook/test';
 
 import { MoonSvg } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react/*';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
   title: 'MoonSvg',
