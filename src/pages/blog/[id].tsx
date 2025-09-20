@@ -19,7 +19,7 @@ import { Podcast } from '~/components/Podcast';
 import { SpeakerDeck } from '~/components/SpeakerDeck';
 import { Twitter } from '~/components/Twitter';
 import { client } from '~/lib/microcms';
-import { ListType } from '~/types/response/blog/ListType';
+import { type ListType } from '~/types/response/blog/ListType';
 
 type Props = {
   content: ContentType;
