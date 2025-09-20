@@ -4,7 +4,7 @@ import { Layout } from '.';
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import { MetaType } from '~/types/blog/MetaType';
+import { type MetaType } from '~/types/blog/MetaType';
 
 const meta = {
   title: 'Layout',

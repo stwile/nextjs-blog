@@ -4,7 +4,7 @@ import { BlogLayout } from '.';
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import { ContentType } from '~/types/response/blog/ContentType';
+import { type ContentType } from '~/types/response/blog/ContentType';
 
 const meta = {
   title: 'BlogLayout',
