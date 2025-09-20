@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --config eslint.config.ts src",
-    "lint:fix": "eslint --config eslint.config.ts --fix src",
+    "lint:fix": "eslint --config eslint.config.ts src --fix",
     "pre-commit": "lint-staged",
     "pre-push": "tsc",
     "postbuild": "next-sitemap",
