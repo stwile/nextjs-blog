@@ -6,9 +6,6 @@ const basePath = '';
 
 const nextConfig = {
   productionBrowserSourceMaps: true,
-  serverRuntimeConfig: {
-    rootDir: __dirname,
-  },
   basePath,
   transpilePackages: ['react-tweet'],
   eslint: { ignoreDuringBuilds: true },
@@ -29,14 +26,18 @@ const sentryWebpackPluginOptions = {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors.
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
+  // Webpack-specific options
+  webpack: {
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    treeshake: {
+      removeDebugLogging: true,
+    },
+    // Enables automatic instrumentation of Vercel Cron Monitors.
+    // See the following for more information:
+    // https://docs.sentry.io/product/crons/
+    // https://vercel.com/docs/cron-jobs
+    automaticVercelMonitors: true,
+  },
 } satisfies SentryBuildOptions;
 
 // Injected content via Sentry wizard below
