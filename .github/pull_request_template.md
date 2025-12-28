@@ -17,6 +17,6 @@ mm/dd (曜日) までにレビューお願いします！
 [ask]
 [fyi]
 -->
-<!-- for GitHub Copilot review  rule-->
+<!-- for GitHub Copilot review rule-->
 
 <!-- I want to review in Japanese. -->
