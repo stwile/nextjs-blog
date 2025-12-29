@@ -25,17 +25,25 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
     );
   }
 
-  try {
-    const { hostname, pathname } = new URL(href);
-    if (hostname === DOMAIN_NAME) {
-      return (
-        <Link href={pathname} {...commonProps}>
-          {children}
-        </Link>
-      );
+  // 例外を投げる可能性があるため、URL の解釈だけ try/catch で分離する
+  const parsedUrl = (() => {
+    try {
+      return new URL(href);
+    } catch {
+      return null;
     }
-  } catch {
+  })();
+
+  if (!parsedUrl) {
     return <span {...commonProps}>{children}</span>;
+  }
+
+  if (parsedUrl.hostname === DOMAIN_NAME) {
+    return (
+      <Link href={parsedUrl.pathname} {...commonProps}>
+        {children}
+      </Link>
+    );
   }
 
   return (

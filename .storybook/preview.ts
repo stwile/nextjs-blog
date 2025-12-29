@@ -1,7 +1,17 @@
-import type { Preview } from '@storybook/nextjs-vite';
+import { type Preview } from '@storybook/nextjs-vite';
 import '../styles/global.css';
+import { ThemeProvider } from 'next-themes';
+import { createElement } from 'react';
 
 const preview: Preview = {
+  decorators: [
+    (Story) =>
+      createElement(
+        ThemeProvider,
+        { attribute: 'class', defaultTheme: 'light', enableSystem: true },
+        createElement(Story),
+      ),
+  ],
   parameters: {
     controls: {
       matchers: {
