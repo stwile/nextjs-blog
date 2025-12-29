@@ -1,9 +1,9 @@
 import eslint from '@eslint/js';
-// @ts-ignore
 import nextPlugin from '@next/eslint-plugin-next';
+import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
-// @ts-ignore
 import importPlugin from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import storybook from 'eslint-plugin-storybook';
@@ -12,15 +12,16 @@ import tailwind from 'eslint-plugin-tailwindcss';
 import unusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default defineConfig([
   eslint.configs.recommended,
-  tseslint.configs.strictTypeChecked,
-  tseslint.configs.stylisticTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   // @ts-ignore
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat['jsx-runtime'],
   ...tailwind.configs['flat/recommended'],
-  storybook.configs['flat/recommended'],
+  ...storybook.configs['flat/recommended'],
+  jsxA11y.flatConfigs.recommended,
   {
     // 全体の設定
     languageOptions: {
@@ -89,4 +90,4 @@ export default tseslint.config(
     },
   },
   eslintConfigPrettier,
-);
+]);

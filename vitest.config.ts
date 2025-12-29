@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 
-import { playwright } from '@vitest/browser-playwright';
 import storybookTest from '@storybook/addon-vitest/vitest-plugin';
+import { playwright } from '@vitest/browser-playwright';
 import { defineConfig, defineProject } from 'vitest/config';
 
 const dirname =
