@@ -10,6 +10,10 @@ jobs:
   ci:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container:
+      # Make sure to grab the latest version of the Playwright image
+      # https://playwright.dev/docs/docker#pull-the-image
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     steps:
       - uses: actions/checkout@v4
       - name: Use Latest Corepack
@@ -31,11 +35,6 @@ jobs:
 
       - name: lint
         run: pnpm run lint
-
-      - name: Install Playwright
-        run: |
-          pnpm add -D playwright
-          pnpm exec playwright install
 
       - name: test
         run: pnpm run test-sb:cov
