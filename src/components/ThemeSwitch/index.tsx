@@ -1,24 +1,17 @@
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 
 import { MoonSvg } from '../MoonSvg';
 
 import type { JSX } from 'react';
 
 export const ThemeSwitch = (): JSX.Element | null => {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
-  // After mounting, we have access to the theme
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
+  if (!resolvedTheme) {
     return null;
   }
 
-  const isDark = theme === 'dark';
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <button
