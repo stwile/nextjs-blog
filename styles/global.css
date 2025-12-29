@@ -20,10 +20,10 @@
   }
 
   a {
-    @apply border-gray-500 text-indigo-special dark:text-dark-indigo-special;
+    @apply underline underline-offset-4 border-gray-500 text-indigo-special dark:text-dark-indigo-special;
   }
   a:hover {
-    @apply underline text-indigo-special-hover dark:text-dark-indigo-special-hover;
+    @apply text-indigo-special-hover dark:text-dark-indigo-special-hover;
   }
 
   article {
