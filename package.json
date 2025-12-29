@@ -97,6 +97,9 @@
       "esbuild",
       "msw",
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "https-proxy-agent": "^7.0.6"
+    }
   }
 }
