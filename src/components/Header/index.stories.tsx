@@ -36,7 +36,7 @@ export const Default: Story = {
       await expect(link).not.toHaveAttribute('target', '_blank');
       await expect(link).not.toHaveAttribute('rel', 'noopener noreferrer');
 
-      const toggleButton = canvas.getByRole('button');
+      const toggleButton = await canvas.findByRole('button');
       await expect(toggleButton).toBeInTheDocument();
     });
   },

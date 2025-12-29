@@ -1,5 +1,6 @@
+import dynamic from 'next/dynamic';
+
 import { InnerLink } from '../InnerLink';
-import { ThemeSwitch } from '../ThemeSwitch';
 
 import type { JSX } from 'react';
 
@@ -15,3 +16,8 @@ export const Header = (): JSX.Element => (
     <ThemeSwitch />
   </header>
 );
+
+const ThemeSwitch = dynamic(() => import('../ThemeSwitch').then((mod) => mod.ThemeSwitch), {
+  // テーマ判定はクライアント依存のためSSRしない
+  ssr: false,
+});
