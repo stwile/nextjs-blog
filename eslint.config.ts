@@ -4,7 +4,6 @@ import nextPlugin from '@next/eslint-plugin-next';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 // @ts-ignore
 import importPlugin from 'eslint-plugin-import';
-import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import storybook from 'eslint-plugin-storybook';
@@ -36,6 +35,13 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'inline-type-imports',
+        },
+      ],
     },
     ignores: ['./.next/*'],
   },
@@ -59,20 +65,12 @@ export default tseslint.config(
         'error',
         {
           groups: ['builtin', 'external', 'parent', 'sibling', 'index', 'object', 'type'],
-          pathGroups: [{ pattern: '@alias/**', group: 'parent', position: 'before' }],
           alphabetize: { order: 'asc' },
           'newlines-between': 'always',
         },
       ],
       'import/newline-after-import': 'error',
       'import/no-duplicates': 'error',
-    },
-  },
-  {
-    // eslint-plugin-no-relative-import-paths
-    plugins: { 'no-relative-import-paths': noRelativeImportPaths },
-    rules: {
-      'no-relative-import-paths/no-relative-import-paths': ['off', { allowSameFolder: true }],
     },
   },
   {
@@ -88,7 +86,6 @@ export default tseslint.config(
     rules: {
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
-      '@next/next/no-img-element': 'error',
     },
   },
   eslintConfigPrettier,
