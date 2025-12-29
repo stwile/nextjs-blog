@@ -8,7 +8,7 @@ export const Header = (): JSX.Element => (
     <nav aria-label="ヘッダーのナビゲーション">
       <ul className="flex items-center justify-between" aria-label="ヘッダーのリスト">
         <li className="py-4 pr-6">
-          <InnerLink uri="/" title="Home" />
+          <InnerLink uri="/" title="Home" className="no-underline" />
         </li>
       </ul>
     </nav>
