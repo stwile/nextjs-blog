@@ -4,6 +4,11 @@ import { InnerLink } from '../InnerLink';
 
 import type { JSX } from 'react';
 
+const ThemeSwitch = dynamic(() => import('../ThemeSwitch').then((mod) => mod.ThemeSwitch), {
+  // テーマ判定はクライアント依存のためSSRしない
+  ssr: false,
+});
+
 export const Header = (): JSX.Element => (
   <header className="mx-auto flex max-w-3xl items-center justify-between px-8 py-6">
     <nav aria-label="ヘッダーのナビゲーション">
@@ -16,8 +21,3 @@ export const Header = (): JSX.Element => (
     <ThemeSwitch />
   </header>
 );
-
-const ThemeSwitch = dynamic(() => import('../ThemeSwitch').then((mod) => mod.ThemeSwitch), {
-  // テーマ判定はクライアント依存のためSSRしない
-  ssr: false,
-});
