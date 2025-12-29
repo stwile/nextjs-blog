@@ -8,7 +8,6 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   basePath,
   transpilePackages: ['react-tweet'],
-  eslint: { ignoreDuringBuilds: true },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'], // ここに 'stories.tsx' を含めない
   reactStrictMode: true,
 } satisfies NextConfig;
