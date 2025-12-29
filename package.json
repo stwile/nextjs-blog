@@ -22,7 +22,7 @@
     "test-sb:cov": "vitest --project=storybook --run --coverage"
   },
   "dependencies": {
-    "@next/third-parties": "15.5.3",
+    "@next/third-parties": "16.1.1",
     "@sentry/nextjs": "^10.27.0",
     "@shikijs/rehype": "^3.2.1",
     "@vercel/analytics": "^1.4.1",
@@ -30,7 +30,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "date-fns": "^4.1.0",
     "microcms-js-sdk": "^3.1.2",
-    "next": "15.5.9",
+    "next": "16.1.1",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.4",
     "react": "^19.1.0",
@@ -44,7 +44,7 @@
     "@eslint/js": "^9.39.2",
     "@markuplint/jsx-parser": "^4.7.22",
     "@markuplint/react-spec": "^4.5.22",
-    "@next/eslint-plugin-next": "^15.5.9",
+    "@next/eslint-plugin-next": "^16.1.1",
     "@storybook/addon-a11y": "^10.1.10",
     "@storybook/addon-vitest": "^10.1.10",
     "@storybook/nextjs-vite": "^10.1.10",

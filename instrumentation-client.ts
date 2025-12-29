@@ -22,3 +22,5 @@ export const register = () => {
     debug: false,
   });
 };
+
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
