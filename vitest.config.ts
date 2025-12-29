@@ -3,14 +3,17 @@ import { fileURLToPath } from 'url';
 
 import { playwright } from '@vitest/browser-playwright';
 import storybookTest from '@storybook/addon-vitest/vitest-plugin';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig, defineProject } from 'vitest/config';
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [tsconfigPaths()],
+  resolve: {
+    alias: {
+      '~': path.resolve(dirname, 'src'),
+    },
+  },
   test: {
     environment: 'jsdom',
     coverage: {
