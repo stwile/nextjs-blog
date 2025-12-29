@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@next/third-parties": "16.1.1",
-    "@sentry/nextjs": "^10.27.0",
+    "@sentry/nextjs": "^10.32.1",
     "@shikijs/rehype": "^3.2.1",
     "@vercel/analytics": "^1.4.1",
     "@vercel/og": "^0.6.4",
