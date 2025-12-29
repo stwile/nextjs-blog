@@ -16,7 +16,7 @@
 - 品質: `pnpm lint` / `pnpm lint:fix` / `pnpm markuplint` / `pnpm prettier`
 
 ## コーディング規約・命名
-- 言語: TypeScript（厳格設定）/ React / Next.js 15 / Tailwind CSS
+- 言語: TypeScript（厳格設定）/ React / Next.js 16 / Tailwind CSS
 - フォーマット（Prettier）: 2 スペース, 100 文字幅, セミコロン有, シングルクォート, 末尾カンマ
 - Lint（ESLint）: Next/React/Tailwind/Import 整理/未使用 import 禁止
 - Stylelint: プロパティはアルファベット順
