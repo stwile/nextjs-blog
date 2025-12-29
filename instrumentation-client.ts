@@ -5,7 +5,9 @@ const clientDsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 export const register = () => {
   if (!clientDsn) {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn('[sentry] NEXT_PUBLIC_SENTRY_DSN が未設定のためクライアント初期化をスキップしました');
+      console.warn(
+        '[sentry] NEXT_PUBLIC_SENTRY_DSN が未設定のためクライアント初期化をスキップしました',
+      );
     }
     return;
   }
