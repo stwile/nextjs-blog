@@ -41,6 +41,7 @@ tsconfig.tsbuildinfo
 .env*.local
 
 *storybook.log
+storybook-static
 
 # Sentry Config File
 .env.sentry-build-plugin

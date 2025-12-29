@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 
+import { playwright } from '@vitest/browser-playwright';
 import storybookTest from '@storybook/addon-vitest/vitest-plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig, defineProject } from 'vitest/config';
@@ -36,7 +37,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: 'playwright',
+            provider: playwright(),
             instances: [{ browser: 'chromium' }],
           },
           setupFiles: ['.storybook/vitest.setup.ts'],
