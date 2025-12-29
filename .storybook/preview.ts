@@ -24,6 +24,23 @@ const preview: Preview = {
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
       test: 'error',
+      config: {
+        // WCAG AA/AAA + best-practice + experimental まで全チェック
+        runOnly: {
+          type: 'tag',
+          values: [
+            'wcag2a',
+            'wcag2aa',
+            'wcag2aaa',
+            'wcag21a',
+            'wcag21aa',
+            'wcag21aaa',
+            'best-practice',
+            'experimental',
+          ],
+        },
+        rules: [{ id: 'color-contrast', enabled: true }],
+      },
     },
   },
 };

@@ -84,6 +84,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@3.4.19(yaml@2.8.2))
+      '@types/eslint-plugin-jsx-a11y':
+        specifier: ^6.10.1
+        version: 6.10.1(jiti@2.6.1)
       '@types/gtag.js':
         specifier: ^0.0.20
         version: 0.0.20
@@ -1577,6 +1580,9 @@ packages:
 
   '@types/doctrine@0.0.9':
     resolution: {integrity: sha512-eOIHzCUSH7SMfonMG1LsC2f8vxBFtho6NGBznK41R84YzPuvSBzrhEps33IsQiOW9+VL6NQ9DbjQJznk/S4uRA==}
+
+  '@types/eslint-plugin-jsx-a11y@6.10.1':
+    resolution: {integrity: sha512-5RtuPVe0xz8BAhrkn2oww6Uw885atf962Q4fqZo48QdO3EQA7oCEDSXa6optgJ1ZMds3HD9ITK5bfm4AWuoXFQ==}
 
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -6700,6 +6706,13 @@ snapshots:
   '@types/deep-eql@4.0.2': {}
 
   '@types/doctrine@0.0.9': {}
+
+  '@types/eslint-plugin-jsx-a11y@6.10.1(jiti@2.6.1)':
+    dependencies:
+      eslint: 9.39.2(jiti@2.6.1)
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
 
   '@types/eslint-scope@3.7.7':
     dependencies:

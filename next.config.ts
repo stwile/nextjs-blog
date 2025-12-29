@@ -1,4 +1,4 @@
-import { SentryBuildOptions, withSentryConfig } from '@sentry/nextjs';
+import { type SentryBuildOptions, withSentryConfig } from '@sentry/nextjs';
 
 import type { NextConfig } from 'next';
 
