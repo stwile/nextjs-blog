@@ -31,8 +31,16 @@
 ## コミット / PR
 - コミット: Conventional Commits 推奨（例: `feat: ...`, `fix: ...`, `refactor: ...`）
 - PR: 目的・変更点、関連 Issue、UI 変更はスクリーンショット、影響範囲と動作確認手順を記載
+- PR: 本文は `.github/pull_request_template.md` を必ず反映して作成・更新する（`gh pr create` / `gh pr edit` の両方を含む）
 - チェック: `pnpm lint && pnpm test && pnpm build` が通ること
 - フック: Husky が `lint-staged`（pre-commit）と `tsc`（pre-push）を実行
+
+## PR本文更新（gh）
+- 既存テンプレの Copilot コメントは必ず保持し、位置も変えない
+- PR本文はテンプレ構成（内容/動作確認項目/レビュー希望日）に合わせる
+- 依存更新のみの場合は動作確認文言テンプレを使い、実施/未実施を明示
+- 「今日」指定時は `mm/dd (曜日)` 形式で自動反映する
+- 変更対象は PR本文のみとし、テンプレファイル自体は変更しない
 
 ## セキュリティ / 設定
 - 環境変数: `.env.local.example` を基に `.env.local` 作成。秘密情報はコミット禁止
