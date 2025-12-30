@@ -1,6 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote';
 
-import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
@@ -15,16 +14,13 @@ import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
 import { Podcast } from '~/components/Podcast';
 import { SpeakerDeck } from '~/components/SpeakerDeck';
 import { Twitter } from '~/components/Twitter';
-import { client } from '~/lib/microcms';
-import { serializeBlogMdx } from '~/lib/serializeBlogMdx';
-import { type ListType } from '~/types/response/blog/ListType';
 
 type Props = {
   content: ContentType;
   source: MDXRemoteSerializeResult;
 };
 
-const components = {
+const mdxComponents = {
   a: CustomLink,
   Twitter,
   InnerLink,
@@ -33,7 +29,7 @@ const components = {
   Podcast,
 };
 
-const Blog: FC<Props> = ({ content, source }: Props) => {
+export const BlogArticle: FC<Props> = ({ content, source }: Props) => {
   const image = `https://${DOMAIN_NAME}/api/og?title=${content.title}`;
 
   const meta: MetaType = {
@@ -42,6 +38,7 @@ const Blog: FC<Props> = ({ content, source }: Props) => {
     type: 'article',
     image,
   };
+
   return (
     <Layout meta={meta}>
       <article>
@@ -50,45 +47,9 @@ const Blog: FC<Props> = ({ content, source }: Props) => {
         </p>
         <h1 className="mb-11">{content.title}</h1>
         <div className="prose">
-          <MDXRemote {...source} components={components} />
+          <MDXRemote {...source} components={mdxComponents} />
         </div>
       </article>
     </Layout>
   );
 };
-
-export const getStaticProps = (async ({ params }) => {
-  if (params === undefined) {
-    throw new Error();
-  }
-  const { id: blogPathId } = params;
-  if (blogPathId === undefined) {
-    throw new Error();
-  }
-
-  const content: ContentType = await client.get({
-    endpoint: `blog/${blogPathId.toString()}`,
-  });
-  const source = await serializeBlogMdx(content.body);
-  return {
-    props: {
-      content,
-      source,
-    },
-  };
-}) satisfies GetStaticProps;
-
-export const getStaticPaths = (async () => {
-  const data: ListType = await client.get({
-    endpoint: 'blog',
-    queries: { limit: 100 }, // FIXME: ページャーを実装したら消すこと
-  });
-
-  const paths = data.contents.map((item: ContentType) => `/blog/${item.id}`);
-  return {
-    paths,
-    fallback: false,
-  };
-}) satisfies GetStaticPaths;
-
-export default Blog;
