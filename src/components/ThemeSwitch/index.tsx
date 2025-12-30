@@ -9,10 +9,7 @@ export const ThemeSwitch = (): JSX.Element | null => {
   const { resolvedTheme, setTheme } = useTheme();
   // next-themes の初期化完了まで描画を抑えて SSR/CSR の差分を避ける。
   const mounted = useSyncExternalStore(
-    (onStoreChange) => {
-      void onStoreChange;
-      return () => undefined;
-    },
+    () => () => undefined,
     () => true,
     () => false,
   );

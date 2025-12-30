@@ -31,6 +31,7 @@
 ## コミット / PR
 - コミット: Conventional Commits 推奨（例: `feat: ...`, `fix: ...`, `refactor: ...`）
 - PR: 目的・変更点、関連 Issue、UI 変更はスクリーンショット、影響範囲と動作確認手順を記載
+- PR: 本文は `.github/pull_request_template.md` を必ず反映して作成・更新する（`gh pr create` / `gh pr edit` の両方を含む）
 - チェック: `pnpm lint && pnpm test && pnpm build` が通ること
 - フック: Husky が `lint-staged`（pre-commit）と `tsc`（pre-push）を実行
 
