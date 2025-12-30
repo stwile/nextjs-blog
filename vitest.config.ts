@@ -23,6 +23,17 @@ export default defineConfig({
     globals: true,
     projects: [
       defineProject({
+        resolve: {
+          alias: {
+            '~': path.resolve(dirname, 'src'),
+          },
+        },
+        test: {
+          name: 'unit',
+          include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+        },
+      }),
+      defineProject({
         plugins: [
           // The plugin will run tests for the stories defined in your Storybook config
           // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
