@@ -20,7 +20,7 @@ type Props = {
   source: MDXRemoteSerializeResult;
 };
 
-const mdxComponents = {
+const components = {
   a: CustomLink,
   Twitter,
   InnerLink,
@@ -47,7 +47,7 @@ export const BlogArticle: FC<Props> = ({ content, source }: Props) => {
         </p>
         <h1 className="mb-11">{content.title}</h1>
         <div className="prose">
-          <MDXRemote {...source} components={mdxComponents} />
+          <MDXRemote {...source} components={components} />
         </div>
       </article>
     </Layout>
