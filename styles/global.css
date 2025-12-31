@@ -7,30 +7,37 @@
     @apply dark:bg-black-special;
   }
 
-  h1 {
+  h1,
+  .prose h1 {
     @apply mb-6 text-3xl text-gray-600 hover:text-gray-400 dark:text-gray-special dark:hover:text-gray-200;
   }
 
-  h2 {
+  h2,
+  .prose h2 {
     @apply text-2xl hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-200;
   }
 
-  p {
+  p,
+  .prose p {
     @apply mb-4 text-gray-600 dark:text-gray-400;
   }
 
-  a {
+  a,
+  .prose a {
     @apply underline underline-offset-4 border-gray-500 text-indigo-special dark:text-dark-indigo-special;
   }
-  a:hover {
+  a:hover,
+  .prose a:hover {
     @apply text-indigo-special-hover dark:text-dark-indigo-special-hover;
   }
 
-  article {
+  article,
+  .prose article {
     @apply dark:bg-black-special;
   }
 
-  div {
+  div,
+  .prose div {
     @apply dark:bg-black-special;
   }
 }
