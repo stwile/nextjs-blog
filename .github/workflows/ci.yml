@@ -16,6 +16,8 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.57.0-noble
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Use Latest Corepack
         run: |
           echo "Before: corepack version => $(corepack --version || echo 'not installed')"
@@ -40,6 +42,11 @@ jobs:
         run: pnpm run test-cov
         env:
           SB_URL: '${{ github.event.deployment_status.target_url }}'
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
