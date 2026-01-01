@@ -1,0 +1,61 @@
+name: 'Chromatic'
+
+on: push
+
+jobs:
+  chromatic:
+  name: Run Chromatic
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Set Node version
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: './package.json'
+        cache: 'pnpm'
+
+    - name: Enable pnpm via corepack
+      run: |
+        corepack enable
+        corepack prepare pnpm@latest --activate
+        pnpm --version
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Run Chromatic
+      uses: chromaui/action@latest
+      with:
+        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        onlyChanged: true
+
+    - name: Find Comment
+      uses: peter-evans/find-comment@v4
+      id: fc
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        comment-author: github-user-id
+        body-includes: ':books: Storybook :books:'
+
+    - name: Get datetime for now
+      id: datetime
+      run: echo "::set-output name=value::$(date)"
+      env:
+        TZ: Asia/Tokyo
+
+    - name: Create or update comment
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        token: ${{ secrets.PAT_TOKEN }}
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          Visit the :books: **Storybook** :books: for this PR (updated for commit ${{ github.event.pull_request.head.sha }}):
+          <${{ steps.storybook-url.outputs.value }}>
+          <sub>Build URL: ${{ steps.chromatic.outputs.buildUrl }}</sub>
+          <sub>(:fire: updated at ${{ steps.datetime.outputs.value }})</sub>
+        edit-mode: replace
