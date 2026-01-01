@@ -38,8 +38,7 @@ jobs:
 
       - name: test
         run: pnpm run test-cov
-        env:
-          SB_URL: '${{ github.event.deployment_status.target_url }}'
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
