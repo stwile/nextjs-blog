@@ -19,7 +19,8 @@
     "sb": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-sb": "vitest --project=storybook --run",
-    "test-sb:cov": "vitest --project=storybook --run --coverage"
+    "test-sb:cov": "vitest --project=storybook --run --coverage",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@next/third-parties": "16.1.1",
@@ -59,6 +60,7 @@
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
     "autoprefixer": "^10.4.23",
+    "chromatic": "^13.3.4",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
