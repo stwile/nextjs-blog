@@ -1,0 +1,72 @@
+name: Chromatic
+
+on:
+  # workflow_run:
+  #   workflows: [ci]
+  #   types: [completed]
+  pull_request:
+    branches: [main]
+
+jobs:
+  chromatic:
+    name: Run Chromatic
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Use Latest Corepack
+        run: |
+          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
+          npm install -g corepack@latest
+          echo "After : corepack version => $(corepack --version)"
+          corepack enable
+          pnpm --version
+
+      - name: Set Node version
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: './package.json'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          onlyChanged: true
+
+      - name: Find Comment
+        if: ${{ github.event.workflow_run.event == 'pull_request' }}
+        uses: peter-evans/find-comment@v4
+        id: fc
+        with:
+          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          comment-author: github-user-id
+          body-includes: ':books: Storybook :books:'
+
+      - name: Get datetime for now
+        if: ${{ github.event.workflow_run.event == 'pull_request' }}
+        id: datetime
+        run: echo "::set-output name=value::$(date)"
+        env:
+          TZ: Asia/Tokyo
+
+      - name: Create or update comment
+        if: ${{ github.event.workflow_run.event == 'pull_request' }}
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          body: |
+            Visit the :books: **Storybook** :books: for this PR (updated for commit ${{ github.event.workflow_run.head_sha }}):
+            <${{ steps.chromatic.outputs.storybookUrl }}>
+            <sub>Build URL: ${{ steps.chromatic.outputs.buildUrl }}</sub>
+            <sub>(:fire: updated at ${{ steps.datetime.outputs.value }})</sub>
+          edit-mode: replace
