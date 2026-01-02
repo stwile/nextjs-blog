@@ -12,5 +12,6 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "markuplint.enable": true // Markuplintを有効化する,
+  "markuplint.enable": true, // Markuplintを有効化する
+  "vitest.workspaceConfig": "vitest.config.ts"
 }
