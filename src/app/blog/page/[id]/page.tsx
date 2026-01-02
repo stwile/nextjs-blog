@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import type { JSX } from 'react';
 import type { ListType } from '~/types/response/blog/ListType';
 
@@ -10,13 +12,13 @@ import { client } from '~/lib/microcms';
 
 const SITE_TITLE = process.env.NEXT_PUBLIC_SITE_TITLE ?? 'ブログタイトル';
 
-type Props = {
-  params: {
-    id: string;
-  };
+export const dynamicParams = false;
+
+type Params = {
+  id: string;
 };
 
-export const generateStaticParams = async (): Promise<Props['params'][]> => {
+export const generateStaticParams = async (): Promise<Params[]> => {
   const repos: ListType = await client.get({ endpoint: 'blog' });
   const totalPages = Math.ceil(repos.totalCount / PER_PAGE);
 
@@ -25,8 +27,17 @@ export const generateStaticParams = async (): Promise<Props['params'][]> => {
   }));
 };
 
+type Props = {
+  params: Promise<Params>;
+};
+
 const BlogPage = async ({ params }: Props): Promise<JSX.Element> => {
-  const pageId = Number(params.id);
+  const { id } = await params;
+  const pageId = Number(id);
+
+  if (!Number.isInteger(pageId) || pageId < 1) {
+    notFound();
+  }
 
   const { contents, totalCount }: ListType = await client.get({
     endpoint: 'blog',
@@ -35,6 +46,11 @@ const BlogPage = async ({ params }: Props): Promise<JSX.Element> => {
       limit: PER_PAGE,
     },
   });
+
+  const totalPages = Math.ceil(totalCount / PER_PAGE);
+  if (pageId > totalPages) {
+    notFound();
+  }
 
   return (
     <>
