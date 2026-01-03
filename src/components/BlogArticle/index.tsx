@@ -1,6 +1,6 @@
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXClient } from 'next-mdx-remote-client';
 
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import type { SerializeResult } from 'next-mdx-remote-client/serialize';
 import type { FC } from 'react';
 import type { MetaType } from '~/types/blog/MetaType';
 import type { ContentType } from '~/types/response/blog/ContentType';
@@ -17,7 +17,7 @@ import { Twitter } from '~/components/Twitter';
 
 type Props = {
   content: ContentType;
-  source: MDXRemoteSerializeResult;
+  source: SerializeResult;
 };
 
 const components = {
@@ -39,6 +39,8 @@ export const BlogArticle: FC<Props> = ({ content, source }: Props) => {
     image,
   };
 
+  const compiled = 'compiledSource' in source;
+
   return (
     <Layout meta={meta}>
       <article>
@@ -47,7 +49,11 @@ export const BlogArticle: FC<Props> = ({ content, source }: Props) => {
         </p>
         <h1 className="mb-11">{content.title}</h1>
         <div className="prose">
-          <MDXRemote {...source} components={components} />
+          {compiled ? (
+            <MDXClient {...source} components={components} />
+          ) : (
+            <div role="alert">この記事の本文を表示できませんでした。</div>
+          )}
         </div>
       </article>
     </Layout>
