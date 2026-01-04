@@ -1,11 +1,11 @@
 import rehypeShiki from '@shikijs/rehype';
-import { serialize } from 'next-mdx-remote/serialize';
+import { serialize } from 'next-mdx-remote-client/serialize';
 import remarkGfm from 'remark-gfm';
 
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import type { SerializeResult } from 'next-mdx-remote-client/serialize';
 
 /**
- * Serializes blog MDX content for use with `next-mdx-remote`, applying
+ * Serializes blog MDX content for use with `next-mdx-remote-client`, applying
  * syntax highlighting and GitHub Flavored Markdown (GFM) support.
  *
  * Uses `rehypeShiki` with the `plastic` theme to highlight code blocks,
@@ -13,13 +13,16 @@ import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
  * and strikethrough.
  *
  * @param body - Raw MDX string representing the blog post content.
- * @returns A serialized MDX result that can be rendered by `next-mdx-remote`.
+ * @returns A serialized MDX result that can be rendered by `next-mdx-remote-client`.
  */
-export const serializeBlogMdx = async (body: string): Promise<MDXRemoteSerializeResult> => {
-  return serialize(body, {
-    mdxOptions: {
-      rehypePlugins: [[rehypeShiki, { theme: 'plastic' }]],
-      remarkPlugins: [[remarkGfm]],
+export const serializeBlogMdx = async (body: string): Promise<SerializeResult> => {
+  return serialize({
+    source: body,
+    options: {
+      mdxOptions: {
+        rehypePlugins: [[rehypeShiki, { theme: 'plastic' }]],
+        remarkPlugins: [[remarkGfm]],
+      },
     },
   });
 };
