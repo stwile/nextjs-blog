@@ -87,3 +87,24 @@ export const Default: Story = {
     });
   },
 };
+
+export const ErrorState: Story = {
+  args: {
+    content: sampleContent,
+  },
+  render: ({ content }) => {
+    const source = {
+      error: new Error('MDX compile error'),
+      frontmatter: {},
+      scope: {},
+    };
+    return <BlogArticle content={content} source={source} />;
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('エラーメッセージを表示する', async () => {
+      const message = canvas.getByRole('alert');
+      await expect(message).toHaveTextContent('この記事の本文を表示できませんでした。');
+    });
+  },
+};

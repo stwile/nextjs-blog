@@ -1,16 +1,16 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import type { SerializeResult } from 'next-mdx-remote-client/serialize';
 import type { FC } from 'react';
 import type { ContentType } from '~/types/response/blog/ContentType';
+import type { ListType } from '~/types/response/blog/ListType';
 
 import { BlogArticle } from '~/components/BlogArticle';
 import { client } from '~/lib/microcms';
 import { serializeBlogMdx } from '~/lib/serializeBlogMdx';
-import { type ListType } from '~/types/response/blog/ListType';
 
 type Props = {
   content: ContentType;
-  source: MDXRemoteSerializeResult;
+  source: SerializeResult;
 };
 
 const Blog: FC<Props> = ({ content, source }: Props) => {
