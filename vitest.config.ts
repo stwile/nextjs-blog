@@ -16,6 +16,10 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    env: {
+      NEXT_PUBLIC_VERCEL_URL: 'localhost',
+      NEXT_PUBLIC_SITE_TITLE: 'ブログタイトル',
+    },
     coverage: {
       provider: 'v8',
       reporter: 'json',
