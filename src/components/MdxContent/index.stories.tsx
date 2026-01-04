@@ -1,23 +1,10 @@
 import { expect, within } from 'storybook/test';
 
-import { BlogArticle } from '.';
+import { MdxContent } from '.';
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import type { ContentType } from '~/types/response/blog/ContentType';
 
 import { serializeBlogMdx } from '~/lib/serializeBlogMdx';
-
-const sampleContent: ContentType = {
-  id: 'sample-id',
-  createdAt: '2025-01-01T00:00:00.000Z',
-  updatedAt: '2025-01-01T00:00:00.000Z',
-  publishedAt: '2025-01-01T00:00:00.000Z',
-  revisedAt: '2025-01-01T00:00:00.000Z',
-  title: 'Storybookで見るMDX記事',
-  description: 'MDXをStorybook上でプレビューするためのサンプルです。',
-  body: '',
-  tags: [],
-};
 
 const sampleMdx = `
 # H1見出し
@@ -44,44 +31,34 @@ console.log(greet('Storybook'));
 `;
 
 const meta = {
-  title: 'BlogArticle',
-  component: BlogArticle,
+  title: 'MdxContent',
+  component: MdxContent,
   args: {
-    content: sampleContent,
     // placeholder; actual source is provided via loaders
     source: {} as never,
   },
   parameters: {
-    layout: 'fullscreen',
+    layout: 'padded',
     backgrounds: { default: 'light' },
   },
-} satisfies Meta<typeof BlogArticle>;
+} satisfies Meta<typeof MdxContent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    content: sampleContent,
-  },
   loaders: [
     async () => ({
       source: await serializeBlogMdx(sampleMdx),
     }),
   ],
-  render: ({ content }, { loaded }) => {
+  render: (_, { loaded }) => {
     const source = loaded.source;
-    return <BlogArticle content={content} source={source} />;
+    return <MdxContent source={source} />;
   },
-  play: async ({ canvasElement, step, args }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    await step('要素がある', async () => {
-      const title = canvas.getByRole('heading', { name: args.content.title });
-      await expect(title).toBeInTheDocument();
-
-      const date = canvas.getByRole('time');
-      await expect(date).toHaveTextContent('2025/01/01');
-
+    await step('本文を表示する', async () => {
       const body = await canvas.findByText('MDX を Storybook でプレビューする例です。');
       await expect(body).toBeInTheDocument();
     });
@@ -89,16 +66,13 @@ export const Default: Story = {
 };
 
 export const ErrorState: Story = {
-  args: {
-    content: sampleContent,
-  },
-  render: ({ content }) => {
+  render: () => {
     const source = {
       error: new Error('MDX compile error'),
       frontmatter: {},
       scope: {},
     };
-    return <BlogArticle content={content} source={source} />;
+    return <MdxContent source={source} />;
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
