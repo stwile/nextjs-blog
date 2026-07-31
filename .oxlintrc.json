@@ -1,0 +1,19 @@
+{
+  "plugins": ["nextjs", "react", "react-hooks", "typescript", "jsx-a11y", "unicorn"],
+  "ignorePatterns": [".next/**"],
+  "settings": {
+    "next": {
+      "rootDir": "."
+    }
+  },
+  "rules": {
+    "typescript/consistent-type-definitions": ["error", "type"],
+    "typescript/consistent-type-imports": [
+      "error",
+      {
+        "fixStyle": "inline-type-imports",
+        "prefer": "type-imports"
+      }
+    ]
+  }
+}
