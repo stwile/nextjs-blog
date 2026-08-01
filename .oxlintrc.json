@@ -1,12 +1,31 @@
 {
-  "plugins": ["nextjs", "react", "react-hooks", "typescript", "jsx-a11y", "unicorn"],
+  "plugins": ["import", "jsx-a11y", "nextjs", "react", "typescript", "unicorn"],
   "ignorePatterns": [".next/**"],
   "settings": {
     "next": {
       "rootDir": "."
+    },
+    "react": {
+      "version": "19.1.0"
     }
   },
   "rules": {
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "nextjs/no-html-link-for-pages": "error",
+    "nextjs/no-img-element": "error",
+    "nextjs/no-sync-scripts": "error",
+    "no-unused-vars": "error",
+    "react/exhaustive-deps": "error",
+    "react/rules-of-hooks": "error",
+    "sort-imports": [
+      "error",
+      {
+        "allowSeparatedGroups": true,
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
     "typescript/consistent-type-definitions": ["error", "type"],
     "typescript/consistent-type-imports": [
       "error",
@@ -14,6 +33,9 @@
         "fixStyle": "inline-type-imports",
         "prefer": "type-imports"
       }
-    ]
+    ],
+    "typescript/ban-ts-comment": "off",
+    "typescript/no-misused-promises": "off",
+    "typescript/no-unsafe-assignment": "off"
   }
 }

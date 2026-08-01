@@ -1,8 +1,11 @@
 <!-- I want to review in Japanese. -->
+
 ## 内容
+
 xxxの改修をしました。
 
 ## 動作確認項目
+
 - [x] xxxxxx
 
 <!-- for GitHub Copilot review rule -->

@@ -7,7 +7,7 @@ import type { ContentType } from '~/types/response/blog/ContentType';
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Layout } from '~/components/Layout';
-import { SITE_TITLE, DOMAIN_NAME } from '~/components/Meta';
+import { DOMAIN_NAME, SITE_TITLE } from '~/components/Meta';
 import { Pagination } from '~/components/Pagination';
 
 type Props = {
