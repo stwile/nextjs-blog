@@ -1,5 +1,5 @@
 import { GoogleTagManager } from '@next/third-parties/google';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 import type { ReactElement } from 'react';
 
