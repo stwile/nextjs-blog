@@ -40,4 +40,4 @@ const sentryWebpackPluginOptions = {
 } satisfies SentryBuildOptions;
 
 // Injected content via Sentry wizard below
-module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
+export default withSentryConfig(nextConfig, sentryWebpackPluginOptions);
