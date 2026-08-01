@@ -47,3 +47,4 @@ storybook-static
 .env.sentry-build-plugin
 
 .serena
+.pnpm-store
