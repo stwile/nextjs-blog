@@ -74,20 +74,5 @@
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "volta": {
-    "node": "24.12.0",
-    "pnpm": "10.26.2"
-  },
-  "packageManager": "pnpm@10.26.2",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@sentry/cli",
-      "@swc/core",
-      "@vercel/speed-insights",
-      "es5-ext",
-      "esbuild",
-      "msw",
-      "sharp"
-    ]
-  }
+  "packageManager": "pnpm@11.19.0"
 }

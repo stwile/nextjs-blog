@@ -15,7 +15,6 @@ export default defineConfig({
     },
   },
   test: {
-    environment: 'jsdom',
     coverage: {
       provider: 'v8',
       reporter: 'json',
@@ -29,6 +28,7 @@ export default defineConfig({
           },
         },
         test: {
+          environment: 'node',
           name: 'unit',
           include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
         },
