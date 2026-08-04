@@ -1,13 +1,13 @@
-import { DOMAIN_NAME } from '../Meta';
-
 import type { JSX } from 'react';
 
-type Props = {
+import { siteConfig } from '~/lib/site';
+
+type Props = Readonly<{
   title: string;
-};
+}>;
 
 export const OgImage = ({ title }: Props): JSX.Element => {
-  const IMAGE_URL = `https://${DOMAIN_NAME}/images/og_base.png`;
+  const IMAGE_URL = new URL('/images/og_base.png', siteConfig.siteUrl).toString();
   const sliced = title.slice(0, 50);
   // tailwindが使えないので、インラインスタイルで指定
   return (

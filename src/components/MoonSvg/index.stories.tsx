@@ -45,3 +45,22 @@ export const Dark: Story = {
     });
   },
 };
+
+export const WithSvgProps: Story = {
+  args: {
+    isDark: false,
+    className: 'custom-moon-svg',
+    width: 32,
+    'aria-label': 'テーマを切り替える',
+  },
+  play: async ({ canvasElement, step }) => {
+    await step('SVGのpropsが転送されること', async () => {
+      const svg = canvasElement.querySelector('svg');
+
+      await expect(svg).toBeInTheDocument();
+      await expect(svg).toHaveClass('custom-moon-svg');
+      await expect(svg).toHaveAttribute('width', '32');
+      await expect(svg).toHaveAttribute('aria-label', 'テーマを切り替える');
+    });
+  },
+};

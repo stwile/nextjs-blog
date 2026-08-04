@@ -4,15 +4,15 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { ThemeProvider } from '~/components/ThemeProvider';
 
-type Props = {
+type Props = Readonly<{
   children: ReactNode;
-};
+}>;
 
-const Providers: FC<Props> = ({ children }) => {
+const Providers = ({ children }: Props) => {
   const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
   return (

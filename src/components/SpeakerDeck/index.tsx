@@ -1,12 +1,10 @@
 import Script from 'next/script';
 
-import type { FC } from 'react';
-
-type Props = {
+type Props = Readonly<{
   slideId: string;
-};
+}>;
 
-export const SpeakerDeck: FC<Props> = ({ slideId }) => {
+const SpeakerDeck = ({ slideId }: Props) => {
   const SLIDE_CLASS_NAME = 'speakerdeck-embed';
   return (
     <>
@@ -18,3 +16,5 @@ export const SpeakerDeck: FC<Props> = ({ slideId }) => {
     </>
   );
 };
+
+export { SpeakerDeck };

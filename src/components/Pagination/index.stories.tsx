@@ -15,6 +15,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     totalCount: 300,
+    currentPage: 2,
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
@@ -23,6 +24,11 @@ export const Default: Story = {
         name: 'ページネーションのリスト',
       });
       await expect(pagination).toBeInTheDocument();
+
+      const navigation = canvas.getByRole('navigation', {
+        name: 'ページネーション',
+      });
+      await expect(navigation).toContainElement(pagination);
 
       const listItems = canvas.getAllByRole('listitem', {
         name: 'ページネーションのリストアイテム',
@@ -40,6 +46,10 @@ export const Default: Story = {
       await expect(link).toHaveAttribute('href', '/blog/page/1');
       await expect(link).not.toHaveAttribute('target', '_blank');
       await expect(link).not.toHaveAttribute('rel', 'noopener noreferrer');
+
+      const currentPageLink = canvas.getByRole('link', { name: '2' });
+      await expect(currentPageLink).toHaveAttribute('aria-current', 'page');
+      await expect(link).not.toHaveAttribute('aria-current');
     });
   },
 };

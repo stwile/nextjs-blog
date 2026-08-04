@@ -1,52 +1,66 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { NextRequest } from 'next/server';
+import { NextRequest } from 'next/server';
+import { isValidElement } from 'react';
 
 const ImageResponseMock = vi.hoisted(() =>
-  vi.fn(function ImageResponse(element: unknown, options: unknown) {
-    return {
-      __mock: 'ImageResponse',
-      element,
-      options,
-    };
+  vi.fn(function ImageResponse(_element: unknown, options: { headers?: HeadersInit } | undefined) {
+    return new Response('image', { headers: options?.headers });
   }),
 );
 
-vi.mock('@vercel/og', () => ({
+vi.mock('next/og', () => ({
   ImageResponse: ImageResponseMock,
 }));
 
-import handler from '~/pages/api/og';
+import { GET, runtime } from '~/app/api/og/route';
 
-describe('api/og handler', () => {
+describe('api/og Route Handler', () => {
   beforeEach(() => {
     ImageResponseMock.mockClear();
   });
 
-  it('タイトル付きでImageResponseを返す', () => {
-    const req = {
-      url: 'https://example.com/api/og?title=Hello',
-    } as NextRequest;
+  it('Edge Runtimeを使う', () => {
+    expect(runtime).toBe('edge');
+  });
 
-    const result = handler(req);
+  it('タイトル付きでImageResponseを返す', () => {
+    const request = new NextRequest('https://example.com/api/og?title=Hello');
+
+    const result = GET(request);
 
     expect(ImageResponseMock).toHaveBeenCalledTimes(1);
 
     const firstCall = ImageResponseMock.mock.calls[0];
-    expect(firstCall).toBeDefined();
-    const [element, options] = firstCall as [unknown, { height: number; width: number }];
-    expect((element as { props: { title: string } }).props.title).toBe('Hello');
-    expect(options).toEqual({ height: 630, width: 1200 });
-    expect(result).toEqual(expect.objectContaining({ __mock: 'ImageResponse' }));
+    if (!firstCall) {
+      throw new Error('ImageResponseが呼び出されていません');
+    }
+
+    const [element, options] = firstCall;
+    expect(isValidElement<{ title: string }>(element)).toBe(true);
+    if (!isValidElement<{ title: string }>(element)) {
+      throw new Error('ImageResponseの第1引数がReact要素ではありません');
+    }
+
+    expect(element.props.title).toBe('Hello');
+    expect(options).toEqual({
+      headers: {
+        'Cache-Control': 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
+      },
+      height: 630,
+      width: 1200,
+    });
+    expect(result).toBeInstanceOf(Response);
+    expect(result.headers.get('Cache-Control')).toBe(
+      'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
+    );
   });
 
   it('titleがない場合は500を返す', async () => {
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => undefined);
-    const req = {
-      url: 'https://example.com/api/og',
-    } as NextRequest;
+    const request = new NextRequest('https://example.com/api/og');
 
-    const result = handler(req);
+    const result = GET(request);
 
     expect(logSpy).toHaveBeenCalledWith('Title is required');
     expect(result).toBeInstanceOf(Response);

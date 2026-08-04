@@ -5,8 +5,6 @@ import { BlogArticle } from '.';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { ContentType } from '~/types/response/blog/ContentType';
 
-import { serializeBlogMdx } from '~/lib/serializeBlogMdx';
-
 const sampleContent: ContentType = {
   id: 'sample-id',
   createdAt: '2025-01-01T00:00:00.000Z',
@@ -19,37 +17,12 @@ const sampleContent: ContentType = {
   tags: [],
 };
 
-const sampleMdx = `
-# H1見出し
-
-## H2見出し
-
-### H3見出し
-
-#### H4見出し
-
-MDX を Storybook でプレビューする例です。
-
-- シンタックスハイライト用のプラグインを設定
-- GFM 対応でリストやテーブルを扱える
-
-コードブロック例:
-
-\`\`\`ts
-const greet = (name: string) => \`Hello \${name}\`;
-console.log(greet('Storybook'));
-\`\`\`
-
-リンク例: [内部リンク](/) / [外部リンク](https://example.com)
-`;
-
 const meta = {
   title: 'BlogArticle',
   component: BlogArticle,
   args: {
     content: sampleContent,
-    // placeholder; actual source is provided via loaders
-    source: {} as never,
+    children: <p>MDX を Storybook でプレビューする例です。</p>,
   },
   parameters: {
     layout: 'fullscreen',
@@ -63,15 +36,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     content: sampleContent,
-  },
-  loaders: [
-    async () => ({
-      source: await serializeBlogMdx(sampleMdx),
-    }),
-  ],
-  render: ({ content }, { loaded }) => {
-    const source = loaded.source;
-    return <BlogArticle content={content} source={source} />;
+    children: (
+      <>
+        <h2>H2見出し</h2>
+        <p>MDX を Storybook でプレビューする例です。</p>
+        <ul>
+          <li>GFM 対応でリストやテーブルを扱える</li>
+        </ul>
+      </>
+    ),
   },
   play: async ({ canvasElement, step, args }) => {
     const canvas = within(canvasElement);
@@ -84,27 +57,6 @@ export const Default: Story = {
 
       const body = await canvas.findByText('MDX を Storybook でプレビューする例です。');
       await expect(body).toBeInTheDocument();
-    });
-  },
-};
-
-export const ErrorState: Story = {
-  args: {
-    content: sampleContent,
-  },
-  render: ({ content }) => {
-    const source = {
-      error: new Error('MDX compile error'),
-      frontmatter: {},
-      scope: {},
-    };
-    return <BlogArticle content={content} source={source} />;
-  },
-  play: async ({ canvasElement, step }) => {
-    const canvas = within(canvasElement);
-    await step('エラーメッセージを表示する', async () => {
-      const message = canvas.getByRole('alert');
-      await expect(message).toHaveTextContent('この記事の本文を表示できませんでした。');
     });
   },
 };

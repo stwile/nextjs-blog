@@ -1,10 +1,8 @@
-import type { FC } from 'react';
-
-type Props = {
+type Props = Readonly<{
   slideId: string;
-};
+}>;
 
-export const Docswell: FC<Props> = ({ slideId }) => {
+const Docswell = ({ slideId }: Props) => {
   const slideUrl = `https://www.docswell.com/slide/${slideId}/embed`;
 
   const containerStyle = {
@@ -37,3 +35,5 @@ export const Docswell: FC<Props> = ({ slideId }) => {
     </span>
   );
 };
+
+export { Docswell };

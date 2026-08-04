@@ -1,10 +1,12 @@
-import { type FC, type SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
-type Props = {
-  isDark: boolean;
-} & SVGProps<SVGSVGElement>;
+type Props = Readonly<
+  {
+    isDark: boolean;
+  } & SVGProps<SVGSVGElement>
+>;
 
-export const MoonSvg: FC<Props> = ({ isDark }) => {
+const MoonSvg = ({ isDark, ...svgProps }: Props) => {
   const TITLE = 'Light And Dark Switch Toggle';
   const DESCRIPTION = 'ライトモードかダークモードにテーマの色を切り替えるボタンです';
   return (
@@ -20,6 +22,7 @@ export const MoonSvg: FC<Props> = ({ isDark }) => {
       aria-hidden="true"
       aria-labelledby={TITLE}
       aria-describedby={DESCRIPTION}
+      {...svgProps}
     >
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       <title>{TITLE}</title>
@@ -27,3 +30,5 @@ export const MoonSvg: FC<Props> = ({ isDark }) => {
     </svg>
   );
 };
+
+export { MoonSvg };
