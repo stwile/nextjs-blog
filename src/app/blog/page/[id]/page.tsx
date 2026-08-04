@@ -1,16 +1,14 @@
 import { notFound } from 'next/navigation';
 
+import type { Metadata } from 'next';
 import type { JSX } from 'react';
 import type { ListType } from '~/types/response/blog/ListType';
 
 import { Date } from '~/components/Date';
-import { Footer } from '~/components/Footer';
-import { Header } from '~/components/Header';
 import { InnerLink } from '~/components/InnerLink';
 import { Pagination, PER_PAGE } from '~/components/Pagination';
 import { client } from '~/lib/microcms';
-
-const SITE_TITLE = process.env.NEXT_PUBLIC_SITE_TITLE ?? 'ブログタイトル';
+import { createOgImageUrl, siteConfig } from '~/lib/site';
 
 export const dynamicParams = false;
 
@@ -29,6 +27,28 @@ export const generateStaticParams = async (): Promise<Params[]> => {
 
 type Props = {
   params: Promise<Params>;
+};
+
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { id } = await params;
+  const pathname = `/blog/page/${id}`;
+
+  return {
+    title: {
+      absolute: siteConfig.title,
+    },
+    description: siteConfig.description,
+    alternates: {
+      canonical: pathname,
+    },
+    openGraph: {
+      title: siteConfig.title,
+      description: siteConfig.description,
+      images: [createOgImageUrl(siteConfig.title)],
+      type: 'website',
+      url: pathname,
+    },
+  };
 };
 
 const BlogPage = async ({ params }: Props): Promise<JSX.Element> => {
@@ -54,27 +74,25 @@ const BlogPage = async ({ params }: Props): Promise<JSX.Element> => {
 
   return (
     <>
-      <Header />
-      <main className="mx-auto max-w-3xl px-8">
-        <h1>{SITE_TITLE}</h1>
-        <section>
-          {contents.map(({ id, publishedAt, title, description }) => (
-            <article key={id} className="mt-12">
-              <p className="mb-1 text-sm font-semibold">
-                <Date dateString={publishedAt} />
-              </p>
-              <h1 className="mb-2 text-2xl">
-                <InnerLink uri={`/blog/${id}`} title={title} />
-              </h1>
-              <p className="mb-3 text-sm">{description}</p>
-            </article>
-          ))}
-        </section>
-        <div className="flex justify-center">
-          <Pagination totalCount={totalCount} />
-        </div>
-      </main>
-      <Footer />
+      <h1>
+        {siteConfig.title} - {pageId}ページ目
+      </h1>
+      <section>
+        {contents.map(({ id, publishedAt, title, description }) => (
+          <article key={id} className="mt-12">
+            <p className="mb-1 text-sm font-semibold">
+              <Date dateString={publishedAt} />
+            </p>
+            <h2 className="mb-2 text-2xl">
+              <InnerLink uri={`/blog/${id}`} title={title} />
+            </h2>
+            <p className="mb-3 text-sm">{description}</p>
+          </article>
+        ))}
+      </section>
+      <div className="flex justify-center">
+        <Pagination totalCount={totalCount} currentPage={pageId} />
+      </div>
     </>
   );
 };

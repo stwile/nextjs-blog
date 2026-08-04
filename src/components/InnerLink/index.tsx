@@ -1,15 +1,22 @@
 import Link from 'next/link';
 
-import type { FC } from 'react';
-
-type Props = {
+type Props = Readonly<{
   uri: string;
   title: string;
   className?: string;
+  ariaCurrent?: 'page';
+}>;
+
+const InnerLink = ({ uri, title, className, ariaCurrent }: Props) => {
+  return (
+    <Link
+      href={uri}
+      className={className ?? 'underline underline-offset-2'}
+      aria-current={ariaCurrent}
+    >
+      {title}
+    </Link>
+  );
 };
 
-export const InnerLink: FC<Props> = ({ uri, title, className }) => (
-  <Link href={uri} className={className ?? 'underline underline-offset-2'}>
-    {title}
-  </Link>
-);
+export { InnerLink };

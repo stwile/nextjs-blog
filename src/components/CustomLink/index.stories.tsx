@@ -1,10 +1,10 @@
 import { expect, within } from 'storybook/test';
 
-import { DOMAIN_NAME } from '../Meta';
-
 import { CustomLink } from '.';
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+
+import { siteConfig } from '~/lib/site';
 
 const meta = {
   title: 'CustomLink',
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const InternalLinkByFullPath: Story = {
   args: {
-    href: `https://${DOMAIN_NAME}/index`,
+    href: new URL('/index', siteConfig.siteUrl).toString(),
     children: 'InternalLinkByFullPath',
   },
   play: async ({ canvasElement }) => {

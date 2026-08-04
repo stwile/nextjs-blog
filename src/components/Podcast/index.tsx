@@ -1,10 +1,8 @@
-import { type FC } from 'react';
-
-type Props = {
+type Props = Readonly<{
   podcastId: string;
-};
+}>;
 
-export const Podcast: FC<Props> = ({ podcastId }) => {
+const Podcast = ({ podcastId }: Props) => {
   return (
     <div style={{ margin: '20px 0' }}>
       <iframe
@@ -18,3 +16,5 @@ export const Podcast: FC<Props> = ({ podcastId }) => {
     </div>
   );
 };
+
+export { Podcast };

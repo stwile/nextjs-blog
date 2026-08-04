@@ -2,16 +2,25 @@
 
 import { ThemeProvider as NextThemeProvider, type ThemeProviderProps } from 'next-themes';
 
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-type Props = {
-  children: ReactNode;
-} & ThemeProviderProps;
+type Props = Readonly<
+  {
+    children: ReactNode;
+  } & ThemeProviderProps
+>;
 
-export const ThemeProvider: FC<Props> = ({ children }) => {
+const ThemeProvider = ({ children, ...themeProviderProps }: Props) => {
   return (
-    <NextThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
+    <NextThemeProvider
+      attribute="class"
+      enableSystem={false}
+      defaultTheme="light"
+      {...themeProviderProps}
+    >
       {children}
     </NextThemeProvider>
   );
 };
+
+export { ThemeProvider };

@@ -1,14 +1,16 @@
 import Link from 'next/link';
 
-import { DOMAIN_NAME } from '../Meta';
+import type { ComponentProps } from 'react';
 
-import type { ComponentProps, FC } from 'react';
+import { siteConfig } from '~/lib/site';
 
-type Props = {
-  href: string;
-} & Omit<ComponentProps<'a'>, 'ref'>;
+type Props = Readonly<
+  {
+    href: string;
+  } & Omit<ComponentProps<'a'>, 'ref'>
+>;
 
-export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
+const CustomLink = ({ href, children, ...props }: Props) => {
   // 特定の不要なプロパティを除外
   const { className, style } = props;
   const commonProps = { className, style };
@@ -38,7 +40,7 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
     return <span {...commonProps}>{children}</span>;
   }
 
-  if (parsedUrl.hostname === DOMAIN_NAME) {
+  if (parsedUrl.hostname === siteConfig.domain) {
     return (
       <Link href={parsedUrl.pathname} {...commonProps}>
         {children}
@@ -52,3 +54,5 @@ export const CustomLink: FC<Props> = ({ href, children, ...props }) => {
     </a>
   );
 };
+
+export { CustomLink };
