@@ -4,8 +4,6 @@ import type { NextRequest } from 'next/server';
 
 import { OgImage } from '~/components/OgImage';
 
-export const runtime = 'edge';
-
 export const GET = (request: NextRequest): Response => {
   try {
     const title = request.nextUrl.searchParams.get('title');

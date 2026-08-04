@@ -13,15 +13,11 @@ vi.mock('next/og', () => ({
   ImageResponse: ImageResponseMock,
 }));
 
-import { GET, runtime } from '~/app/api/og/route';
+import { GET } from '~/app/api/og/route';
 
 describe('api/og Route Handler', () => {
   beforeEach(() => {
     ImageResponseMock.mockClear();
-  });
-
-  it('Edge Runtimeを使う', () => {
-    expect(runtime).toBe('edge');
   });
 
   it('タイトル付きでImageResponseを返す', () => {
