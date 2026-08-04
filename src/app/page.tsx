@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import type { JSX } from 'react';
-import type { ListType } from '~/types/response/blog/ListType';
 
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Pagination, PER_PAGE } from '~/components/Pagination';
-import { client } from '~/lib/microcms';
 import { createOgImageUrl, siteConfig } from '~/lib/site';
+
+import { getBlogList } from '~/features/blog';
 
 export const metadata: Metadata = {
   title: {
@@ -26,16 +26,13 @@ export const metadata: Metadata = {
 };
 
 const Home = async (): Promise<JSX.Element> => {
-  const data: ListType = await client.get({
-    endpoint: 'blog',
-    queries: { offset: 0, limit: PER_PAGE },
-  });
+  const { items, totalCount } = await getBlogList({ page: 1, perPage: PER_PAGE });
 
   return (
     <>
       <h1>{siteConfig.title}</h1>
       <section>
-        {data.contents.map(({ id, publishedAt, title, description }) => (
+        {items.map(({ id, publishedAt, title, description }) => (
           <article key={id} className="mt-12">
             <p className="mb-1 text-sm font-semibold">
               <Date dateString={publishedAt} />
@@ -48,7 +45,7 @@ const Home = async (): Promise<JSX.Element> => {
         ))}
       </section>
       <div className="flex justify-center">
-        <Pagination totalCount={data.totalCount} currentPage={1} />
+        <Pagination totalCount={totalCount} currentPage={1} />
       </div>
     </>
   );

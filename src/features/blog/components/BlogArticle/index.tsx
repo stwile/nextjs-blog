@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react';
-import type { ContentType } from '~/types/response/blog/ContentType';
+
+import type { BlogPost } from '../../types';
 
 import { Date } from '~/components/Date';
 
 type Props = Readonly<{
   children: ReactNode;
-  content: ContentType;
+  content: BlogPost;
 }>;
 
 const BlogArticle = ({ children, content }: Props) => {
