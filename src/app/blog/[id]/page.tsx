@@ -7,9 +7,7 @@ import remarkGfm from 'remark-gfm';
 import type { Metadata } from 'next';
 import type { MDXRemoteProps } from 'next-mdx-remote-client/rsc';
 import type { JSX } from 'react';
-import type { ContentType } from '~/types/response/blog/ContentType';
 
-import { BlogArticle } from '~/components/BlogArticle';
 import { CustomLink } from '~/components/CustomLink';
 import { Docswell } from '~/components/Docswell';
 import { InnerLink } from '~/components/InnerLink';
@@ -17,8 +15,12 @@ import { Podcast } from '~/components/Podcast';
 import { SpeakerDeck } from '~/components/SpeakerDeck';
 import { Twitter } from '~/components/Twitter';
 import { createSafeMdxOptions } from '~/lib/mdx';
-import { BlogNotFoundError, client, getBlogContent } from '~/lib/microcms';
 import { createOgImageUrl, siteConfig } from '~/lib/site';
+
+import { BlogArticle } from '~/features/blog/components/BlogArticle';
+import { getAllBlogIds, getBlogById } from '~/features/blog';
+import type { BlogPost } from '~/features/blog';
+import { BlogNotFoundError } from '~/features/blog/blog-not-found-error';
 
 export const dynamicParams = false;
 
@@ -48,9 +50,9 @@ const mdxOptions = createSafeMdxOptions(
   mdxComponents,
 );
 
-const getCachedBlogContent = cache(async (id: string): Promise<ContentType> => {
+const getCachedBlogContent = cache(async (id: string): Promise<BlogPost> => {
   try {
-    return await getBlogContent(id);
+    return await getBlogById(id);
   } catch (error) {
     if (error instanceof BlogNotFoundError) {
       notFound();
@@ -61,7 +63,7 @@ const getCachedBlogContent = cache(async (id: string): Promise<ContentType> => {
 });
 
 export const generateStaticParams = async (): Promise<Params[]> => {
-  const ids = await client.getAllContentIds({ endpoint: 'blog' });
+  const ids = await getAllBlogIds();
   return ids.map((id) => ({ id }));
 };
 

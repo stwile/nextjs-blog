@@ -3,18 +3,14 @@ import { expect, within } from 'storybook/test';
 import { BlogArticle } from '.';
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import type { ContentType } from '~/types/response/blog/ContentType';
+import type { BlogPost } from '../../types';
 
-const sampleContent: ContentType = {
+const sampleContent: BlogPost = {
   id: 'sample-id',
-  createdAt: '2025-01-01T00:00:00.000Z',
-  updatedAt: '2025-01-01T00:00:00.000Z',
   publishedAt: '2025-01-01T00:00:00.000Z',
-  revisedAt: '2025-01-01T00:00:00.000Z',
   title: 'Storybookで見るMDX記事',
   description: 'MDXをStorybook上でプレビューするためのサンプルです。',
   body: '',
-  tags: [],
 };
 
 const meta = {

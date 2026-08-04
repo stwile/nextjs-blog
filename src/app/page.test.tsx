@@ -1,24 +1,22 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const clientGetMock = vi.hoisted(() => vi.fn());
+const getBlogListMock = vi.hoisted(() => vi.fn());
 
-vi.mock('~/lib/microcms', () => ({
-  client: {
-    get: clientGetMock,
-  },
+vi.mock('~/features/blog', () => ({
+  getBlogList: getBlogListMock,
 }));
 
 import Home from './page';
 
 describe('app/page', () => {
   beforeEach(() => {
-    clientGetMock.mockReset();
+    getBlogListMock.mockReset();
   });
 
   it('ページ見出しをh1、記事タイトルをh2で表示する', async () => {
-    clientGetMock.mockResolvedValueOnce({
-      contents: [
+    getBlogListMock.mockResolvedValueOnce({
+      items: [
         {
           id: 'article-1',
           publishedAt: '2026-08-02T00:00:00.000Z',

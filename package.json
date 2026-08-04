@@ -39,7 +39,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-tweet": "^3.2.1",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",

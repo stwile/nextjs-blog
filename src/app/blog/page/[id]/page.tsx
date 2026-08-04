@@ -2,13 +2,13 @@ import { notFound } from 'next/navigation';
 
 import type { Metadata } from 'next';
 import type { JSX } from 'react';
-import type { ListType } from '~/types/response/blog/ListType';
 
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Pagination, PER_PAGE } from '~/components/Pagination';
-import { client } from '~/lib/microcms';
 import { createOgImageUrl, siteConfig } from '~/lib/site';
+
+import { getBlogList } from '~/features/blog';
 
 export const dynamicParams = false;
 
@@ -17,8 +17,8 @@ type Params = {
 };
 
 export const generateStaticParams = async (): Promise<Params[]> => {
-  const repos: ListType = await client.get({ endpoint: 'blog' });
-  const totalPages = Math.ceil(repos.totalCount / PER_PAGE);
+  const { totalCount } = await getBlogList({ page: 1, perPage: PER_PAGE });
+  const totalPages = Math.ceil(totalCount / PER_PAGE);
 
   return Array.from({ length: totalPages }, (_, index) => ({
     id: String(index + 1),
@@ -59,13 +59,7 @@ const BlogPage = async ({ params }: Props): Promise<JSX.Element> => {
     notFound();
   }
 
-  const { contents, totalCount }: ListType = await client.get({
-    endpoint: 'blog',
-    queries: {
-      offset: (pageId - 1) * PER_PAGE,
-      limit: PER_PAGE,
-    },
-  });
+  const { items, totalCount } = await getBlogList({ page: pageId, perPage: PER_PAGE });
 
   const totalPages = Math.ceil(totalCount / PER_PAGE);
   if (pageId > totalPages) {
@@ -78,7 +72,7 @@ const BlogPage = async ({ params }: Props): Promise<JSX.Element> => {
         {siteConfig.title} - {pageId}ページ目
       </h1>
       <section>
-        {contents.map(({ id, publishedAt, title, description }) => (
+        {items.map(({ id, publishedAt, title, description }) => (
           <article key={id} className="mt-12">
             <p className="mb-1 text-sm font-semibold">
               <Date dateString={publishedAt} />
