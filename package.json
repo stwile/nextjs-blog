@@ -80,7 +80,7 @@
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
   "engines": {
-    "node": "24.19.0"
+    "node": "24.x"
   },
   "packageManager": "pnpm@11.19.0"
 }
