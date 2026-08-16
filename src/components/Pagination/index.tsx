@@ -18,10 +18,10 @@ const Pagination = ({ totalCount, currentPage }: Props) => {
           <li
             key={number}
             className={`
-              inline-flex h-9 min-w-10 items-center justify-center rounded-md border border-slate-300
-              px-0 text-center text-sm text-slate-600 tabular-nums shadow-sm transition-all
+              inline-flex h-9 min-w-10 items-center justify-center rounded-md border border-slate-500
+              px-0 text-center text-sm text-slate-600 tabular-nums shadow-sm transition-all dark:text-gray-300
               hover:border-slate-800 hover:bg-slate-800 hover:text-white hover:shadow-lg
-              focus:border-slate-800 focus:bg-slate-800 focus:text-white
+              focus-within:border-slate-800 focus-within:bg-slate-800 focus-within:text-white
               active:border-slate-800 active:bg-slate-800 active:text-white
               disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none
             `}
@@ -30,6 +30,7 @@ const Pagination = ({ totalCount, currentPage }: Props) => {
             <InnerLink
               uri={`/blog/page/${number.toString()}`}
               title={number.toString()}
+              className="underline underline-offset-2 text-inherit hover:text-inherit focus:text-inherit active:text-inherit"
               ariaCurrent={number === currentPage ? 'page' : undefined}
             />
           </li>

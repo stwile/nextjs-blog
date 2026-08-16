@@ -5,7 +5,7 @@
 
 @theme {
   --color-indigo-special: #0078b3;
-  --color-indigo-special-hover: #008ccf;
+  --color-indigo-special-hover: #006b9f;
   --color-dark-indigo-special: #2d9cff;
   --color-dark-indigo-special-hover: #4da3ff;
   --color-black-special: #262727;
@@ -98,7 +98,7 @@
 }
 
 .prose code {
-  @apply text-gray-400 dark:text-gray-300 px-1 py-0.5 rounded-md;
+  @apply text-gray-600 dark:text-gray-300 px-1 py-0.5 rounded-md;
 }
 
 code[class*='language-'],
