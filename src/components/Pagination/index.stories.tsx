@@ -1,4 +1,4 @@
-import { expect, within } from 'storybook/test';
+import { expect, userEvent, within } from 'storybook/test';
 
 import { Pagination } from '.';
 
@@ -50,6 +50,60 @@ export const Default: Story = {
       const currentPageLink = canvas.getByRole('link', { name: '2' });
       await expect(currentPageLink).toHaveAttribute('aria-current', 'page');
       await expect(link).not.toHaveAttribute('aria-current');
+    });
+  },
+};
+
+export const Hover: Story = {
+  args: Default.args,
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole('link', { name: '2' });
+
+    await step('hover状態を再現する', async () => {
+      await userEvent.hover(link);
+      await expect(link).toBeInTheDocument();
+    });
+  },
+};
+
+export const FocusVisible: Story = {
+  args: Default.args,
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('キーボードフォーカス状態を再現する', async () => {
+      await userEvent.tab();
+      const focusedLink = canvas.getByRole('link', { name: '1' });
+      await expect(focusedLink).toHaveFocus();
+      await expect(focusedLink).toHaveClass('focus-visible:outline-gray-100');
+    });
+  },
+};
+
+export const DarkMode: Story = {
+  args: Default.args,
+  decorators: [
+    (Story) => (
+      <div className="dark p-4" style={{ backgroundColor: '#262727' }}>
+        <Story />
+      </div>
+    ),
+  ],
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole('link', { name: '2' });
+
+    await step('ダークテーマのhover状態を再現する', async () => {
+      await userEvent.hover(link);
+      await expect(link).toBeInTheDocument();
+    });
+
+    await step('ダークテーマのfocus-visible状態を再現する', async () => {
+      await userEvent.tab();
+      const focusedLink = canvas.getByRole('link', { name: '1' });
+      await expect(focusedLink).toHaveFocus();
+      await expect(focusedLink).toHaveClass('focus-visible:outline-gray-100');
     });
   },
 };
