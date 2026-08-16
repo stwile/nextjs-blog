@@ -6,8 +6,40 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  ci:
+  checks:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        check:
+          - name: Format
+            command: pnpm run fmt:check
+          - name: Lint
+            command: pnpm run lint
+          - name: Typecheck
+            command: pnpm run typecheck
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set pnpm version
+        uses: pnpm/action-setup@v4
+      - name: Set Node version
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: './package.json'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prefer-offline
+
+      - name: ${{ matrix.check.name }}
+        run: ${{ matrix.check.command }}
+
+  test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -16,14 +48,8 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.62.1-noble
     steps:
       - uses: actions/checkout@v6
-      - name: Use Latest Corepack
-        run: |
-          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
-          npm install -g corepack@latest
-          echo "After : corepack version => $(corepack --version)"
-          corepack enable
-          pnpm --version
-
+      - name: Set pnpm version
+        uses: pnpm/action-setup@v4
       - name: Set Node version
         uses: actions/setup-node@v6
         with:
@@ -31,16 +57,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
-
-      - name: format
-        run: pnpm run fmt:check
-
-      - name: lint
-        run: pnpm run lint
-
-      - name: typecheck
-        run: pnpm run typecheck
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: test
         run: pnpm run test-cov
