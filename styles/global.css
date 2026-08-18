@@ -86,11 +86,11 @@
 }
 
 .prose pre {
-  @apply bg-gray-900 border border-gray-700;
+  @apply bg-gray-900 border border-gray-500;
 }
 
 .prose hr {
-  @apply border dark:border-gray-600;
+  @apply border-gray-500;
 }
 
 .prose {
