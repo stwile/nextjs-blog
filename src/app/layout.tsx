@@ -7,7 +7,7 @@ import type { JSX, ReactNode } from 'react';
 
 import { Footer } from '~/components/Footer';
 import { Header } from '~/components/Header';
-import { createOgImageUrl, siteConfig } from '~/lib/site';
+import { siteConfig } from '~/lib/site';
 
 import 'styles/global.css';
 
@@ -16,8 +16,6 @@ type Props = Readonly<{
 }>;
 
 const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID;
-
-const ogImage = createOgImageUrl(siteConfig.title);
 
 export const metadata: Metadata = {
   metadataBase: siteConfig.siteUrl,
@@ -35,7 +33,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [ogImage],
     locale: 'ja_JP',
     siteName: siteConfig.title,
     type: 'website',
@@ -52,7 +49,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: siteConfig.twitterId ? `@${siteConfig.twitterId}` : undefined,
     description: siteConfig.description,
-    images: [ogImage],
     title: siteConfig.title,
   },
   verification: {
