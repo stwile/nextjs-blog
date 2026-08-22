@@ -1,17 +1,18 @@
 import type { JSX } from 'react';
 
-import { siteConfig } from '~/lib/site';
+import { truncateOgTitle } from '~/lib/og';
 
 type Props = Readonly<{
+  backgroundImageSrc: string;
   title: string;
 }>;
 
-export const OgImage = ({ title }: Props): JSX.Element => {
-  const IMAGE_URL = new URL('/images/og_base.png', siteConfig.siteUrl).toString();
-  const sliced = title.slice(0, 50);
+export const OgImage = ({ backgroundImageSrc, title }: Props): JSX.Element => {
+  const sliced = truncateOgTitle(title);
   // tailwindが使えないので、インラインスタイルで指定
   return (
     <div
+      lang="ja-JP"
       style={{
         backgroundColor: '#fff',
         backgroundSize: '100% 100%',
@@ -23,7 +24,7 @@ export const OgImage = ({ title }: Props): JSX.Element => {
         justifyContent: 'center',
         flexDirection: 'column',
         flexWrap: 'nowrap',
-        backgroundImage: `url(${IMAGE_URL})`,
+        backgroundImage: `url(${backgroundImageSrc})`,
       }}
     >
       {/* テキスト部分 */}
@@ -32,7 +33,8 @@ export const OgImage = ({ title }: Props): JSX.Element => {
           width: '85%',
           margin: 'auto',
           fontSize: 70,
-          fontStyle: 'bold',
+          fontFamily: 'Noto Sans JP',
+          fontWeight: 700,
           letterSpacing: '-0.025em',
           color: '#fff',
           lineHeight: 1.3,

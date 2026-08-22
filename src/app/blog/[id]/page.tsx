@@ -15,7 +15,7 @@ import { Podcast } from '~/components/Podcast';
 import { SpeakerDeck } from '~/components/SpeakerDeck';
 import { Twitter } from '~/components/Twitter';
 import { createSafeMdxOptions } from '~/lib/mdx';
-import { createOgImageUrl, siteConfig } from '~/lib/site';
+import { siteConfig } from '~/lib/site';
 
 import { BlogArticle } from '~/features/blog/components/BlogArticle';
 import { getAllBlogIds, getBlogById } from '~/features/blog';
@@ -70,7 +70,6 @@ export const generateStaticParams = async (): Promise<Params[]> => {
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { id } = await params;
   const content = await getCachedBlogContent(id);
-  const ogImage = createOgImageUrl(content.title);
 
   return {
     title: content.title,
@@ -81,7 +80,6 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
     openGraph: {
       title: `${content.title} | ${siteConfig.title}`,
       description: content.description,
-      images: [ogImage],
       type: 'article',
       url: `/blog/${content.id}`,
     },
@@ -89,7 +87,6 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
       card: 'summary_large_image',
       creator: siteConfig.twitterId ? `@${siteConfig.twitterId}` : undefined,
       description: content.description,
-      images: [ogImage],
       title: `${content.title} | ${siteConfig.title}`,
     },
   };

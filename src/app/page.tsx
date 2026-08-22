@@ -4,7 +4,7 @@ import type { JSX } from 'react';
 import { Date } from '~/components/Date';
 import { InnerLink } from '~/components/InnerLink';
 import { Pagination, PER_PAGE } from '~/components/Pagination';
-import { createOgImageUrl, siteConfig } from '~/lib/site';
+import { siteConfig } from '~/lib/site';
 
 import { getBlogList } from '~/features/blog';
 
@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     type: 'website',
     url: '/',
-    images: [createOgImageUrl(siteConfig.title)],
   },
 };
 
