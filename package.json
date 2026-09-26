@@ -74,7 +74,7 @@
     "storybook": "^10.5.8",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "lint-staged": {
     "*": "oxfmt --no-error-on-unmatched-pattern"
